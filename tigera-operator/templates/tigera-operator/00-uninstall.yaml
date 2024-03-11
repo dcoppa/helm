@@ -31,7 +31,7 @@ spec:
       restartPolicy: Never
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      serviceAccountName: tigera-operator
+      serviceAccountName: {{.Values.k8sPrefix}}-sa-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
       containers:
       - name: cleanup-job
         image: {{ template "tigera-operator.image" .Values.tigeraOperator}}

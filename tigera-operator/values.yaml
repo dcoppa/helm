@@ -5,6 +5,11 @@
 # Example: --set-file imagePullSecrets.gcr=./pull-secret.json
 imagePullSecrets: {}
 
+k8sPrefix: awsd
+customer: hydra
+purpose: dataplatform
+stage: dev
+
 installation:
   enabled: true
   kubernetesProvider: ""

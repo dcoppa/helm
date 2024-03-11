@@ -31,7 +31,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: tigera-operator
+      serviceAccountName: {{.Values.k8sPrefix}}-sa-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
       # Set the termination grace period to match how long the operator will wait for
       # resources to terminate when being uninstalled.
       terminationGracePeriodSeconds: 60
