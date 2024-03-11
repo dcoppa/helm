@@ -61,6 +61,10 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "tigera-operator"
+            - name: OPERATOR_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
             - name: TIGERA_OPERATOR_INIT_IMAGE_VERSION
               value: {{.Values.tigeraOperator.version}}
           envFrom:
