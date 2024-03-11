@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tigera-operator
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
   namespace: {{.Release.Namespace}}
   labels:
     k8s-app: tigera-operator
@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: tigera-operator
+      name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
   template:
     metadata:
       labels:
-        name: tigera-operator
+        name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
         k8s-app: tigera-operator
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}

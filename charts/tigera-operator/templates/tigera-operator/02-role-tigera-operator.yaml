@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: tigera-operator
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
 rules:
   - apiGroups:
       - ""
@@ -89,7 +89,7 @@ rules:
   - apiGroups:
       - apps
     resourceNames:
-      - tigera-operator
+      - {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
     resources:
       - deployments/finalizers
     verbs:
