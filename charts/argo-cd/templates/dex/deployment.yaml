@@ -79,7 +79,7 @@ spec:
           - name: ARGOCD_DEX_SERVER_DISABLE_TLS
             valueFrom:
               configMapKeyRef:
-                name: argocd-cmd-params-cm
+                name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                 key: dexserver.disable.tls
                 optional: true
         {{- with .Values.dex.envFrom }}
@@ -134,7 +134,7 @@ spec:
           mountPath: /shared
         - name: dexconfig
           mountPath: /tmp
-        - name: argocd-dex-server-tls
+        - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-dex-server-tls-{{.Values.stage}}
           mountPath: /tls
       {{- with .Values.dex.extraContainers }}
         {{- tpl (toYaml .) $ | nindent 6 }}
@@ -190,9 +190,9 @@ spec:
         emptyDir: {}
       - name: dexconfig
         emptyDir: {}
-      - name: argocd-dex-server-tls
+      - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-dex-server-tls-{{.Values.stage}}
         secret:
-          secretName: argocd-dex-server-tls
+          secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-dex-server-tls-{{.Values.stage}}
           optional: true
           items:
           - key: tls.crt

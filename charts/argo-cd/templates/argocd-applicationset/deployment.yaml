@@ -80,126 +80,126 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.global.preserved.annotations
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_GLOBAL_PRESERVED_LABELS
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.global.preserved.labels
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_LEADER_ELECTION
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.enable.leader.election
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER
               valueFrom:
                 configMapKeyRef:
                   key: repo.server
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_POLICY
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.policy
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_POLICY_OVERRIDE
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.enable.policy.override
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_DEBUG
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.debug
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_LOGFORMAT
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.log.format
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_LOGLEVEL
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.log.level
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_DRY_RUN
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.dryrun
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_GIT_MODULES_ENABLED
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.enable.git.submodule
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_PROGRESSIVE_SYNCS
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.enable.progressive.syncs
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_NEW_GIT_FILE_GLOBBING
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.enable.new.git.file.globbing
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_PLAINTEXT
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.repo.server.plaintext
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_STRICT_TLS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.repo.server.strict.tls
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.repo.server.timeout.seconds
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_CONCURRENT_RECONCILIATIONS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.concurrent.reconciliations.max
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_NAMESPACES
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.namespaces
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_SCM_ROOT_CA_PATH
               valueFrom:
                 configMapKeyRef:
                   key: applicationsetcontroller.scm.root.ca.path
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ALLOWED_SCM_PROVIDERS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.allowed.scm.providers
                   optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_SCM_PROVIDERS
               valueFrom:
                 configMapKeyRef:
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.enable.scm.providers
                   optional: true
           {{- with .Values.applicationSet.extraEnvFrom }}
@@ -255,7 +255,7 @@ spec:
             - mountPath: /app/config/gpg/keys
               name: gpg-keyring
             - mountPath: /app/config/reposerver/tls
-              name: argocd-repo-server-tls
+              name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
             - mountPath: /tmp
               name: tmp
         {{- with .Values.applicationSet.extraContainers }}
@@ -294,20 +294,20 @@ spec:
         {{- end }}
         - name: ssh-known-hosts
           configMap:
-            name: argocd-ssh-known-hosts-cm
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-ssh-known-hosts-{{.Values.stage}}
         - name: tls-certs
           configMap:
-            name: argocd-tls-certs-cm
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-tls-certs-{{.Values.stage}}
         - name: gpg-keys
           configMap:
-            name: argocd-gpg-keys-cm
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-gpg-keys-{{.Values.stage}}
         - name: gpg-keyring
           emptyDir: {}
         - name: tmp
           emptyDir: {}
-        - name: argocd-repo-server-tls
+        - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
           secret:
-            secretName: argocd-repo-server-tls
+            secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
             optional: true
             items:
               - key: tls.crt

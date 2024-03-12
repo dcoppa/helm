@@ -78,25 +78,25 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: notificationscontroller.log.level
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_NOTIFICATIONS_CONTROLLER_LOGFORMAT
               valueFrom:
                 configMapKeyRef:
                   key: notificationscontroller.log.format
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_APPLICATION_NAMESPACES
               valueFrom:
                 configMapKeyRef:
                   key: application.namespaces
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
             - name: ARGOCD_NOTIFICATION_CONTROLLER_SELF_SERVICE_NOTIFICATION_ENABLED
               valueFrom:
                 configMapKeyRef:
                   key: notificationscontroller.selfservice.enabled
-                  name: argocd-cmd-params-cm
+                  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
           {{- with .Values.notifications.extraEnvFrom }}
           envFrom:
@@ -116,7 +116,7 @@ spec:
           volumeMounts:
             - name: tls-certs
               mountPath: /app/config/tls
-            - name: argocd-repo-server-tls
+            - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
               mountPath: /app/config/reposerver/tls
             {{- with .Values.notifications.extraVolumeMounts }}
               {{- toYaml . | nindent 12 }}
@@ -157,10 +157,10 @@ spec:
         {{- end }}
         - name: tls-certs
           configMap:
-            name: argocd-tls-certs-cm
-        - name: argocd-repo-server-tls
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-tls-certs-{{.Values.stage}}
+        - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
           secret:
-            secretName: argocd-repo-server-tls
+            secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
             optional: true
             items:
             - key: tls.crt

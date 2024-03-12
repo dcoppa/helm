@@ -192,7 +192,7 @@ spec:
       volumes:
         - name: health
           configMap:
-            name: {{ include "argo-cd.redis.fullname" . }}-health-configmap
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.redis.fullname" . }}-health-{{.Values.stage}}
             defaultMode: 493
       {{- with .Values.redis.volumes }}
         {{- toYaml . | nindent 8}}

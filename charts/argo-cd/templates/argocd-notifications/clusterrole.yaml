@@ -32,7 +32,7 @@ rules:
   - apiGroups:
     - ""
     resourceNames:
-    - argocd-notifications-cm
+    - {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-notifications-{{.Values.stage}}
     resources:
     - configmaps
     verbs:
