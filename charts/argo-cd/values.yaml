@@ -3026,7 +3026,7 @@ notifications:
     create: true
 
     # -- notifications controller Secret name
-    name: "argocd-notifications-secret"
+    name: awsd-secret-hydra-dataplatform-argocd-notifications-dev
 
     # -- key:value pairs of annotations to be added to the secret
     annotations: {}
