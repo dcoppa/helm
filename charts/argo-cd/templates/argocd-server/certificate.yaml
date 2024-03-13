@@ -8,7 +8,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}
-  name: {{ include "argo-cd.server.fullname" . }}
+  name: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.server.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}

@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "argo-cd.repoServer.fullname" . }}
+  name: {{.Values.k8sPrefix}}-hpa-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.repoServer.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.repoServer.name "name" .Values.repoServer.name) | nindent 4 }}

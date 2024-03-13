@@ -12,7 +12,7 @@ metadata:
 {{- with .Values.repoServer.service.labels }}
 {{- toYaml . | nindent 4 }}
 {{- end }}
-  name: {{ template "argo-cd.repoServer.fullname" . }}
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.repoServer.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
 spec:
   ports:
