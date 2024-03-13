@@ -31,6 +31,26 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/argo-cd-6.7.1/argo-cd-6.7.1.tgz
     version: 6.7.1
+  external-secrets:
+  - apiVersion: v2
+    appVersion: v0.9.13
+    created: "2024-03-13T19:02:35.377320925Z"
+    description: External secret management for Kubernetes
+    digest: 2699f0e55b659fe4de91101e368dd27fb476ee6a1c62e9c1dc9dd5956ac50eb0
+    home: https://github.com/external-secrets/external-secrets
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: kellinmcavoy@gmail.com
+      name: mcavoyk
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/external-secrets-0.9.13/external-secrets-0.9.13.tgz
+    version: 0.9.13
   tigera-operator:
   - apiVersion: v2
     appVersion: v3.27.2
@@ -47,4 +67,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/tigera-operator-v3.27.2/tigera-operator-v3.27.2.tgz
     version: v3.27.2
-generated: "2024-03-12T15:57:48.44661064Z"
+generated: "2024-03-13T19:02:35.488108819Z"
