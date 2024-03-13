@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "argo-cd.dex.fullname" . }}
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.dex.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
 {{- if .Values.dex.metrics.service.annotations }}
   annotations:
