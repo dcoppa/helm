@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.controller.fullname" . }}-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-argocd-application-cntlr-{{.Values.stage}}
   namespace: {{ default .Release.Namespace .Values.controller.metrics.serviceMonitor.namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.controller.name "name" .Values.controller.name) | nindent 4 }}
