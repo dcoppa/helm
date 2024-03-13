@@ -30,7 +30,7 @@ spec:
             pathType: {{ .Values.applicationSet.ingress.pathType }}
             backend:
               service:
-                name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.applicationSet.fullname" . }}-{{.Values.stage}}
+                name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-argocd-applicationset-cntlr-{{.Values.stage}}
                 port:
                   number: {{ .Values.applicationSet.service.port }}
     {{- range .Values.applicationSet.ingress.extraHosts }}
@@ -41,7 +41,7 @@ spec:
             pathType: {{ default $.Values.applicationSet.ingress.pathType .pathType }}
             backend:
               service:
-                name: {{$.Values.k8sPrefix}}-svc-{{$.Values.customer}}-{{$.Values.purpose}}-{{ include "argo-cd.applicationSet.fullname" $ }}-{{$.Values.stage}}
+                name: {{$.Values.k8sPrefix}}-svc-{{$.Values.customer}}-{{$.Values.purpose}}-argocd-applicationset-cntlr-{{$.Values.stage}}
                 port:
                   number: {{ $.Values.applicationSet.service.port }}
     {{- end }}
