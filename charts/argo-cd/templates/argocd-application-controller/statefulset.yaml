@@ -8,14 +8,14 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}
-  name: {{ template "argo-cd.controller.fullname" . }}
+  name: {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.controller.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.controller.name "name" .Values.controller.name) | nindent 4 }}
 spec:
   replicas: {{ .Values.controller.replicas }}
   revisionHistoryLimit: {{ .Values.controller.revisionHistoryLimit | default .Values.global.revisionHistoryLimit }}
-  serviceName: {{ include "argo-cd.controller.fullname" . }}
+  serviceName: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.controller.fullname" . }}-{{.Values.stage}}
   selector:
     matchLabels:
       {{- include "argo-cd.selectorLabels" (dict "context" . "name" .Values.controller.name) | nindent 6 }}

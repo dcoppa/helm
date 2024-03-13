@@ -2,7 +2,7 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "argo-cd.controller.fullname" . }}
+  name: {{.Values.k8sPrefix}}-pdb-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.controller.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.controller.name "name" .Values.controller.name) | nindent 4 }}
