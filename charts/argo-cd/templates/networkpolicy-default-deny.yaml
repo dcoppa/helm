@@ -4,7 +4,7 @@ kind: NetworkPolicy
 metadata:
   labels:
     {{- include "argo-cd.labels" (dict "context" .) | nindent 4 }}
-  name: {{ template "argo-cd.fullname" . }}-default-deny
+  name: {{.Values.k8sPrefix}}-networkpolicy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.fullname" . }}-default-deny-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
 spec:
   podSelector: {}
