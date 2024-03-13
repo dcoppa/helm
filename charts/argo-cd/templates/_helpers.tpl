@@ -34,7 +34,7 @@ Create Dex server endpoint
 {{- $scheme := (eq $insecure "true") | ternary "http" "https" -}}
 {{- $host := include "argo-cd.dex.fullname" . -}}
 {{- $port := int .Values.dex.servicePortHttp -}}
-{{- printf "%s://%s:%d" $scheme $host $port }}
+{{- printf "%s://%s-svc-%s-%s-%s-%s:%d" $scheme .Values.k8sPrefix .Values.customer .Values.purpose $host .Values.stage $port }}
 {{- end }}
 
 {{/*
@@ -69,7 +69,7 @@ Return Redis server endpoint
 {{- define "argo-cd.redis.server" -}}
 {{- $redisHa := (index .Values "redis-ha") -}}
 {{- if or (and .Values.redis.enabled (not $redisHa.enabled)) (and $redisHa.enabled $redisHa.haproxy.enabled) }}
-    {{- printf "%s:%s" (include "argo-cd.redis.fullname" .)  (toString .Values.redis.servicePort) }}
+    {{- printf "%s-svc-%s-%s-%s-%s:%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "argo-cd.redis.fullname" .) .Values.stage (toString .Values.redis.servicePort) }}
 {{- else if and .Values.externalRedis.host .Values.externalRedis.port }}
     {{- printf "%s:%s" .Values.externalRedis.host (toString .Values.externalRedis.port) }}
 {{- end }}
@@ -190,7 +190,7 @@ NOTE: Configuration keys must be stored as dict because YAML treats dot as separ
 */}}
 {{- define "argo-cd.config.params.presets" -}}
 {{- $presets := dict -}}
-{{- $_ := set $presets "repo.server" (printf "%s:%s" (include "argo-cd.repoServer.fullname" .) (.Values.repoServer.service.port | toString)) -}}
+{{- $_ := set $presets "repo.server" (printf "%s-svc-%s-%s-%s-%s:%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "argo-cd.repoServer.fullname" .) .Values.stage (.Values.repoServer.service.port | toString)) -}}
 {{- $_ := set $presets "server.repo.server.strict.tls" (.Values.repoServer.certificateSecret.enabled | toString ) -}}
 {{- $_ := set $presets "redis.server" (include "argo-cd.redis.server" .) -}}
 {{- if .Values.dex.enabled -}}
