@@ -4,7 +4,7 @@ kind: NetworkPolicy
 metadata:
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.controller.name "name" .Values.controller.name) | nindent 4 }}
-  name: {{.Values.k8sPrefix}}-networkpolicy-{{.Values.customer}}-{{.Values.purpose}}-argocd-application-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-networkpolicy-{{.Values.customer}}-{{.Values.purpose}}-argocd-app-cntlr-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
 spec:
   ingress:

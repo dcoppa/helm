@@ -1,14 +1,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-argocd-application-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-argocd-app-cntlr-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.controller.name "name" .Values.controller.name) | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-argocd-application-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-argocd-app-cntlr-{{.Values.stage}}
 subjects:
 - kind: ServiceAccount
   name: {{ include "argo-cd.controller.serviceAccountName" . }}
