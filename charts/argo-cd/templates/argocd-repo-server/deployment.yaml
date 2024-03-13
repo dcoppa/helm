@@ -267,6 +267,10 @@ spec:
                 key: reposerver.git.request.timeout
                 name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                 optional: true
+          - name: ARGOCD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
           {{- if .Values.repoServer.useEphemeralHelmWorkingDir }}
           - name: HELM_CACHE_HOME
             value: /helm-working-dir

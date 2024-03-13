@@ -202,6 +202,10 @@ spec:
                   name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   key: applicationsetcontroller.enable.scm.providers
                   optional: true
+            - name: ARGOCD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           {{- with .Values.applicationSet.extraEnvFrom }}
           envFrom:
             {{- toYaml . | nindent 12 }}

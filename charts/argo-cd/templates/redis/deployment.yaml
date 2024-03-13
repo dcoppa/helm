@@ -64,8 +64,12 @@ spec:
         - ""
         - --appendonly
         - "no"
-        {{- with (concat .Values.global.env .Values.redis.env) }}
         env:
+          - name: ARGOCD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        {{- with (concat .Values.global.env .Values.redis.env) }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
         {{- with .Values.redis.envFrom }}
@@ -119,6 +123,10 @@ spec:
         image: {{ .Values.redis.exporter.image.repository }}:{{ .Values.redis.exporter.image.tag }}
         imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.redis.exporter.image.imagePullPolicy }}
         env:
+        - name: ARGOCD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         - name: REDIS_ADDR
           value: {{ printf "redis://localhost:%v" .Values.redis.containerPorts.redis }}
         - name: REDIS_EXPORTER_WEB_LISTEN_ADDRESS

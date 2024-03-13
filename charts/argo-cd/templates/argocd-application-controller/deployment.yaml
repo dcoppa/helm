@@ -267,6 +267,10 @@ spec:
                 name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                 key: controller.diff.server.side
                 optional: true
+          - name: ARGOCD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
         {{- with .Values.controller.envFrom }}
         envFrom:
           {{- toYaml . | nindent 10 }}

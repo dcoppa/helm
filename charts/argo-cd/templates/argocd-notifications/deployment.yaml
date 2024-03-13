@@ -98,6 +98,10 @@ spec:
                   key: notificationscontroller.selfservice.enabled
                   name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-cmd-params-{{.Values.stage}}
                   optional: true
+            - name: ARGOCD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           {{- with .Values.notifications.extraEnvFrom }}
           envFrom:
             {{- toYaml . | nindent 12 }}
