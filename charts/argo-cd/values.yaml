@@ -60,7 +60,7 @@ global:
     # -- Overrides the global Argo CD image tag whose default is the chart appVersion
     tag: "v2.10.2-aws"
     # -- If defined, a imagePullPolicy applied to all Argo CD deployments
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always
 
   # -- Secrets with credentials to pull images from a private registry
   imagePullSecrets: []
