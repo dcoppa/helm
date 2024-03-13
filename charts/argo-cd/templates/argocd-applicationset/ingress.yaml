@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "argo-cd.applicationSet.fullname" . }}
+  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.applicationSet.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.applicationSet.name "name" .Values.applicationSet.name) | nindent 4 }}
@@ -30,7 +30,7 @@ spec:
             pathType: {{ .Values.applicationSet.ingress.pathType }}
             backend:
               service:
-                name: {{ include "argo-cd.applicationSet.fullname" . }}
+                name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.applicationSet.fullname" . }}-{{.Values.stage}}
                 port:
                   number: {{ .Values.applicationSet.service.port }}
     {{- range .Values.applicationSet.ingress.extraHosts }}
@@ -41,7 +41,7 @@ spec:
             pathType: {{ default $.Values.applicationSet.ingress.pathType .pathType }}
             backend:
               service:
-                name: {{ include "argo-cd.applicationSet.fullname" $ }}
+                name: {{$.Values.k8sPrefix}}-svc-{{$.Values.customer}}-{{$.Values.purpose}}-{{ include "argo-cd.applicationSet.fullname" $ }}-{{$.Values.stage}}
                 port:
                   number: {{ $.Values.applicationSet.service.port }}
     {{- end }}
