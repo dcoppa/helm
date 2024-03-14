@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-webhook
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets-webhook.labels" . | nindent 4 }}
@@ -96,7 +96,7 @@ spec:
       volumes:
         - name: certs
           secret:
-            secretName: {{ include "external-secrets.fullname" . }}-webhook
+            secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
       {{- if .Values.webhook.extraVolumes }}
       {{- toYaml .Values.webhook.extraVolumes | nindent 8 }}
       {{- end }}

@@ -3,7 +3,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-webhook
+  name: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets-webhook.labels" . | nindent 4 }}
@@ -26,5 +26,5 @@ spec:
   {{- with .Values.webhook.certManager.cert.renewBefore }}
   renewBefore: {{ . | quote }}
   {{- end }}
-  secretName: {{ include "external-secrets.fullname" . }}-webhook
+  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
 {{- end }}

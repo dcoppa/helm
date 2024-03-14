@@ -2,11 +2,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
 kind: Role
+metadata:
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
 {{- else }}
 kind: ClusterRole
-{{- end }}
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-controller
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
+{{- end }}
   {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
   namespace: {{ .Values.scopedNamespace | quote }}
   {{- end }}
@@ -113,11 +115,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
 kind: Role
+metadata:
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-view-{{.Values.stage}}
 {{- else }}
 kind: ClusterRole
-{{- end }}
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-view
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-view-{{.Values.stage}}
+{{- end }}
   {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
   namespace: {{ .Values.scopedNamespace | quote }}
   {{- end }}
@@ -155,11 +159,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
 kind: Role
+metadata:
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-edit-{{.Values.stage}}
 {{- else }}
 kind: ClusterRole
-{{- end }}
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-edit
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-edit-{{.Values.stage}}
+{{- end }}
   {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
   namespace: {{ .Values.scopedNamespace | quote }}
   {{- end }}
@@ -200,11 +206,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
 kind: RoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
 {{- else }}
 kind: ClusterRoleBinding
-{{- end }}
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-controller
+  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
+{{- end }}
   {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
   namespace: {{ .Values.scopedNamespace | quote }}
   {{- end }}
@@ -214,10 +222,11 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   {{- if and .Values.scopedNamespace .Values.scopedRBAC }}
   kind: Role
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
   {{- else }}
   kind: ClusterRole
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cntlr-{{.Values.stage}}
   {{- end }}
-  name: {{ include "external-secrets.fullname" . }}-controller
 subjects:
   - name: {{ include "external-secrets.serviceAccountName" . }}
     namespace: {{ .Release.Namespace | quote }}
@@ -226,7 +235,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-leaderelection
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-leaderelection-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets.labels" . | nindent 4 }}
@@ -260,14 +269,14 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-leaderelection
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-leaderelection-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ include "external-secrets.fullname" . }}-leaderelection
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-leaderelection-{{.Values.stage}}
 subjects:
   - kind: ServiceAccount
     name: {{ include "external-secrets.serviceAccountName" . }}
@@ -277,7 +286,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "external-secrets.fullname" . }}-servicebindings
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-servicebindings-{{.Values.stage}}
   labels:
     servicebinding.io/controller: "true"
     {{- include "external-secrets.labels" . | nindent 4 }}
