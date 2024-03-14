@@ -3,7 +3,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets-webhook.labels" . | nindent 4 }}
@@ -13,11 +13,11 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  commonName: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+  commonName: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
   dnsNames:
-    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
-    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}.{{ .Release.Namespace }}
-    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}.{{ .Release.Namespace }}.svc
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}.{{ .Release.Namespace }}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}.{{ .Release.Namespace }}.svc
   issuerRef:
     {{- toYaml .Values.webhook.certManager.cert.issuerRef | nindent 4 }}
   {{- with .Values.webhook.certManager.cert.duration }}
@@ -26,5 +26,5 @@ spec:
   {{- with .Values.webhook.certManager.cert.renewBefore }}
   renewBefore: {{ . | quote }}
   {{- end }}
-  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
 {{- end }}

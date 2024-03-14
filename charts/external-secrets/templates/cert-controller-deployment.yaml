@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cc-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets-cert-controller.labels" . | nindent 4 }}
@@ -50,9 +50,9 @@ spec:
           args:
           - certcontroller
           - --crd-requeue-interval={{ .Values.certController.requeueInterval }}
-          - --service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+          - --service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
           - --service-namespace={{ .Release.Namespace }}
-          - --secret-name={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+          - --secret-name={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
           - --secret-namespace={{ .Release.Namespace }}
           - --metrics-addr=:{{ .Values.certController.metrics.listen.port }}
           - --healthz-addr={{ .Values.certController.readinessProbe.address }}:{{ .Values.certController.readinessProbe.port }}
