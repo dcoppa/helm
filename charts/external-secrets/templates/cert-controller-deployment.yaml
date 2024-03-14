@@ -50,9 +50,9 @@ spec:
           args:
           - certcontroller
           - --crd-requeue-interval={{ .Values.certController.requeueInterval }}
-          - --service-name={{ include "external-secrets.fullname" . }}-webhook
+          - --service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
           - --service-namespace={{ .Release.Namespace }}
-          - --secret-name={{ include "external-secrets.fullname" . }}-webhook
+          - --secret-name={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
           - --secret-namespace={{ .Release.Namespace }}
           - --metrics-addr=:{{ .Values.certController.metrics.listen.port }}
           - --healthz-addr={{ .Values.certController.readinessProbe.address }}:{{ .Values.certController.readinessProbe.port }}
