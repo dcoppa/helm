@@ -13,11 +13,11 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  commonName: {{ include "external-secrets.fullname" . }}-webhook
+  commonName: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
   dnsNames:
-    - {{ include "external-secrets.fullname" . }}-webhook
-    - {{ include "external-secrets.fullname" . }}-webhook.{{ .Release.Namespace }}
-    - {{ include "external-secrets.fullname" . }}-webhook.{{ .Release.Namespace }}.svc
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}.{{ .Release.Namespace }}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-webhook-{{.Values.stage}}.{{ .Release.Namespace }}.svc
   issuerRef:
     {{- toYaml .Values.webhook.certManager.cert.issuerRef | nindent 4 }}
   {{- with .Values.webhook.certManager.cert.duration }}
