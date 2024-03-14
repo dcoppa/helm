@@ -99,7 +99,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cert-cntlr-m-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-m-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "external-secrets-cert-controller-metrics.labels" . | nindent 4 }}
@@ -120,7 +120,7 @@ metadata:
 {{- if .Values.serviceMonitor.additionalLabels }}
 {{ toYaml .Values.serviceMonitor.additionalLabels | indent 4 }}
 {{- end }}
-  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cert-cntlr-m-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-m-{{.Values.stage}}
   namespace: {{ .Values.serviceMonitor.namespace | default .Release.Namespace | quote }}
 spec:
   selector:

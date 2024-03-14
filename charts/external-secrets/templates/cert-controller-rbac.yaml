@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cert-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-{{.Values.stage}}
   labels:
     {{- include "external-secrets-cert-controller.labels" . | nindent 4 }}
 rules:
@@ -64,13 +64,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cert-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-{{.Values.stage}}
   labels:
     {{- include "external-secrets-cert-controller.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cert-cntlr-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-ccntlr-{{.Values.stage}}
 subjects:
   - name: {{ include "external-secrets-cert-controller.serviceAccountName" . }}
     namespace: {{ .Release.Namespace | quote }}
