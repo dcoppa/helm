@@ -83,20 +83,20 @@ spec:
           - name: ARGOCD_RECONCILIATION_TIMEOUT
             valueFrom:
               configMapKeyRef:
-                name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-{{.Values.stage}}
+                name: argocd-cm
                 key: timeout.reconciliation
                 optional: true
           - name: ARGOCD_HARD_RECONCILIATION_TIMEOUT
             valueFrom:
               configMapKeyRef:
-                name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-{{.Values.stage}}
+                name: argocd-cm
                 key: timeout.hard.reconciliation
                 optional: true
           - name: ARGOCD_RECONCILIATION_JITTER
             valueFrom:
               configMapKeyRef:
                 key: timeout.reconciliation.jitter
-                name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-{{.Values.stage}}
+                name: argocd-cm
                 optional: true
           - name: ARGOCD_REPO_ERROR_GRACE_PERIOD_SECONDS
             valueFrom:
