@@ -58,7 +58,7 @@ global:
     # -- If defined, a repository applied to all Argo CD deployments
     repository: docker.io/dcoppa/argocd
     # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-    tag: "v2.10.2-aws"
+    tag: "v2.10.4-aws"
     # -- If defined, a imagePullPolicy applied to all Argo CD deployments
     imagePullPolicy: Always
 
