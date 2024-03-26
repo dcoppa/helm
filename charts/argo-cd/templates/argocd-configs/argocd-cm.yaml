@@ -13,5 +13,8 @@ metadata:
     {{- end }}
   {{- end }}
 data:
+  resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
+    jqPathExpressions:
+    - '.webhooks[]?.clientConfig.caBundle'
   {{- include "argo-cd.config.cm" . | trim | nindent 2 }}
 {{- end }}
