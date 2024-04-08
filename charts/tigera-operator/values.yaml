@@ -30,7 +30,7 @@ certs:
     commonName:
     caBundle:
 
-# Resource requests and limits for the tigera/operator pod.
+# Resource requests and limits for the tigera-operator pod.
 resources: {}
 
 # Tolerations for the tigera/operator pod.
