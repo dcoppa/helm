@@ -1,3 +1,8 @@
+k8sPrefix: awsd
+customer: hydra
+purpose: dataplatform
+stage: dev
+
 # -- Internal settings used with `helm template` to generate install manifest
 # @ignored
 templating:
