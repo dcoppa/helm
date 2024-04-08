@@ -105,6 +105,21 @@ entries:
     version: 3.2.0-rc.3
   tigera-operator:
   - apiVersion: v2
+    appVersion: v3.27.3
+    created: "2024-04-08T20:27:00.803538242Z"
+    description: Tigera operator for Calico
+    digest: 85d0aa8382114ee255ebd7bd95050e062ae49c264bccb324f0748a4441fc367e
+    home: https://projectcalico.docs.tigera.io/about/about-calico
+    icon: https://projectcalico.docs.tigera.io/images/felix_icon.png
+    name: tigera-operator
+    sources:
+    - https://github.com/projectcalico/calico/tree/master/calico/_includes/charts/tigera-operator
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/tigera-operator-v3.27.3/tigera-operator-v3.27.3.tgz
+    version: v3.27.3
+  - apiVersion: v2
     appVersion: v3.27.2
     created: "2024-03-11T11:15:56.874891504Z"
     description: Installs the Tigera operator for Calico
@@ -119,4 +134,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/tigera-operator-v3.27.2/tigera-operator-v3.27.2.tgz
     version: v3.27.2
-generated: "2024-03-31T08:36:00.547892091Z"
+generated: "2024-04-08T20:27:00.803551006Z"
