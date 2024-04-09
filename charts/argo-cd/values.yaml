@@ -1,3 +1,6 @@
+## Argo CD configuration
+## Ref: https://github.com/argoproj/argo-cd
+
 k8sPrefix: awsd
 customer: hydra
 purpose: dataplatform
