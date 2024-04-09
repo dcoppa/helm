@@ -306,9 +306,19 @@ spec:
           configMap:
             name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-gpg-keys-{{.Values.stage}}
         - name: gpg-keyring
+          {{- if .Values.applicationSet.emptyDir.sizeLimit }}
+          emptyDir:
+            sizeLimit: {{ .Values.applicationSet.emptyDir.sizeLimit }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
         - name: tmp
+          {{- if .Values.applicationSet.emptyDir.sizeLimit }}
+          emptyDir:
+            sizeLimit: {{ .Values.applicationSet.emptyDir.sizeLimit }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
         - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
           secret:
             secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}

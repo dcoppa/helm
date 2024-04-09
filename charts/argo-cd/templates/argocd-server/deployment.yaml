@@ -446,12 +446,27 @@ spec:
       {{- end }}
       {{- if .Values.server.extensions.enabled }}
       - name: extensions
+        {{- if .Values.server.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.server.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       {{- end }}
       - name: plugins-home
+        {{- if .Values.server.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.server.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       - name: tmp
+        {{- if .Values.server.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.server.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       - name: ssh-known-hosts
         configMap:
           name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-argocd-ssh-known-hosts-{{.Values.stage}}

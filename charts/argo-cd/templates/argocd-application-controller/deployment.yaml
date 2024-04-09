@@ -338,7 +338,12 @@ spec:
         {{- toYaml . | nindent 6 }}
       {{- end }}
       - name: argocd-home
+        {{- if .Values.controller.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.controller.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}
         secret:
           secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-repo-server-tls-{{.Values.stage}}

@@ -191,9 +191,19 @@ spec:
       {{- end }}
       volumes:
       - name: static-files
+        {{- if .Values.dex.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.dex.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       - name: dexconfig
+        {{- if .Values.dex.emptyDir.sizeLimit }}
+        emptyDir:
+          sizeLimit: {{ .Values.dex.emptyDir.sizeLimit }}
+        {{- else }}
         emptyDir: {}
+        {{- end }}
       - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-dex-server-tls-{{.Values.stage}}
         secret:
           secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-argocd-dex-server-tls-{{.Values.stage}}

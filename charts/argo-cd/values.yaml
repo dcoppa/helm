@@ -54,9 +54,9 @@ global:
     # -- If defined, a repository applied to all Argo CD deployments
     repository: docker.io/dcoppa/argocd
     # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-    tag: "v2.10.4-aws"
+    tag: "v2.10.6-aws"
     # -- If defined, a imagePullPolicy applied to all Argo CD deployments
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
 
   # -- Secrets with credentials to pull images from a private registry
   imagePullSecrets: []
@@ -674,6 +674,13 @@ controller:
   #  - name: custom-tools
   #    emptyDir: {}
 
+  ## Application controller emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for application controller
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
+
   # -- Annotations for the application controller StatefulSet
   statefulsetAnnotations: {}
 
@@ -989,6 +996,13 @@ dex:
 
   # -- Additional volumes to the dex pod
   volumes: []
+
+  ## Dex server emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for Dex server
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
 
   # TLS certificate configuration via Secret
   ## Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/tls/#configuring-tls-to-argocd-dex-server
@@ -1745,6 +1759,13 @@ server:
   #  - name: custom-tools
   #    emptyDir: {}
 
+  ## Argo CD server emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for the Argo CD server
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
+
   # -- Annotations to be added to server Deployment
   deploymentAnnotations: {}
 
@@ -2195,6 +2216,14 @@ server:
     # -- Termination policy of Openshift Route
     termination_policy: None
 
+  ## Enable this and set the rules: to whatever custom rules you want for the Cluster Role resource.
+  ## Defaults to off
+  clusterRoleRules:
+    # -- Enable custom rules for the server's ClusterRole resource
+    enabled: false
+    # -- List of custom rules for the server's ClusterRole resource
+    rules: []
+
 ## Repo Server
 repoServer:
   # -- Repo server name
@@ -2358,6 +2387,13 @@ repoServer:
   #  plugins:
   #    persistentVolumeClaim:
   #      claimName: pvc-argocd-repo-server-plugins
+
+  ## RepoServer emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for repo server
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
 
   # -- Toggle the usage of a ephemeral Helm working directory
   useEphemeralHelmWorkingDir: true
@@ -2645,6 +2681,13 @@ applicationSet:
 
   # -- List of extra volumes to add
   extraVolumes: []
+
+  ## ApplicationSet controller emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for applicationSet controller
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
 
   ## Metrics service configuration
   metrics:
