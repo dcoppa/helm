@@ -3,7 +3,7 @@ customer: hydra
 purpose: dataplatform
 stage: dev
 
-# -- Internal settings used with `helm template` to generate install manifest
+# Internal settings used with `helm template` to generate install manifest
 templating:
   enabled: false
   debug: false
