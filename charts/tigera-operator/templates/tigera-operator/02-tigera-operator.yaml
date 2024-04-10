@@ -4,17 +4,24 @@ metadata:
   name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
   namespace: {{.Release.Namespace}}
   labels:
+    app: tigera-operator
+    app.kubernetes.io/name: tigera-operator
     k8s-app: tigera-operator
 spec:
   replicas: 1
   selector:
     matchLabels:
+      app: tigera-operator
+      app.kubernetes.io/name: tigera-operator
+      k8s-app: tigera-operator
       name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
   template:
     metadata:
       labels:
-        name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
+        app: tigera-operator
+        app.kubernetes.io/name: tigera-operator
         k8s-app: tigera-operator
+        name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-tigera-operator-{{.Values.stage}}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
