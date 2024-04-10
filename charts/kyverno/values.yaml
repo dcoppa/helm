@@ -919,7 +919,7 @@ admissionController:
   # -- admissionController webhook server port
   # in case you are using hostNetwork: true, you might want to change the port the webhookServer is listening to
   webhookServer:
-    port: 9443
+    port: 10254
 
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
@@ -933,7 +933,7 @@ admissionController:
   startupProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10254
       scheme: HTTPS
     failureThreshold: 20
     initialDelaySeconds: 2
@@ -946,7 +946,7 @@ admissionController:
   livenessProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10254
       scheme: HTTPS
     initialDelaySeconds: 15
     periodSeconds: 30
@@ -961,7 +961,7 @@ admissionController:
   readinessProbe:
     httpGet:
       path: /health/readiness
-      port: 9443
+      port: 10254
       scheme: HTTPS
     initialDelaySeconds: 5
     periodSeconds: 10
@@ -1144,7 +1144,7 @@ admissionController:
 
   service:
     # -- Service port.
-    port: 443
+    port: 31443
     # -- Service type.
     type: ClusterIP
     # -- Service node port.
@@ -1158,7 +1158,7 @@ admissionController:
     create: true
     # -- Service port.
     # Kyverno's metrics server will be exposed at this port.
-    port: 8000
+    port: 31080
     # -- Service type.
     type: ClusterIP
     # -- Service node port.
@@ -1210,7 +1210,7 @@ admissionController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31080
     # -- Otel collector endpoint
     collector: ''
     # -- Otel collector credentials
@@ -1455,7 +1455,7 @@ backgroundController:
     create: true
     # -- Service port.
     # Metrics server will be exposed at this port.
-    port: 8000
+    port: 31081
     # -- Service type.
     type: ClusterIP
     # -- Service node port.
@@ -1509,7 +1509,7 @@ backgroundController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31081
     # -- Otel collector endpoint
     collector: ''
     # -- Otel collector credentials
@@ -1612,11 +1612,11 @@ cleanupController:
   # -- cleanupController server port
   # in case you are using hostNetwork: true, you might want to change the port the cleanupController is listening to
   server:
-    port: 9443
+    port: 31445
   # -- cleanupController webhook server port
   # in case you are using hostNetwork: true, you might want to change the port the webhookServer is listening to
   webhookServer:
-    port: 9443
+    port: 10257
 
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
@@ -1649,7 +1649,7 @@ cleanupController:
   startupProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 31445
       scheme: HTTPS
     failureThreshold: 20
     initialDelaySeconds: 2
@@ -1662,7 +1662,7 @@ cleanupController:
   livenessProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 31445
       scheme: HTTPS
     initialDelaySeconds: 15
     periodSeconds: 30
@@ -1677,7 +1677,7 @@ cleanupController:
   readinessProbe:
     httpGet:
       path: /health/readiness
-      port: 9443
+      port: 31445
       scheme: HTTPS
     initialDelaySeconds: 5
     periodSeconds: 10
@@ -1747,7 +1747,7 @@ cleanupController:
 
   service:
     # -- Service port.
-    port: 443
+    port: 31444
     # -- Service type.
     type: ClusterIP
     # -- Service node port.
@@ -1761,7 +1761,7 @@ cleanupController:
     create: true
     # -- Service port.
     # Metrics server will be exposed at this port.
-    port: 8000
+    port: 31082
     # -- Service type.
     type: ClusterIP
     # -- Service node port.
@@ -1815,7 +1815,7 @@ cleanupController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31082
     # -- Otel collector endpoint
     collector: ''
     # -- Otel collector credentials
@@ -2048,7 +2048,7 @@ reportsController:
     create: true
     # -- Service port.
     # Metrics server will be exposed at this port.
-    port: 8000
+    port: 31083
     # -- Service type.
     type: ClusterIP
     # -- (string) Service node port.
@@ -2102,7 +2102,7 @@ reportsController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31083
     # -- (string) Otel collector endpoint
     collector: ~
     # -- (string) Otel collector credentials
