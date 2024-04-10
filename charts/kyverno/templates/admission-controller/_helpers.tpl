@@ -18,7 +18,19 @@
 ) -}}
 {{- end -}}
 
+{{- define "kyverno.admission-controller.croleName" -}}
+{{ include "kyverno.fullname" . }}:admission-controller
+{{- end -}}
+
+{{- define "kyverno.admission-controller.crolebindingName" -}}
+{{ include "kyverno.fullname" . }}:admission-controller
+{{- end -}}
+
 {{- define "kyverno.admission-controller.roleName" -}}
+{{ include "kyverno.fullname" . }}:admission-controller
+{{- end -}}
+
+{{- define "kyverno.admission-controller.rolebindingName" -}}
 {{ include "kyverno.fullname" . }}:admission-controller
 {{- end -}}
 

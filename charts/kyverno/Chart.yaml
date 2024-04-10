@@ -14,12 +14,12 @@ annotations:
   artifacthub.io/operator: "false"
   artifacthub.io/prerelease: "false"
 apiVersion: v2
-appVersion: v1.12.0-rc.3
+appVersion: v1.12.0-rc.4
 dependencies:
 - condition: crds.install
   name: crds
   repository: ""
-  version: 3.2.0-rc.3
+  version: 3.2.0-rc.4
 description: Kubernetes Native Policy Management
 home: https://kyverno.io/
 icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
@@ -44,4 +44,4 @@ name: kyverno
 sources:
 - https://github.com/kyverno/kyverno
 type: application
-version: 3.2.0-rc.3
+version: 3.2.0-rc.4
