@@ -924,7 +924,7 @@ admissionController:
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
   # For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
 
   # -- Startup probe.
   # The block is directly forwarded into the deployment, so you can use whatever startupProbes configuration you want.
@@ -1357,7 +1357,7 @@ backgroundController:
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
   # For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
 
   # -- Extra arguments passed to the container on the command line
   extraArgs: {}
@@ -1621,7 +1621,7 @@ cleanupController:
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
   # For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
 
   # -- Extra arguments passed to the container on the command line
   extraArgs: {}
@@ -1942,7 +1942,7 @@ reportsController:
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
   # For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
 
   # -- Extra arguments passed to the container on the command line
   extraArgs: {}
