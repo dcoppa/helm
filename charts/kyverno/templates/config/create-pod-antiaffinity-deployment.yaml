@@ -22,18 +22,15 @@ spec:
             kinds:
               - Deployment
       preconditions:
-        # This precondition selects Pods with the label `app.kubernetes.io/name` defined
         all:
-        - key: "{{request.object.spec.template.metadata.labels.\"app.kubernetes.io/name\" || ''}}"
+        - key: {{`"{{request.object.spec.template.metadata.labels.\"app.kubernetes.io/name\" || ''}}"`}}
           operator: NotEquals
           value: ""
-      # Mutates the Deployment resource to add fields.
       mutate:
         patchStrategicMerge:
           spec:
             template:
               spec:
-                # Add the `affinity`if not already specified.
                 +(affinity):
                   +(podAntiAffinity):
                     +(preferredDuringSchedulingIgnoredDuringExecution):
@@ -45,4 +42,4 @@ spec:
                             - key: app.kubernetes.io/name
                               operator: In
                               values:
-                              - "{{request.object.spec.template.metadata.labels.\"app.kubernetes.io/name\"}}"
+                              - {{`"{{request.object.spec.template.metadata.labels.\"app.kubernetes.io/name\"}}"`}}
