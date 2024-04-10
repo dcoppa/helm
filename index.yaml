@@ -320,6 +320,57 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: v1.12.0-rc.4
+    created: "2024-04-10T10:12:14.950788556Z"
+    dependencies:
+    - condition: crds.install
+      name: crds
+      repository: ""
+      version: 3.2.0-rc.4
+    description: Kubernetes Native Policy Management
+    digest: 3632c3e8984a25062d1bbfb2a879ccf47dd26690adf49deb6fb169d29549ee05
+    home: https://kyverno.io/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - policy
+    - validating webhook
+    - admission controller
+    - mutation
+    - mutate
+    - validate
+    - generate
+    - supply chain
+    - security
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: Nirmata
+      url: https://kyverno.io/
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.4/kyverno-3.2.0-rc.4.tgz
+    version: 3.2.0-rc.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Add profiling support
+        - kind: added
+          description: Add global nodeSelector
+        - kind: added
+          description: Add podLabels to the post-upgrade hook
+        - kind: added
+          description: Add podLabels to the pre-delete hook
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://kyverno.io/docs
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: v1.12.0-rc.3
     created: "2024-03-31T08:36:00.466891283Z"
     dependencies:
@@ -641,4 +692,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/tigera-operator-v3.27.2/tigera-operator-v3.27.2.tgz
     version: v3.27.2
-generated: "2024-04-10T09:39:25.001499792Z"
+generated: "2024-04-10T10:12:15.043987829Z"
