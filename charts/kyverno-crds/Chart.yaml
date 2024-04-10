@@ -1,4 +1,0 @@
-apiVersion: v2
-description: Kyverno Custom Resource Definitions
-name: kyverno-crds
-version: 3.2.0-rc.4
