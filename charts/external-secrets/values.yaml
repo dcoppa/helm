@@ -11,7 +11,7 @@ global:
 
 replicaCount: 1
 
-# -- Specifies the amount of historic ReplicaSets k8s should keep
+# Specifies the amount of historic ReplicaSets k8s should keep
 revisionHistoryLimit: 10
 
 image:
