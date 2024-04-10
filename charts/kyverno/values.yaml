@@ -4,6 +4,7 @@ purpose: dataplatform
 stage: dev
 
 # Internal settings used with `helm template` to generate install manifest
+# @ignored
 templating:
   enabled: false
   debug: false
