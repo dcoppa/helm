@@ -16,8 +16,7 @@ annotations:
 apiVersion: v2
 appVersion: v1.12.0-rc.4
 dependencies:
-- condition: crds.install
-  name: crds
+- name: crds
   repository: ""
   version: 3.2.0-rc.4
 description: Kubernetes Native Policy Management
