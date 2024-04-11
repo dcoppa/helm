@@ -984,7 +984,7 @@ admissionController:
   # @default -- See [values.yaml](values.yaml)
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
+      - weight: 100
         podAffinityTerm:
           labelSelector:
             matchExpressions:
@@ -1393,7 +1393,7 @@ backgroundController:
   # @default -- See [values.yaml](values.yaml)
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
+      - weight: 100
         podAffinityTerm:
           labelSelector:
             matchExpressions:
@@ -1700,7 +1700,7 @@ cleanupController:
   # @default -- See [values.yaml](values.yaml)
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
+      - weight: 100
         podAffinityTerm:
           labelSelector:
             matchExpressions:
@@ -1978,7 +1978,7 @@ reportsController:
   # @default -- See [values.yaml](values.yaml)
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
+      - weight: 100
         podAffinityTerm:
           labelSelector:
             matchExpressions:
