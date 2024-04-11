@@ -94,7 +94,7 @@ podAntiAffinity:
       labelSelector:
         matchLabels:
           app.kubernetes.io/name: {{ include "argo-cd.name" .context }}-{{ .component.name }}
-      topologyKey: kubernetes.io/hostname
+      topologyKey: topology.kubernetes.io/zone
 {{- else if (eq $preset.podAntiAffinity "hard") }}
 podAntiAffinity:
   preferredDuringSchedulingIgnoredDuringExecution:
