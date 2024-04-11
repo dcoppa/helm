@@ -914,12 +914,12 @@ admissionController:
   # -- Change `hostNetwork` to `true` when you want the pod to share its host's network namespace.
   # Useful for situations like when you end up dealing with a custom CNI over Amazon EKS.
   # Update the `dnsPolicy` accordingly as well to suit the host network mode.
-  hostNetwork: false
+  hostNetwork: true
 
   # -- admissionController webhook server port
   # in case you are using hostNetwork: true, you might want to change the port the webhookServer is listening to
   webhookServer:
-    port: 9443
+    port: 10257
 
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
@@ -933,7 +933,7 @@ admissionController:
   startupProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10257
       scheme: HTTPS
     failureThreshold: 20
     initialDelaySeconds: 2
@@ -946,7 +946,7 @@ admissionController:
   livenessProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10257
       scheme: HTTPS
     initialDelaySeconds: 15
     periodSeconds: 30
@@ -961,7 +961,7 @@ admissionController:
   readinessProbe:
     httpGet:
       path: /health/readiness
-      port: 9443
+      port: 10257
       scheme: HTTPS
     initialDelaySeconds: 5
     periodSeconds: 10
@@ -1210,7 +1210,7 @@ admissionController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31257
     # -- Otel collector endpoint
     collector: ''
     # -- Otel collector credentials
@@ -1607,16 +1607,16 @@ cleanupController:
   # -- Change `hostNetwork` to `true` when you want the pod to share its host's network namespace.
   # Useful for situations like when you end up dealing with a custom CNI over Amazon EKS.
   # Update the `dnsPolicy` accordingly as well to suit the host network mode.
-  hostNetwork: false
+  hostNetwork: true
 
   # -- cleanupController server port
   # in case you are using hostNetwork: true, you might want to change the port the cleanupController is listening to
   server:
-    port: 9443
+    port: 10258
   # -- cleanupController webhook server port
   # in case you are using hostNetwork: true, you might want to change the port the webhookServer is listening to
   webhookServer:
-    port: 9443
+    port: 10258
 
   # -- `dnsPolicy` determines the manner in which DNS resolution happens in the cluster.
   # In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`.
@@ -1649,7 +1649,7 @@ cleanupController:
   startupProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10258
       scheme: HTTPS
     failureThreshold: 20
     initialDelaySeconds: 2
@@ -1662,7 +1662,7 @@ cleanupController:
   livenessProbe:
     httpGet:
       path: /health/liveness
-      port: 9443
+      port: 10258
       scheme: HTTPS
     initialDelaySeconds: 15
     periodSeconds: 30
@@ -1677,7 +1677,7 @@ cleanupController:
   readinessProbe:
     httpGet:
       path: /health/readiness
-      port: 9443
+      port: 10258
       scheme: HTTPS
     initialDelaySeconds: 5
     periodSeconds: 10
@@ -1815,7 +1815,7 @@ cleanupController:
     # -- Otel configuration, can be `prometheus` or `grpc`
     config: prometheus
     # -- Prometheus endpoint port
-    port: 8000
+    port: 31258
     # -- Otel collector endpoint
     collector: ''
     # -- Otel collector credentials
