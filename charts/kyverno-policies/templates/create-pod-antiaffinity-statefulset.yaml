@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: {{.Values.k8sPrefix}}-clusterpolicy-{{.Values.customer}}-{{.Values.purpose}}-pod-antiaffinity-sts-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-clusterpolicy-{{.Values.customer}}-{{.Values.purpose}}-pod-antiaff-sts-{{.Values.stage}}
   annotations:
     policies.kyverno.io/title: Add Pod Anti-Affinity
     policies.kyverno.io/category: Other, EKS Best Practices
