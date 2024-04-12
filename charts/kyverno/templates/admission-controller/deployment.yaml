@@ -114,7 +114,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.name
           - name: KYVERNO_DEPLOYMENT
-            value: {{ template "kyverno.admission-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
           - name: KYVERNO_SVC
             value: {{ template "kyverno.admission-controller.serviceName" . }}
           {{- with (concat .Values.global.extraEnvVars .Values.admissionController.initContainer.extraEnvVars) }}
@@ -223,7 +223,7 @@ spec:
           {{- toYaml . | nindent 10 }}
           {{- end }}
           - name: KYVERNO_DEPLOYMENT
-            value: {{ template "kyverno.admission-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
           {{- with .Values.admissionController.startupProbe }}
           startupProbe:
             {{- tpl (toYaml .) $ | nindent 12 }}
