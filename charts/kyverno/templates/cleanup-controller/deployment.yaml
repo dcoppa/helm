@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kyverno.cleanup-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.cleanup-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.cleanup-controller.labels" . | nindent 4 }}
@@ -92,8 +92,8 @@ spec:
             protocol: TCP
           {{- end }}
           args:
-            - --caSecretName={{ template "kyverno.cleanup-controller.name" . }}.{{ template "kyverno.namespace" . }}.svc.kyverno-tls-ca
-            - --tlsSecretName={{ template "kyverno.cleanup-controller.name" . }}.{{ template "kyverno.namespace" . }}.svc.kyverno-tls-pair
+            - --caSecretName={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.cleanup-controller.name" . }}-tls-ca-{{.Values.stage}}
+            - --tlsSecretName={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.cleanup-controller.name" . }}-tls-pair-{{.Values.stage}}
             - --servicePort={{ .Values.cleanupController.service.port }}
             - --cleanupServerPort={{ .Values.cleanupController.server.port }}
             - --webhookServerPort={{ .Values.cleanupController.webhookServer.port }}
@@ -135,7 +135,7 @@ spec:
             {{- end }}
           env:
           - name: KYVERNO_DEPLOYMENT
-            value: {{ template "kyverno.cleanup-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.cleanup-controller.name" . }}-{{.Values.stage}}
           - name: INIT_CONFIG
             value: {{ template "kyverno.config.configMapName" . }}
           - name: METRICS_CONFIG
@@ -151,7 +151,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
           - name: KYVERNO_SVC
-            value: {{ template "kyverno.cleanup-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.cleanup-controller.name" . }}-{{.Values.stage}}
           {{- with (concat .Values.global.extraEnvVars .Values.cleanupController.extraEnvVars) }}
           {{- toYaml . | nindent 10 }}
           {{- end }}

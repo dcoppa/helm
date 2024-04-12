@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{- define "kyverno.cleanup-controller.name" -}}
-{{ template "kyverno.name" . }}-cleanup-controller
+{{ template "kyverno.name" . }}-clean-cntlr
 {{- end -}}
 
 {{- define "kyverno.cleanup-controller.labels" -}}
@@ -28,7 +28,7 @@
 {{- end -}}
 
 {{- define "kyverno.cleanup-controller.roleName" -}}
-{{ include "kyverno.fullname" . }}:cleanup-controller
+{{- printf "%s-role-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.cleanup-controller.name" .) .Values.stage -}}
 {{- end -}}
 
 {{- define "kyverno.cleanup-controller.serviceAccountName" -}}
