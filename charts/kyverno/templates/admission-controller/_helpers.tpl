@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{- define "kyverno.admission-controller.name" -}}
-{{ template "kyverno.name" . }}-admission-controller
+{{ template "kyverno.name" . }}-adm-cntlr
 {{- end -}}
 
 {{- define "kyverno.admission-controller.labels" -}}
