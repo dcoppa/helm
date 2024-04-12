@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{.Values.k8sPrefix}}-cronjob-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.name" . }}-ccar-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-cj-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.name" . }}-cl-cadmreps-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.cleanup.labels" . | nindent 4 }}
