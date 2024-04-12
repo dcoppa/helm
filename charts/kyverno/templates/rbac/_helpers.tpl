@@ -24,5 +24,5 @@
 {{- end -}}
 
 {{- define "kyverno.rbac.roleName" -}}
-{{ include "kyverno.fullname" . }}:rbac
+{{- printf "%s-clusterrole-%s-%s-%s-rbac" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.fullname" .) -}}
 {{- end -}}
