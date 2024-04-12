@@ -4,7 +4,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "kyverno.reports-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-networkpolicy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.reports-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.reports-controller.labels" . | nindent 4 }}

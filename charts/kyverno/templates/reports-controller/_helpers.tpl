@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{- define "kyverno.reports-controller.name" -}}
-{{ template "kyverno.name" . }}-reports-controller
+{{ template "kyverno.name" . }}-rep-cntlr
 {{- end -}}
 
 {{- define "kyverno.reports-controller.labels" -}}
@@ -28,7 +28,7 @@
 {{- end -}}
 
 {{- define "kyverno.reports-controller.roleName" -}}
-{{ include "kyverno.fullname" . }}:reports-controller
+{{- printf "%s-role-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.reports-controller.name" .) .Values.stage -}}
 {{- end -}}
 
 {{- define "kyverno.reports-controller.serviceAccountName" -}}
@@ -40,5 +40,5 @@
 {{- end -}}
 
 {{- define "kyverno.reports-controller.caCertificatesConfigMapName" -}}
-{{ printf "%s-ca-certificates" (include "kyverno.reports-controller.name" .) }}
+{{ printf "%s-cm-%s-%s-%s-ca-cert-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.reports-controller.name" .) .Values.stage }}
 {{- end -}}

@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kyverno.reports-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.reports-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.reports-controller.labels" . | nindent 4 }}
@@ -143,7 +143,7 @@ spec:
           - name: KYVERNO_SERVICEACCOUNT_NAME
             value: {{ template "kyverno.reports-controller.serviceAccountName" . }}
           - name: KYVERNO_DEPLOYMENT
-            value: {{ template "kyverno.reports-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.reports-controller.name" . }}-{{.Values.stage}}
           - name: INIT_CONFIG
             value: {{ template "kyverno.config.configMapName" . }}
           - name: METRICS_CONFIG

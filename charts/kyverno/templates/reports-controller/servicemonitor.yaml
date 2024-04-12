@@ -3,7 +3,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ template "kyverno.reports-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.reports-controller.name" . }}-{{.Values.stage}}
   {{- if .Values.reportsController.serviceMonitor.namespace }}
   namespace: {{ .Values.reportsController.serviceMonitor.namespace }}
   {{- else }}

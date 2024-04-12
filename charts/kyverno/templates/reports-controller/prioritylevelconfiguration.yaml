@@ -2,7 +2,7 @@
 apiVersion: {{ template "kyverno.flowcontrol.apiVersion" . }}
 kind: PriorityLevelConfiguration
 metadata:
-  name: {{ template "kyverno.reports-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-plc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.reports-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.reports-controller.labels" . | nindent 4 }}
 {{- with .Values.reportsController.priorityLevelConfigurationSpec }}

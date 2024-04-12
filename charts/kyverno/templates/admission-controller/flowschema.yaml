@@ -7,7 +7,7 @@ metadata:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 spec:
   priorityLevelConfiguration:
-    name: {{ template "kyverno.admission-controller.name" . }}
+    name: {{.Values.k8sPrefix}}-plc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   rules:
   - resourceRules:
     - apiGroups:
