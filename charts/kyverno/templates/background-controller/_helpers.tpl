@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{- define "kyverno.background-controller.name" -}}
-{{ template "kyverno.name" . }}-background-controller
+{{ template "kyverno.name" . }}-bg-cntlr
 {{- end -}}
 
 {{- define "kyverno.background-controller.labels" -}}
@@ -28,7 +28,7 @@
 {{- end -}}
 
 {{- define "kyverno.background-controller.roleName" -}}
-{{ include "kyverno.fullname" . }}:background-controller
+{{- printf "%s-role-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.background-controller.name" .) .Values.stage -}}
 {{- end -}}
 
 {{- define "kyverno.background-controller.serviceAccountName" -}}
@@ -40,5 +40,5 @@
 {{- end -}}
 
 {{- define "kyverno.background-controller.caCertificatesConfigMapName" -}}
-{{ printf "%s-ca-certificates" (include "kyverno.background-controller.name" .) }}
+{{ printf "%s-cm-%s-%s-%s-ca-cert-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.background-controller.name" .) .Values.stage }}
 {{- end -}}

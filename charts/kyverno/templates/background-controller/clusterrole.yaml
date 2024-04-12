@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.background-controller.roleName" . }}
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.background-controller.labels" . | nindent 4 }}
 aggregationRule:
@@ -14,7 +14,7 @@ aggregationRule:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.background-controller.roleName" . }}:core
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-core-{{.Values.stage}}
   labels:
     {{- include "kyverno.background-controller.labels" . | nindent 4 }}
 rules:
@@ -72,7 +72,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.background-controller.roleName" $ }}:extra
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-extra-{{.Values.stage}}
   labels:
     {{- include "kyverno.background-controller.labels" $ | nindent 4 }}
 rules:

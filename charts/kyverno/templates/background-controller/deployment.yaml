@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kyverno.background-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.background-controller.labels" . | nindent 4 }}
@@ -135,7 +135,7 @@ spec:
           - name: KYVERNO_SERVICEACCOUNT_NAME
             value: {{ template "kyverno.background-controller.serviceAccountName" . }}
           - name: KYVERNO_DEPLOYMENT
-            value: {{ template "kyverno.background-controller.name" . }}
+            value: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-{{.Values.stage}}
           - name: INIT_CONFIG
             value: {{ template "kyverno.config.configMapName" . }}
           - name: METRICS_CONFIG

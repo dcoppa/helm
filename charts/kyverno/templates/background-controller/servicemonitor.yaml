@@ -3,7 +3,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ template "kyverno.background-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-servicemonitor-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.background-controller.name" . }}-{{.Values.stage}}
   {{- if .Values.backgroundController.serviceMonitor.namespace }}
   namespace: {{ .Values.backgroundController.serviceMonitor.namespace }}
   {{- else }}
