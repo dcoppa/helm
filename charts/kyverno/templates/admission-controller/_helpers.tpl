@@ -18,6 +18,10 @@
 ) -}}
 {{- end -}}
 
+{{- define "kyverno.admission-controller.roleName" -}}
+{{- printf "%s-role-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.admission-controller.name" .) .Values.stage -}}
+{{- end -}}
+
 {{- define "kyverno.admission-controller.serviceAccountName" -}}
 {{- if .Values.admissionController.rbac.create -}}
     {{ default (include "kyverno.admission-controller.name" .) .Values.admissionController.rbac.serviceAccount.name }}
