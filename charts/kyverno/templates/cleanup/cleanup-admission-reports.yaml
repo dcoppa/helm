@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ template "kyverno.name" . }}-cleanup-admission-reports
+  name: {{.Values.k8sPrefix}}-cronjob-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.name" . }}-clean-adm-reps-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.cleanup.labels" . | nindent 4 }}
@@ -25,7 +25,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
         spec:
-          serviceAccountName: {{ template "kyverno.name" . }}-cleanup-jobs
+          serviceAccountName: {{.Values.k8sPrefix}}-sa-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.name" . }}-cleanup-jobs-{{.Values.stage}}
           {{- with .Values.cleanupJobs.admissionReports.podSecurityContext }}
           securityContext:
             {{- tpl (toYaml .) $ | nindent 12 }}
