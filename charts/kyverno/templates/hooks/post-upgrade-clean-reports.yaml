@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{.Values.k8sPrefix}}-job-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.fullname" . }}-clean-reps-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-job-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.fullname" . }}-clnreps-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.hooks.labels" . | nindent 4 }}

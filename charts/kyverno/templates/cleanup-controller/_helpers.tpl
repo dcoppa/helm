@@ -1,7 +1,7 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{- define "kyverno.cleanup-controller.name" -}}
-{{ template "kyverno.name" . }}-clean-cntlr
+{{ template "kyverno.name" . }}-cln-cntlr
 {{- end -}}
 
 {{- define "kyverno.cleanup-controller.labels" -}}
