@@ -2,13 +2,13 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ template "kyverno.admission-controller.roleName" . }}
+  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ template "kyverno.admission-controller.roleName" . }}
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
 subjects:
   - kind: ServiceAccount
     name: {{ template "kyverno.admission-controller.serviceAccountName" . }}

@@ -18,22 +18,6 @@
 ) -}}
 {{- end -}}
 
-{{- define "kyverno.admission-controller.croleName" -}}
-{{ include "kyverno.fullname" . }}:admission-controller
-{{- end -}}
-
-{{- define "kyverno.admission-controller.crolebindingName" -}}
-{{ include "kyverno.fullname" . }}:admission-controller
-{{- end -}}
-
-{{- define "kyverno.admission-controller.roleName" -}}
-{{ include "kyverno.fullname" . }}:admission-controller
-{{- end -}}
-
-{{- define "kyverno.admission-controller.rolebindingName" -}}
-{{ include "kyverno.fullname" . }}:admission-controller
-{{- end -}}
-
 {{- define "kyverno.admission-controller.serviceAccountName" -}}
 {{- if .Values.admissionController.rbac.create -}}
     {{ default (include "kyverno.admission-controller.name" .) .Values.admissionController.rbac.serviceAccount.name }}
@@ -43,9 +27,9 @@
 {{- end -}}
 
 {{- define "kyverno.admission-controller.serviceName" -}}
-{{- printf "%s-svc" (include "kyverno.fullname" .) | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-svc-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose ((include "kyverno.fullname" .) | trimSuffix "-") .Values.stage -}}
 {{- end -}}
 
 {{- define "kyverno.admission-controller.caCertificatesConfigMapName" -}}
-{{ printf "%s-ca-certificates" (include "kyverno.admission-controller.name" .) }}
+{{ printf "%s-cm-%s-%s-%s-ca-cert-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.admission-controller.name" .) .Values.stage }}
 {{- end -}}

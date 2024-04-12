@@ -2,7 +2,7 @@
 apiVersion: {{ template "kyverno.flowcontrol.apiVersion" . }}
 kind: PriorityLevelConfiguration
 metadata:
-  name: {{ template "kyverno.admission-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-plc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 {{- with .Values.admissionController.priorityLevelConfigurationSpec }}

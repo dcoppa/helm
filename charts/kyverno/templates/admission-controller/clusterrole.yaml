@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.admission-controller.roleName" . }}
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 aggregationRule:
@@ -13,7 +13,7 @@ aggregationRule:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.admission-controller.roleName" . }}:core
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-core-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 rules:
@@ -149,7 +149,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ template "kyverno.admission-controller.roleName" $ }}:additional
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-extra-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" $ | nindent 4 }}
 rules:

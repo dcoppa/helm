@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kyverno.admission-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
@@ -128,8 +128,8 @@ spec:
           image: {{ include "kyverno.image" (dict "globalRegistry" .Values.global.image.registry "image" .Values.admissionController.container.image "defaultTag" .Chart.AppVersion) | quote }}
           imagePullPolicy: {{ .Values.admissionController.container.image.pullPolicy }}
           args:
-            - --caSecretName={{ template "kyverno.admission-controller.serviceName" . }}.{{ template "kyverno.namespace" . }}.svc.kyverno-tls-ca
-            - --tlsSecretName={{ template "kyverno.admission-controller.serviceName" . }}.{{ template "kyverno.namespace" . }}.svc.kyverno-tls-pair
+            - --caSecretName={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-tls-ca-{{.Values.stage}}
+            - --tlsSecretName={{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-tls-pair-{{.Values.stage}}
             - --backgroundServiceAccountName=system:serviceaccount:{{ include "kyverno.namespace" . }}:{{ include "kyverno.background-controller.serviceAccountName" . }}
             - --servicePort={{ .Values.admissionController.service.port }}
             - --webhookServerPort={{ .Values.admissionController.webhookServer.port }}

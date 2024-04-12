@@ -2,7 +2,7 @@
 apiVersion: {{ template "kyverno.flowcontrol.apiVersion" . }}
 kind: FlowSchema
 metadata:
-  name: {{ template "kyverno.admission-controller.name" . }}
+  name: {{.Values.k8sPrefix}}-flowschema-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}
 spec:

@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ template "kyverno.admission-controller.roleName" . }}
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ template "kyverno.admission-controller.name" . }}-{{.Values.stage}}
   namespace: {{ template "kyverno.namespace" . }}
   labels:
     {{- include "kyverno.admission-controller.labels" . | nindent 4 }}

@@ -2,7 +2,7 @@
 
 {{- define "kyverno.config.configMapName" -}}
 {{- if .Values.config.create -}}
-    {{ default (include "kyverno.fullname" .) .Values.config.name }}
+    {{ default (printf "%s-cm-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.fullname" .) .Values.stage) .Values.config.name }}
 {{- else -}}
     {{ required "A configmap name is required when `config.create` is set to `false`" .Values.config.name }}
 {{- end -}}
@@ -10,7 +10,7 @@
 
 {{- define "kyverno.config.metricsConfigMapName" -}}
 {{- if .Values.metricsConfig.create -}}
-    {{ default (printf "%s-metrics" (include "kyverno.fullname" .)) .Values.metricsConfig.name }}
+    {{ default (printf "%s-cm-%s-%s-%s-m-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "kyverno.fullname" .) .Values.stage) .Values.metricsConfig.name }}
 {{- else -}}
     {{ required "A configmap name is required when `metricsConfig.create` is set to `false`" .Values.metricsConfig.name }}
 {{- end -}}
