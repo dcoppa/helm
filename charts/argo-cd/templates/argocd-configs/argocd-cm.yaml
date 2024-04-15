@@ -36,9 +36,9 @@ data:
     - '.webhooks[]?.clientConfig.caBundle'
   resource.customizations.ignoreDifferences.apps_Deployment: |
     jsonPointers:
-    - /spec/template/spec/affinity/podAntiAffinity
+    - /spec/template/spec/affinity
   resource.customizations.ignoreDifferences.apps_StatefulSet: |
     jsonPointers:
-    - /spec/template/spec/affinity/podAntiAffinity
+    - /spec/template/spec/affinity
   {{- include "argo-cd.config.cm" . | trim | nindent 2 }}
 {{- end }}
