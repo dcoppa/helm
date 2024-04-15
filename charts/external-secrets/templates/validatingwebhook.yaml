@@ -2,7 +2,7 @@
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: secretstore-validate
+  name: external-secrets-secretstore-validating-webhook-cfg
   labels:
     external-secrets.io/component: webhook
     {{- with .Values.commonLabels }}
@@ -48,7 +48,7 @@ webhooks:
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: externalsecret-validate
+  name: external-secrets-externalsecret-validating-webhook-cfg
   labels:
     external-secrets.io/component: webhook
     {{- with .Values.commonLabels }}
