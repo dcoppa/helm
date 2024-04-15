@@ -117,13 +117,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-12T09:13:57.28823576Z"
+    created: "2024-04-12T12:03:40.100518954Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 352cf719307e5b6cf111761e439abcc9120e55cef4bd730252e35b75ada16c60
+    digest: bae2785e97d886b7349af9ddccdd7be8a8d826587c5303bc2c5ee91833cdc7fa
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -167,13 +167,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-11T06:22:20.750996Z"
+    created: "2024-04-12T13:09:16.454113299Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 678c10becf3c3cbe30323add6867f66ce7390e235ea70753e6b2df2cb8aa32e1
+    digest: c8543c00c10cbfa315349e7755075fec8d7095c52bdd9ee5724cc38f837077db
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -418,13 +418,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-12T13:09:16.454113299Z"
+    created: "2024-04-10T12:20:11.003953788Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: c8543c00c10cbfa315349e7755075fec8d7095c52bdd9ee5724cc38f837077db
+    digest: 8d785382809df822f3ff4309bb589b6d196c0a7aed23134b1b763edc5d01c053
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -665,13 +665,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-10T12:54:02.227778453Z"
+    created: "2024-04-12T08:58:28.876423428Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: f111ab170094b76d4c460e1b665d25efbe5e88683db78202728abf210ebced9e
+    digest: 1e056120fe8f227cd68e3a19bdede286814c2445b660ef42b9df1dd2f5d82ab5
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -1116,13 +1116,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-10T12:55:57.490673998Z"
+    created: "2024-04-12T09:13:57.28823576Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 7b23aa013d74b99f24e7d6e1dc6d357d7de9409004ccb1a1f3f00350550d2774
+    digest: 352cf719307e5b6cf111761e439abcc9120e55cef4bd730252e35b75ada16c60
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -1316,13 +1316,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-12T12:03:40.100518954Z"
+    created: "2024-04-10T12:55:57.490673998Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: bae2785e97d886b7349af9ddccdd7be8a8d826587c5303bc2c5ee91833cdc7fa
+    digest: 7b23aa013d74b99f24e7d6e1dc6d357d7de9409004ccb1a1f3f00350550d2774
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -1366,13 +1366,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-10T12:20:11.003953788Z"
+    created: "2024-04-11T06:22:20.750996Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 8d785382809df822f3ff4309bb589b6d196c0a7aed23134b1b763edc5d01c053
+    digest: 678c10becf3c3cbe30323add6867f66ce7390e235ea70753e6b2df2cb8aa32e1
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -1416,13 +1416,13 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.12.0-rc.4
-    created: "2024-04-12T08:58:28.876423428Z"
+    created: "2024-04-10T12:54:02.227778453Z"
     dependencies:
     - name: crds
       repository: ""
       version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 1e056120fe8f227cd68e3a19bdede286814c2445b660ef42b9df1dd2f5d82ab5
+    digest: f111ab170094b76d4c460e1b665d25efbe5e88683db78202728abf210ebced9e
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -2221,15 +2221,14 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
-    appVersion: v1.12.0-rc.3
-    created: "2024-04-08T20:39:28.741322368Z"
+    appVersion: v1.12.0-rc.4
+    created: "2024-04-15T12:14:26.92717241Z"
     dependencies:
-    - condition: crds.install
-      name: crds
+    - name: crds
       repository: ""
-      version: 3.2.0-rc.3
+      version: 3.2.0-rc.4
     description: Kubernetes Native Policy Management
-    digest: 662d430df12ca3f7db807518bedf896267ca2f91e37434f1ad9a9a911aadc73b
+    digest: 9f4cd14cc59e1751cfe2d47d5a6cdfdd78892d8457b9e74847f785de9a2372c1
     home: https://kyverno.io/
     icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
     keywords:
@@ -2254,8 +2253,8 @@ entries:
     - https://github.com/kyverno/kyverno
     type: application
     urls:
-    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.3/kyverno-3.2.0-rc.3.tgz
-    version: 3.2.0-rc.3
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.4/kyverno-3.2.0-rc.4.tgz
+    version: 3.2.0-rc.4
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -2511,6 +2510,57 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.3/kyverno-3.2.0-rc.3.tgz
     version: 3.2.0-rc.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Add profiling support
+        - kind: added
+          description: Add global nodeSelector
+        - kind: added
+          description: Add podLabels to the post-upgrade hook
+        - kind: added
+          description: Add podLabels to the pre-delete hook
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://kyverno.io/docs
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: v1.12.0-rc.3
+    created: "2024-04-08T20:39:28.741322368Z"
+    dependencies:
+    - condition: crds.install
+      name: crds
+      repository: ""
+      version: 3.2.0-rc.3
+    description: Kubernetes Native Policy Management
+    digest: 662d430df12ca3f7db807518bedf896267ca2f91e37434f1ad9a9a911aadc73b
+    home: https://kyverno.io/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - policy
+    - validating webhook
+    - admission controller
+    - mutation
+    - mutate
+    - validate
+    - generate
+    - supply chain
+    - security
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: Nirmata
+      url: https://kyverno.io/
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.3/kyverno-3.2.0-rc.3.tgz
+    version: 3.2.0-rc.3
   kyverno-crds:
   - apiVersion: v2
     created: "2024-04-10T11:26:24.894829626Z"
@@ -2737,6 +2787,14 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/kyverno-policies-3.2.0-rc.4/kyverno-policies-3.2.0-rc.4.tgz
     version: 3.2.0-rc.4
+  - apiVersion: v2
+    created: "2024-04-15T12:14:27.05999884Z"
+    description: Policies for Kyverno
+    digest: 6417900bf683cbebeb35474303a48831c5663352f9a1c2cb5a1438d5540f635d
+    name: kyverno-policies
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-policies-3.2.0-rc.4/kyverno-policies-3.2.0-rc.4.tgz
+    version: 3.2.0-rc.4
   tigera-operator:
   - apiVersion: v2
     appVersion: v3.27.3
@@ -2768,4 +2826,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/tigera-operator-v3.27.2/tigera-operator-v3.27.2.tgz
     version: v3.27.2
-generated: "2024-04-15T11:39:15.486108799Z"
+generated: "2024-04-15T12:14:27.175772875Z"
