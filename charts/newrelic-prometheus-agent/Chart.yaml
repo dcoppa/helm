@@ -11,7 +11,7 @@ annotations:
 dependencies:
   - name: common-library
     version: 1.1.1
-    repository: "https://helm-charts.newrelic.com"
+    repository: file://charts/common-library
 keywords:
   - newrelic
   - prometheus
