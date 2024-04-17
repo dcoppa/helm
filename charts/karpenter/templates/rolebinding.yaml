@@ -1,0 +1,59 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "karpenter.labels" . | nindent 4 }}
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-{{.Values.stage}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "karpenter.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-dns-{{.Values.stage}}
+  namespace: kube-system
+  labels:
+    {{- include "karpenter.labels" . | nindent 4 }}
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-dns-{{.Values.stage}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "karpenter.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-lease-{{.Values.stage}}
+  namespace: kube-node-lease
+  labels:
+    {{- include "karpenter.labels" . | nindent 4 }}
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "karpenter.fullname" . }}-lease-{{.Values.stage}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "karpenter.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
