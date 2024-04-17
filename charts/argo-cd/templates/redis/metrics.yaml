@@ -13,6 +13,7 @@ metadata:
   {{- if or .Values.redis.metrics.service.annotations .Values.global.addPrometheusAnnotations }}
   annotations:
     {{- if .Values.global.addPrometheusAnnotations }}
+    newrelic.io/scrape: "true"
     prometheus.io/port: {{ .Values.redis.metrics.service.servicePort | quote }}
     prometheus.io/scrape: "true"
     {{- end }}
