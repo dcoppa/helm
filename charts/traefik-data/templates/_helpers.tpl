@@ -80,7 +80,7 @@ Preserve the default behavior of the Release namespace if no override is provide
 The name of the service account to use
 */}}
 {{- define "traefik.serviceAccountName" -}}
-{{- default (include "traefik.fullname" .) .Values.serviceAccount.name -}}
+{{- default (printf "%s-sa-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "traefik.fullname" .) .Values.stage) .Values.serviceAccount.name -}}
 {{- end -}}
 
 {{/*
