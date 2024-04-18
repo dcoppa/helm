@@ -676,7 +676,7 @@ networkPolicy:
 serviceAccount:
   ## @param serviceAccount.create Enable creation of ServiceAccount for ZooKeeper pod
   ##
-  create: false
+  create: true
   ## @param serviceAccount.name The name of the ServiceAccount to use.
   ## If not set and create is true, a name is generated using the common.names.fullname template
   ##

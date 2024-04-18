@@ -1416,7 +1416,7 @@ redis:
 
   serviceAccount:
     # -- Create a service account for the redis pod
-    create: false
+    create: true
     # -- Service account name for redis pod
     name: ""
     # -- Annotations applied to created service account
