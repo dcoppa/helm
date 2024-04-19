@@ -2842,6 +2842,56 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: v1.12.0-rc.4
+    created: "2024-04-19T18:15:05.024134667Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 3.2.0-rc.4
+    description: Kubernetes Native Policy Management
+    digest: be6159f23cad2dfab2a285e50852ea38f7ca8abde593782453da781bae0ecff2
+    home: https://kyverno.io/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - policy
+    - validating webhook
+    - admission controller
+    - mutation
+    - mutate
+    - validate
+    - generate
+    - supply chain
+    - security
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - name: Nirmata
+      url: https://kyverno.io/
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-3.2.0-rc.4/kyverno-3.2.0-rc.4.tgz
+    version: 3.2.0-rc.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Add profiling support
+        - kind: added
+          description: Add global nodeSelector
+        - kind: added
+          description: Add podLabels to the post-upgrade hook
+        - kind: added
+          description: Add podLabels to the pre-delete hook
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://kyverno.io/docs
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: v1.12.0-rc.3
     created: "2024-04-09T10:21:56.836782501Z"
     dependencies:
@@ -3438,6 +3488,14 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/kyverno-policies-3.2.0-rc.4/kyverno-policies-3.2.0-rc.4.tgz
     version: 3.2.0-rc.4
+  - apiVersion: v2
+    created: "2024-04-19T18:15:05.156700383Z"
+    description: Policies for Kyverno
+    digest: 6b1c674edd9d6f3db503a8db7e934b71a8744b52021e8b3eadac8c6f1df5281d
+    name: kyverno-policies
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kyverno-policies-3.2.0-rc.4/kyverno-policies-3.2.0-rc.4.tgz
+    version: 3.2.0-rc.4
   newrelic-prometheus-agent:
   - annotations:
       configuratorVersion: 1.15.0
@@ -3632,4 +3690,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-04-19T15:59:28.408835153Z"
+generated: "2024-04-19T18:15:05.798519247Z"
