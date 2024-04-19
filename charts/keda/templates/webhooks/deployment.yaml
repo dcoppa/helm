@@ -110,7 +110,7 @@ spec:
             failureThreshold: {{ .Values.webhooks.readinessProbe.failureThreshold }}
             successThreshold: {{ .Values.webhooks.readinessProbe.successThreshold }}
           ports:
-          - containerPort: {{ .Values.webhooks.port | default 10257 }}
+          - containerPort: {{ .Values.webhooks.port | default 10258 }}
             name: http
             protocol: TCP
           {{- if .Values.prometheus.webhooks.enabled }}

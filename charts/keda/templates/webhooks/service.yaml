@@ -30,7 +30,7 @@ spec:
   - name: https
     port: 443
     protocol: TCP
-    targetPort: {{ .Values.webhooks.port | default 10257 }}
+    targetPort: {{ .Values.webhooks.port | default 10258 }}
   {{- if .Values.prometheus.webhooks.enabled }}
   - name: {{ .Values.prometheus.webhooks.serviceMonitor.port }}
     port: {{ .Values.prometheus.webhooks.port }}
