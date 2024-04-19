@@ -12,7 +12,7 @@ metadata:
     {{- if and .Values.prometheus.metricServer.enabled ( not (or .Values.prometheus.metricServer.podMonitor.enabled .Values.prometheus.metricServer.serviceMonitor.enabled )) }}
     newrelic.io/scrape: "true"
     prometheus.io/scrape: "true"
-    prometheus.io/port: {{ .Values.prometheus.metricServer.port | quote }}
+    prometheus.io/port: 8080
     prometheus.io/path: "/metrics"
     {{- end }}
     {{- with .Values.additionalAnnotations }}
@@ -33,7 +33,7 @@ spec:
     targetPort: {{ .Values.service.portHttpsTarget }}
     protocol: TCP
   - name: {{ .Values.prometheus.metricServer.portName }}
-    port: {{ .Values.prometheus.metricServer.port }}
+    port: 8080
     targetPort: {{ .Values.prometheus.metricServer.port }}
     protocol: TCP
   {{- if .Values.profiling.metricsServer.enabled }}
