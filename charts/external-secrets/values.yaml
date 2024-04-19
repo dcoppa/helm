@@ -40,8 +40,8 @@ crds:
     enabled: true
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "external-secrets"
+fullnameOverride: "external-secrets"
 
 # -- Additional labels added to all helm chart resources.
 commonLabels: {}
