@@ -90,6 +90,7 @@ spec:
           - "--cert-secret-name={{ .Values.certificates.secretName }}"
           - "--operator-service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.operator.name }}-{{.Values.stage}}"
           - "--metrics-server-service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.operator.name }}-m-{{.Values.stage}}"
+          - "--validating-webhook-name=keda-admission-validation-webhook"
           - "--webhooks-service-name={{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.webhooks.name }}-{{.Values.stage}}"
           - "--k8s-cluster-name={{ .Values.clusterName }}"
           - "--k8s-cluster-domain={{ .Values.clusterDomain }}"
