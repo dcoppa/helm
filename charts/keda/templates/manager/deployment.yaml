@@ -111,7 +111,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8081
+              port: 10258
             initialDelaySeconds: {{ .Values.operator.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.operator.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.operator.livenessProbe.timeoutSeconds }}
@@ -120,7 +120,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 8081
+              port: 10258
             initialDelaySeconds: {{ .Values.operator.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.operator.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.operator.readinessProbe.timeoutSeconds }}

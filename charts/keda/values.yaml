@@ -155,7 +155,7 @@ webhooks:
   # -- Port number to use for KEDA admission webhooks. Default is 10257.
   port: "10257"
   # -- Port number to use for KEDA admission webhooks health probe
-  healthProbePort: 8081
+  healthProbePort: 10258
   # -- Liveness probes for admission webhooks ([docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/))
   livenessProbe:
     initialDelaySeconds: 25
