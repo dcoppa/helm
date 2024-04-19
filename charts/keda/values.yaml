@@ -152,8 +152,8 @@ metricsServer:
 webhooks:
   # -- Enable admission webhooks (this feature option will be removed in v2.12)
   enabled: true
-  # -- Port number to use for KEDA admission webhooks. Default is 9443.
-  port: ""
+  # -- Port number to use for KEDA admission webhooks. Default is 10257.
+  port: "10257"
   # -- Port number to use for KEDA admission webhooks health probe
   healthProbePort: 8081
   # -- Liveness probes for admission webhooks ([docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/))
@@ -171,7 +171,7 @@ webhooks:
     failureThreshold: 3
     successThreshold: 1
   # -- Enable webhook to use host network, this is required on EKS with custom CNI
-  useHostNetwork: false
+  useHostNetwork: true
   # -- Name of the KEDA admission webhooks
   name: keda-admission-wh
   # -- ReplicaSets for this Deployment you want to retain (Default: 10)
