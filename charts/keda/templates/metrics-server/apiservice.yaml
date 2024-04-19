@@ -20,7 +20,7 @@ metadata:
   name: v1beta1.external.metrics.k8s.io
 spec:
   service:
-    name: {{ .Values.operator.name }}-metrics-apiserver
+    name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.operator.name }}-m-{{.Values.stage}}
     namespace: {{ .Release.Namespace }}
     port: {{ .Values.service.portHttps }}
   group: external.metrics.k8s.io

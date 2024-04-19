@@ -120,9 +120,9 @@ metricsServer:
   disableCompression: true
   # use ClusterFirstWithHostNet if `useHostNetwork: true` https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy
   # -- Defined the DNS policy for the metric server
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
   # -- Enable metric server to use host network
-  useHostNetwork: false
+  useHostNetwork: true
   # -- [Affinity] for pod scheduling for Metrics API Server. Takes precedence over the `affinity` field
   affinity: {}
     # podAntiAffinity:
@@ -426,7 +426,7 @@ service:
   # -- HTTPS port for KEDA Metric Server service
   portHttps: 443
   # -- HTTPS port for KEDA Metric Server container
-  portHttpsTarget: 6443
+  portHttpsTarget: 10259
   # -- Annotations to add the KEDA Metric Server service
   annotations: {}
 
@@ -559,7 +559,7 @@ prometheus:
     # -- Enable metric server Prometheus metrics expose
     enabled: false
     # -- HTTP port used for exposing metrics server prometheus metrics
-    port: 8080
+    port: 10254
     # -- HTTP port name for exposing metrics server prometheus metrics
     portName: metrics
     serviceMonitor:

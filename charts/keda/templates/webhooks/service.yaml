@@ -5,6 +5,7 @@ metadata:
   {{- if or .Values.prometheus.webhooks.enabled .Values.additionalAnnotations .Values.service.annotations }}
   annotations:
     {{- if and .Values.prometheus.webhooks.enabled ( not .Values.prometheus.webhooks.serviceMonitor.enabled ) }}
+    newrelic.io/scrape: "true"
     prometheus.io/scrape: "true"
     prometheus.io/port: {{ .Values.prometheus.webhooks.port | quote }}
     prometheus.io/path: "/metrics"
