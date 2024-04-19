@@ -7,7 +7,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ template "aws-load-balancer-controller.namePrefix" . }}-serving-{{.Values.stage}}
 {{- end }}
-  name: {{ include "aws-load-balancer-controller.namePrefix" . }}-mutating-webhook-cfg
+  name: {{ include "aws-load-balancer-controller.namePrefix" . }}-webhook
   labels:
     {{- include "aws-load-balancer-controller.labels" . | nindent 4 }}
 webhooks:
@@ -117,7 +117,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ template "aws-load-balancer-controller.namePrefix" . }}-serving-{{.Values.stage}}
 {{- end }}
-  name: {{ include "aws-load-balancer-controller.namePrefix" . }}-validating-webhook-cfg
+  name: {{ include "aws-load-balancer-controller.namePrefix" . }}-validation-webhook
   labels:
     {{- include "aws-load-balancer-controller.labels" . | nindent 4 }}
 webhooks:
