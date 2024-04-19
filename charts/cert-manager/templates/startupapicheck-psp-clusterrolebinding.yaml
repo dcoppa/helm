@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ include "startupapicheck.name" . }}
     app.kubernetes.io/name: {{ include "startupapicheck.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "startupapicheck"
     {{- include "labels" . | nindent 4 }}
   {{- with .Values.startupapicheck.rbac.annotations }}

@@ -28,7 +28,7 @@ This will render the labels that should be used in deployments/daemonsets templa
 */}}
 {{- define "newrelic.common.labels.selectorLabels" -}}
 {{- $name := dict "app.kubernetes.io/name" ( include "newrelic.common.naming.name" . ) -}}
-{{- $instance := dict "app.kubernetes.io/instance" .Release.Name -}}
+{{- $instance := dict "app.kubernetes.io/instance" "newrelic-prometheus-agent" -}}
 
 {{- $selectorLabels := mustMergeOverwrite $name $instance -}}
 

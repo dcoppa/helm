@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "cert-manager.name" . }}-{{ include "webhook.name" . }}
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "webhook.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "webhook"
     {{- include "labels" . | nindent 4 }}
   {{- with .Values.webhook.deploymentAnnotations }}
@@ -22,7 +22,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "webhook.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/instance: cert-manager
       app.kubernetes.io/component: "webhook"
   {{- with .Values.webhook.strategy }}
   strategy:
@@ -33,7 +33,7 @@ spec:
       labels:
         app: {{ template "cert-manager.name" . }}-{{ include "webhook.name" . }}
         app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "webhook.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/instance: cert-manager
         app.kubernetes.io/component: "webhook"
         {{- include "labels" . | nindent 8 }}
         {{- with .Values.webhook.podLabels }}

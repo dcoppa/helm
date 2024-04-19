@@ -90,15 +90,15 @@ Selector labels
 */}}
 {{- define "external-secrets.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "external-secrets.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: external-secrets
 {{- end }}
 {{- define "external-secrets-webhook.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "external-secrets.name" . }}-webhook
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: external-secrets
 {{- end }}
 {{- define "external-secrets-cert-controller.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "external-secrets.name" . }}-cert-controller
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: external-secrets
 {{- end }}
 {{/*
 Create the name of the service account to use

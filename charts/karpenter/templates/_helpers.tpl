@@ -50,7 +50,7 @@ Selector labels
 */}}
 {{- define "karpenter.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "karpenter.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: karpenter
 {{- end }}
 
 {{/*

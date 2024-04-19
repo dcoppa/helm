@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -31,7 +31,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -54,7 +54,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -80,7 +80,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -107,7 +107,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -143,7 +143,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -182,7 +182,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -243,7 +243,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -281,7 +281,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -302,7 +302,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -323,7 +323,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -344,7 +344,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -365,7 +365,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -386,7 +386,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -408,7 +408,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
     rbac.authorization.k8s.io/aggregate-to-cluster-reader: "true"
@@ -427,7 +427,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
     {{- if .Values.global.rbac.aggregateClusterRoles }}
@@ -454,7 +454,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "controller"
     {{- include "labels" . | nindent 4 }}
     {{- if .Values.global.rbac.aggregateClusterRoles }}
@@ -482,7 +482,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cert-manager"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -500,7 +500,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cert-manager"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -524,7 +524,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cert-manager"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -551,7 +551,7 @@ metadata:
   labels:
     app: {{ include "cert-manager.name" . }}
     app.kubernetes.io/name: {{ include "cert-manager.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cert-manager"
     {{- include "labels" . | nindent 4 }}
 roleRef:

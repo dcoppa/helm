@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cainjector"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -37,7 +37,7 @@ metadata:
   labels:
     app: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cainjector"
     {{- include "labels" . | nindent 4 }}
 roleRef:
@@ -59,7 +59,7 @@ metadata:
   labels:
     app: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cainjector"
     {{- include "labels" . | nindent 4 }}
 rules:
@@ -88,7 +88,7 @@ metadata:
   labels:
     app: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
     app.kubernetes.io/name: {{ template "cert-manager.name" . }}-{{ include "cainjector.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: "cainjector"
     {{- include "labels" . | nindent 4 }}
 roleRef:
