@@ -152,10 +152,10 @@ metricsServer:
 webhooks:
   # -- Enable admission webhooks (this feature option will be removed in v2.12)
   enabled: true
-  # -- Port number to use for KEDA admission webhooks. Default is 10258.
-  port: "10258"
+  # -- Port number to use for KEDA admission webhooks. Default is 10259.
+  port: "10259"
   # -- Port number to use for KEDA admission webhooks health probe
-  healthProbePort: 10257
+  healthProbePort: 10258
   # -- Liveness probes for admission webhooks ([docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/))
   livenessProbe:
     initialDelaySeconds: 25
@@ -426,7 +426,7 @@ service:
   # -- HTTPS port for KEDA Metric Server service
   portHttps: 443
   # -- HTTPS port for KEDA Metric Server container
-  portHttpsTarget: 10259
+  portHttpsTarget: 10257
   # -- Annotations to add the KEDA Metric Server service
   annotations: {}
 
