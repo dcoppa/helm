@@ -685,7 +685,7 @@ prometheus:
     # -- Enable KEDA admission webhooks prometheus metrics expose
     enabled: false
     # -- Port used for exposing KEDA admission webhooks prometheus metrics
-    port: 8080
+    port: 10255
     serviceMonitor:
       # -- Enables ServiceMonitor creation for the Prometheus webhooks
       enabled: false

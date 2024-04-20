@@ -7,7 +7,7 @@ metadata:
     {{- if and .Values.prometheus.webhooks.enabled ( not .Values.prometheus.webhooks.serviceMonitor.enabled ) }}
     newrelic.io/scrape: "true"
     prometheus.io/scrape: "true"
-    prometheus.io/port: {{ .Values.prometheus.webhooks.port | quote }}
+    prometheus.io/port: 8080
     prometheus.io/path: "/metrics"
     {{- end }}
     {{- with .Values.additionalAnnotations }}
@@ -34,7 +34,7 @@ spec:
     targetPort: {{ .Values.webhooks.port | default 10259 }}
   {{- if .Values.prometheus.webhooks.enabled }}
   - name: {{ .Values.prometheus.webhooks.serviceMonitor.port }}
-    port: {{ .Values.prometheus.webhooks.port }}
+    port: 8080
     targetPort: {{ .Values.prometheus.webhooks.port }}
   {{- end }}
   {{- if .Values.profiling.webhooks.enabled }}
