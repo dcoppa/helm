@@ -59,3 +59,15 @@ metrics:
 
 logLevel: Info
 logEncoding: json
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            app: nifikop
+            app.kubernetes.io/name: nifikop
+            control-plane: nifikop
+        topologyKey: topology.kubernetes.io/zone
+      weight: 100

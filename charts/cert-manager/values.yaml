@@ -375,7 +375,17 @@ ingressShim: {}
 #            operator: In
 #            values:
 #            - master
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: cert-manager
+            app.kubernetes.io/name: cert-manager
+        topologyKey: topology.kubernetes.io/zone
+      weight: 100
 
 # A list of Kubernetes Tolerations, if required; see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#toleration-v1-core
 #
@@ -720,7 +730,17 @@ webhook:
   #            operator: In
   #            values:
   #            - master
-  affinity: {}
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/component: webhook
+              app.kubernetes.io/instance: cert-manager
+              app.kubernetes.io/name: cert-manager-webhook
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
 
   # A list of Kubernetes Tolerations, if required; see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#toleration-v1-core
   #
@@ -1006,7 +1026,17 @@ cainjector:
   #            operator: In
   #            values:
   #            - master
-  affinity: {}
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/component: cainjector
+              app.kubernetes.io/instance: cert-manager
+              app.kubernetes.io/name: cert-manager-cainjector
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
 
   # A list of Kubernetes Tolerations, if required; see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#toleration-v1-core
   #

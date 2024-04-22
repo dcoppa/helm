@@ -82,16 +82,18 @@ operator:
   # Disabling compression simply means that turns off the process of making data smaller for K8s restAPI in client-go for faster transmission.
   disableCompression: true
   # -- [Affinity] for pod scheduling for KEDA operator. Takes precedence over the `affinity` field
-  affinity: {}
-    # podAntiAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #   - labelSelector:
-    #       matchExpressions:
-    #       - key: app
-    #         operator: In
-    #         values:
-    #         - keda-operator
-    #     topologyKey: "kubernetes.io/hostname"
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: keda-operator
+              app.kubernetes.io/component: operator
+              app.kubernetes.io/instance: keda
+              app.kubernetes.io/name: keda-operator
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
   # -- Liveness probes for operator ([docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/))
   livenessProbe:
     initialDelaySeconds: 25
@@ -124,16 +126,18 @@ metricsServer:
   # -- Enable metric server to use host network
   useHostNetwork: true
   # -- [Affinity] for pod scheduling for Metrics API Server. Takes precedence over the `affinity` field
-  affinity: {}
-    # podAntiAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #   - labelSelector:
-    #       matchExpressions:
-    #       - key: app
-    #         operator: In
-    #         values:
-    #         - keda-operator-metrics-apiserver
-    #     topologyKey: "kubernetes.io/hostname"
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: keda-operator-metrics-apiserver
+              app.kubernetes.io/component: operator
+              app.kubernetes.io/instance: keda
+              app.kubernetes.io/name: keda-operator-metrics-apiserver
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
   # -- Liveness probes for Metrics API Server ([docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/))
   livenessProbe:
     initialDelaySeconds: 5
@@ -179,17 +183,18 @@ webhooks:
   # -- Capability to configure the number of replicas for KEDA admission webhooks
   replicaCount: 1
   # -- [Affinity] for pod scheduling for KEDA admission webhooks. Takes precedence over the `affinity` field
-  affinity: {}
-    # podAntiAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #   - labelSelector:
-    #       matchExpressions:
-    #       - key: app
-    #         operator: In
-    #         values:
-    #         - keda-operator
-    #     topologyKey: "kubernetes.io/hostname"
-
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: keda-admission-wh
+              app.kubernetes.io/component: operator
+              app.kubernetes.io/instance: keda
+              app.kubernetes.io/name: keda-admission-wh
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
   # -- [Failure policy](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#failure-policy) to use with KEDA admission webhooks
   failurePolicy: Ignore
 
@@ -474,7 +479,7 @@ topologySpreadConstraints:
   webhooks: []
 
 # -- [Affinity] for pod scheduling for both KEDA operator and Metrics API Server
-affinity: {}
+#affinity: {}
   # podAntiAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
   #   - labelSelector:

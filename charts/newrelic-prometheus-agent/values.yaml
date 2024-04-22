@@ -94,7 +94,16 @@ rbac:
   pspEnabled: false
 
 # -- Sets pod/node affinities set almost globally. (See [Affinities and tolerations](README.md#affinities-and-tolerations))
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: newrelic-prometheus-agent
+            app.kubernetes.io/name: nrpa
+        topologyKey: topology.kubernetes.io/zone
+      weight: 100
 # -- Sets pod's node selector almost globally. (See [Affinities and tolerations](README.md#affinities-and-tolerations))
 nodeSelector: {}
 # -- Sets pod's tolerations to node taints almost globally. (See [Affinities and tolerations](README.md#affinities-and-tolerations))

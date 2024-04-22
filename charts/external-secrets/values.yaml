@@ -203,7 +203,16 @@ tolerations: []
 
 topologySpreadConstraints: []
 
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: external-secrets
+            app.kubernetes.io/name: external-secrets
+        topologyKey: topology.kubernetes.io/zone
+      weight: 100
 
 # -- Pod priority class name.
 priorityClassName: ""
@@ -302,7 +311,16 @@ webhook:
 
   topologySpreadConstraints: []
 
-  affinity: {}
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: external-secrets
+              app.kubernetes.io/name: external-secrets-webhook
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
 
     # -- Pod priority class name.
   priorityClassName: ""
@@ -416,7 +434,16 @@ certController:
 
   topologySpreadConstraints: []
 
-  affinity: {}
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: external-secrets
+              app.kubernetes.io/name: external-secrets-cert-controller
+          topologyKey: topology.kubernetes.io/zone
+        weight: 100
 
   # -- Run the certController on the host network
   hostNetwork: false
