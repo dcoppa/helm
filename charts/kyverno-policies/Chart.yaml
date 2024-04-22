@@ -1,4 +1,0 @@
-apiVersion: v2
-name: kyverno-policies
-description: Policies for Kyverno
-version: 3.2.0-rc.4
