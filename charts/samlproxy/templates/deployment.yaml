@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "samlproxy.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "samlproxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+        checksum/configmap-idp: {{ include (print $.Template.BasePath "/configmap-idp.yaml") . | sha256sum }}
+        checksum/configmap-template: {{ include (print $.Template.BasePath "/configmap-template.yaml") . | sha256sum }}
+        checksum/secret-sp: {{ include (print $.Template.BasePath "/secret-sp.yaml") . | sha256sum }}
+      labels:
+        {{- include "samlproxy.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: https
+              containerPort: {{ .Values.service.containerPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthcheck.html
+              port: https
+              scheme: HTTPS
+          readinessProbe:
+            httpGet:
+              path: /healthcheck.html
+              port: https
+              scheme: HTTPS
+          env:
+            - name: BACKEND
+              value: {{ tpl (required "missing required value: .Values.proxy.backend" .Values.proxy.backend) $ }}
+            - name: PROXY_HOST
+              value: {{ tpl (required "missing required value: .Values.proxy.hostname" .Values.proxy.hostname) $ }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - mountPath: /etc/apache2/saml-proxy/idp
+            name: idp
+          - mountPath: /etc/apache2/saml-proxy/sp
+            name: sp
+          - mountPath: /etc/apache2/templates
+            name: template
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - configMap:
+          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-idp-{{.Values.stage}}
+        name: idp
+      - configMap:
+          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-tmpl-{{.Values.stage}}
+        name: template
+      - secret:
+          secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-sp-{{.Values.stage}}
+        name: sp

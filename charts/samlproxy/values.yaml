@@ -1,0 +1,47 @@
+awsAccount: hnd
+k8sPrefix: awsd
+customer: hydra
+purpose: dataplatform
+stage: dev
+
+replicaCount: 1
+
+image:
+  repository: dcoppa/saml-proxy
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+nameOverride: "samlproxy"
+fullnameOverride: "samlproxy"
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 0
+
+securityContext:
+  capabilities:
+    add:
+    - NET_BIND_SERVICE
+    drop:
+    - all
+  runAsNonRoot: true
+  runAsUser: 33
+
+service:
+  type: ClusterIP
+  port: 30444
+  containerPort: 443
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+proxy:
+  backend: https://awsd-svc-hydra-dataplatform-traefik-admin-dev.awsd-ns-hydra-dataplatform-traefik-admin-dev.svc.cluster.local
+  hostname: hnd-nlb-hydra-dataplatform-admin-7a1d846d5e00a3dc.elb.eu-west-1.amazonaws.com

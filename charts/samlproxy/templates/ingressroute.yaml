@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik-admin
+  labels:
+    {{- include "samlproxy.labels" . | nindent 4 }}
+    traffic-type: admin
+  name: {{.Values.k8sPrefix}}-ingressroute-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`{{ tpl (required "missing required value: .Values.proxy.hostname" .Values.proxy.hostname) $ }}`)
+    services:
+    - kind: Service
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+      port: {{ .Values.service.port }}
+      serversTransport: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+    middlewares:
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}

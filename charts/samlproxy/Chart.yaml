@@ -1,0 +1,6 @@
+apiVersion: v2
+name: samlproxy
+description: SAML proxy based on Apache Mellon
+type: application
+version: 1.0.0
+appVersion: "2.8.6"

@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "samlproxy.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-tmpl-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+data:
+  proxy_saml_azuread.conf.template: |
+
+    # VirtualHost managing Azure AD-based authentication
+    # NOTE: this file is a template: the vars marked as $VARNAME must
+    # get substituted before start of Apache. See 'entrypoint.sh' to see how this is done
+
+    <VirtualHost *:{{ .Values.service.containerPort }}>
+    SSLEngine on
+    SSLCertificateFile /etc/apache2/saml-proxy/sp/saml_sp.cert
+    SSLCertificateKeyFile /etc/apache2/saml-proxy/sp/saml_sp.key
+
+    ErrorLog /dev/stderr
+    TransferLog /dev/stdout
+
+    UseCanonicalName on
+
+    SSLProxyEngine on
+    SSLProxyVerify none
+    SSLProxyCheckPeerCN off
+    SSLProxyCheckPeerName off
+
+    DocumentRoot /var/www/html
+
+    # Enable rewrite module
+    LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
+
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+
+    RewriteEngine on
+    RewriteRule ^/([^/]+).* - [L,E=REQUESTED_LOCATION:$1]
+
+    <LocationMatch /.*>
+        Require valid-user
+
+        # Add mod_auth_mellon info to all contexts
+        # Auth redirects will be located under /mellon
+        MellonEndpointPath /mellon
+        MellonSecureCookie On
+        MellonCookieSameSite None
+        MellonSessionLength 86400
+
+        # Service provider metadata, cert, and key
+        MellonSPPrivateKeyFile /etc/apache2/saml-proxy/sp/saml_sp.key
+        MellonSPCertFile       /etc/apache2/saml-proxy/sp/saml_sp.cert
+        MellonSPMetadataFile   /etc/apache2/saml-proxy/sp/saml_sp.xml
+
+        # IDP metadata
+        MellonIdPMetadataFile /etc/apache2/saml-proxy/idp/saml_idp.xml
+
+        # Protect with auth
+        MellonEnable "auth"
+        AuthType "Mellon"
+
+        # Rename Mellon attributes
+        MellonSetEnv "username" "VwId"
+        MellonSetEnv "first_name" "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"
+        MellonSetEnv "last_name" "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
+        MellonSetEnv "email" "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+        MellonSetEnv "department_number" "Department"
+        MellonSetEnv "groups" "http://schemas.microsoft.com/ws/2008/06/identity/claims/groups"
+
+        # Unset the headers
+        RequestHeader unset Remote-Groups
+        RequestHeader unset X-Auth-Token
+
+        # Set the final Remote-Groups header
+        MellonMergeEnvVars On
+        MellonMergeEnvVars On ","
+        RequestHeader set Remote-Groups "%{MELLON_groups}e"
+
+        # Set the final X-Auth-Token header
+        <If "%{ENV:REQUESTED_LOCATION} != '' && %{ENV:REQUESTED_LOCATION} != 'nifi' && %{ENV:REQUESTED_LOCATION} != 'nifi-api' && %{ENV:REQUESTED_LOCATION} != 'nifi-docs'">
+          RewriteCond %{ENV:MELLON_username} ^$|^null$|^undefined$|^0$|^.*#ext#$|^.*#EXT#$
+          RewriteRule .* - [E=MELLON_username:%{ENV:MELLON_email}]
+          RequestHeader set X-Auth-Token "%{REQUESTED_LOCATION}e_%{MELLON_username}e"
+        </If>
+
+        ProxyPass $BACKEND
+        ProxyPassReverse $BACKEND
+    </LocationMatch>
+
+    <Location /favicon.ico>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       ProxyPass !
+    </Location>
+
+    <Location /healthcheck.html>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       Header always add Cache-Control no-store
+       ProxyPass !
+    </Location>
+
+    <Location /403.css>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       Header always add Cache-Control no-store
+       ProxyPass !
+    </Location>
+
+    <Location /public/>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       ProxyPass !
+    </Location>
+
+    </VirtualHost>
