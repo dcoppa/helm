@@ -86,7 +86,7 @@ Create the name of the webhook service
 Create the name of the webhook cert secret
 */}}
 {{- define "aws-load-balancer-controller.webhookCertSecret" -}}
-{{- printf "%s-secret-%s-%s-aws-lb-tls-%s" .Values.k8sPrefix .Values.customer .Values.purpose .Values.stage -}}
+{{- printf "%s-secret-%s-%s-aws-lb-certs-%s" .Values.k8sPrefix .Values.customer .Values.purpose .Values.stage -}}
 {{- end -}}
 
 {{/*
