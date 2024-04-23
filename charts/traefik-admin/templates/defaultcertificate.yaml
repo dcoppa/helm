@@ -1,3 +1,4 @@
+{{- if not (hasSuffix "d" .Values.k8sPrefix) }}
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -31,3 +32,4 @@ spec:
     remoteRef:
       key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
       property: tls.key
+{{- end }}
