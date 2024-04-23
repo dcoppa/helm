@@ -1,3 +1,4 @@
+awsAccount: hnd
 k8sPrefix: awsd
 customer: hydra
 purpose: dataplatform

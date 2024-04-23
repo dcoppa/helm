@@ -1,0 +1,33 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  labels:
+  {{- include "traefik.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-externalsecret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-certs-{{.Values.stage}}
+  namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+spec:
+  refreshInterval: 12h
+  secretStoreRef:
+    name: {{.Values.k8sPrefix}}-clustersecretstore-{{.Values.customer}}-{{.Values.purpose}}-aws-secretsmanager-{{.Values.stage}}
+    kind: ClusterSecretStore
+  target:
+    name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-certs-{{.Values.stage}}
+    creationPolicy: Owner
+    template:
+      metadata:
+        labels:
+          {{- include "traefik.labels" . | nindent 10 }}
+      type: kubernetes.io/tls
+  data:
+  - secretKey: ca.crt
+    remoteRef:
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      property: ca.crt
+  - secretKey: tls.crt
+    remoteRef:
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      property: tls.crt
+  - secretKey: tls.key
+    remoteRef:
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      property: tls.key
