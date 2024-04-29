@@ -21,7 +21,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 app: {{ template "newrelic-logging.name" . }}
 chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 heritage: {{.Release.Service }}
-release: {{.Release.Name }}
+release: newrelic-logging
 app.kubernetes.io/name: {{ template "newrelic-logging.name" . }}
 {{- end }}
 

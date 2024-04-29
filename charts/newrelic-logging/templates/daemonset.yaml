@@ -14,7 +14,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "newrelic-logging.name" . }}
-      release: {{.Release.Name }}
+      release: newrelic-logging
   template:
     metadata:
       annotations:
@@ -24,7 +24,7 @@ spec:
     {{- end }}
       labels:
         app: {{ template "newrelic-logging.name" . }}
-        release: {{.Release.Name }}
+        release: newrelic-logging
         kubernetes.io/os: linux
         app.kubernetes.io/name: {{ template "newrelic-logging.name" . }}
         {{- if .Values.podLabels}}
