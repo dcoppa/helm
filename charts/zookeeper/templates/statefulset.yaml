@@ -41,6 +41,7 @@ spec:
         {{- if or (include "zookeeper.client.createTlsSecret" .) (include "zookeeper.quorum.createTlsSecret" .) }}
         checksum/tls-secrets: {{ include (print $.Template.BasePath "/tls-secrets.yaml") . | sha256sum }}
         {{- end }}
+        fluentbit.io/exclude: "true"
       labels: {{- include "common.labels.standard" ( dict "customLabels" $podLabels "context" $ ) | nindent 8 }}
         app.kubernetes.io/component: zookeeper
     spec:

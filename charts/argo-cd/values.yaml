@@ -1340,7 +1340,8 @@ redis:
   deploymentAnnotations: {}
 
   # -- Annotations to be added to the Redis server pods
-  podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   # -- Labels to be added to the Redis server pods
   podLabels: {}
@@ -3141,7 +3142,8 @@ notifications:
   deploymentAnnotations: {}
 
   # -- Annotations to be applied to the notifications controller Pods
-  podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   # -- Labels to be applied to the notifications controller Pods
   podLabels: {}

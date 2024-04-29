@@ -45,7 +45,8 @@ nodeSelector:
   kubernetes.io/os: linux
 
 # Custom annotations for the tigera/operator pod.
-podAnnotations: {}
+podAnnotations:
+  fluentbit.io/exclude: "true"
 
 # Custom labels for the tigera/operator pod.
 podLabels: {}

@@ -45,7 +45,8 @@ strategy:
 # -- Additional labels for the pod.
 podLabels: {}
 # -- Additional annotations for the pod.
-podAnnotations: {}
+podAnnotations:
+  fluentbit.io/exclude: "true"
 podDisruptionBudget:
   name: karpenter
   maxUnavailable: 1

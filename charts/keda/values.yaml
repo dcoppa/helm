@@ -248,11 +248,14 @@ additionalAnnotations:
 
 podAnnotations:
   # -- Pod annotations for KEDA operator
-  keda: {}
+  keda:
+    fluentbit.io/exclude: "true"
   # -- Pod annotations for KEDA Metrics Adapter
-  metricsAdapter: {}
+  metricsAdapter:
+    fluentbit.io/exclude: "true"
   # -- Pod annotations for KEDA Admission webhooks
-  webhooks: {}
+  webhooks:
+    fluentbit.io/exclude: "true"
 podLabels:
   # -- Pod labels for KEDA operator
   keda: {}

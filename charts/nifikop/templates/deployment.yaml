@@ -32,6 +32,7 @@ spec:
         {{- include "userdefined.labels" . | indent 4 }}
       annotations:
         {{- include "userdefined.annotations" . | indent 4 }}
+        fluentbit.io/exclude: "true"
     spec:
     {{- with .Values.nodeSelector }}
       nodeSelector:

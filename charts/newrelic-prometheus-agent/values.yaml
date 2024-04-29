@@ -64,7 +64,8 @@ serviceAccount:
 # -- Additional labels for chart objects. Can be configured also with `global.labels`
 labels: {}
 # -- Annotations to be added to all pods created by the integration.
-podAnnotations: {}
+podAnnotations:
+  fluentbit.io/exclude: "true"
 # -- Additional labels for chart pods. Can be configured also with `global.podLabels`
 podLabels: {}
 

@@ -122,7 +122,8 @@ extraContainers: []
 deploymentAnnotations: {}
 
 # -- Annotations to add to Pod
-podAnnotations: {}
+podAnnotations:
+  fluentbit.io/exclude: "true"
 
 podLabels: {}
 
@@ -373,7 +374,8 @@ webhook:
   deploymentAnnotations: {}
 
     # -- Annotations to add to Pod
-  podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   podLabels: {}
 
@@ -495,7 +497,8 @@ certController:
   deploymentAnnotations: {}
 
     # -- Annotations to add to Pod
-  podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   podLabels: {}
 

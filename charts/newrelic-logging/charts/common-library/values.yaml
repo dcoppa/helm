@@ -1,0 +1,6 @@
+# values are not needed for the library chart, however this file is still needed for helm lint to work.
+awsAccount: hnd
+k8sPrefix: awsd
+customer: hydra
+purpose: dataplatform
+stage: dev

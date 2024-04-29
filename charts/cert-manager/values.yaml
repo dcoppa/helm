@@ -289,7 +289,8 @@ volumeMounts: []
 
 # Optional additional annotations to add to the controller Pods
 # +docs:property
-# podAnnotations: {}
+podAnnotations:
+  fluentbit.io/exclude: "true"
 
 # Optional additional labels to add to the controller Pods
 podLabels: {}
@@ -629,7 +630,8 @@ webhook:
 
   # Optional additional annotations to add to the webhook Pods
   # +docs:property
-  # podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   # Optional additional annotations to add to the webhook Service
   # +docs:property
@@ -981,7 +983,8 @@ cainjector:
 
   # Optional additional annotations to add to the cainjector Pods
   # +docs:property
-  # podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   # Additional command line flags to pass to cert-manager cainjector binary.
   # To see all available flags run docker run quay.io/jetstack/cert-manager-cainjector:<version> --help
@@ -1190,7 +1193,8 @@ startupapicheck:
 
   # Optional additional annotations to add to the startupapicheck Pods
   # +docs:property
-  # podAnnotations: {}
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
   # Additional command line flags to pass to startupapicheck binary.
   # To see all available flags run docker run quay.io/jetstack/cert-manager-ctl:<version> --help
