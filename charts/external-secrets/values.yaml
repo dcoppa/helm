@@ -242,7 +242,7 @@ webhook:
   # -- Specifies whether validating webhooks should be created with failurePolicy: Fail or Ignore
   failurePolicy: Fail
   # -- Specifies if webhook pod should use hostNetwork or not.
-  hostNetwork: false
+  hostNetwork: true
   image:
     repository: ghcr.io/external-secrets/external-secrets
     pullPolicy: IfNotPresent

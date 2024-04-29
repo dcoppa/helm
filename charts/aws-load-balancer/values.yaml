@@ -290,14 +290,14 @@ env:
 # This is required if using a custom CNI where the managed control plane nodes are unable to initiate
 # network connections to the pods, for example using Calico CNI plugin on EKS. This is not required or
 # recommended if using the Amazon VPC CNI plugin.
-hostNetwork: false
+hostNetwork: true
 
 # Specifies the dnsPolicy that should be used for pods in the deployment
 #
 # This may need to be used to be changed given certain conditions. For instance, if one uses the cilium CNI
 # with certain settings, one may need to set `hostNetwork: true` and webhooks won't work unless `dnsPolicy`
 # is set to `ClusterFirstWithHostNet`. See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy
-dnsPolicy:
+dnsPolicy: ClusterFirstWithHostNet
 
 # extraVolumeMounts are the additional volume mounts. This enables setting up IRSA on non-EKS Kubernetes cluster
 extraVolumeMounts:

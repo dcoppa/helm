@@ -153,6 +153,7 @@ spec:
       {{- if .Values.volumes.webhooks.extraVolumes }}
       {{- toYaml .Values.volumes.webhooks.extraVolumes | nindent 6 }}
       {{- end }}
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: {{ .Values.webhooks.useHostNetwork }}
       nodeSelector:
         kubernetes.io/os: linux
