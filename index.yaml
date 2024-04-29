@@ -4018,6 +4018,31 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/kyverno-policies-3.2.0-rc.4/kyverno-policies-3.2.0-rc.4.tgz
     version: 3.2.0-rc.4
+  newrelic-logging:
+  - apiVersion: v2
+    appVersion: 1.19.2
+    created: "2024-04-29T13:12:25.862202397Z"
+    dependencies:
+    - name: common-library
+      repository: file://charts/common-library
+      version: 1.1.1
+    description: A Helm chart to deploy New Relic Kubernetes Logging as a DaemonSet,
+      supporting both Linux and Windows nodes and containers
+    digest: be291e74812e1b368bbb4262381bab99dee0eeac131d66bc598f085914d1488c
+    home: https://github.com/newrelic/kubernetes-logging
+    icon: https://newrelic.com/assets/newrelic/source/NewRelic-logo-square.svg
+    keywords:
+    - logging
+    - newrelic
+    maintainers:
+    - email: logging-team@newrelic.com
+      name: jsubirat
+    - name: danybmx
+    - name: sdaubin
+    name: newrelic-logging
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/newrelic-logging-1.21.3/newrelic-logging-1.21.3.tgz
+    version: 1.21.3
   newrelic-prometheus-agent:
   - annotations:
       configuratorVersion: 1.15.0
@@ -4223,4 +4248,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-04-23T08:25:28.719470644Z"
+generated: "2024-04-29T13:12:26.598485102Z"
