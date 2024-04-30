@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-{{.Values.stage}}
+  labels:
+    {{- include "nifi-registry.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      {{ if .Values.security.enabled }}
+      targetPort: {{ .Values.security.httpsPort }}
+      name: https
+      {{ else }}{{/* if .Values.security.enabled */}}
+      targetPort: http
+      name: http
+      {{ end }}{{/* if .Values.security.enabled */}}
+  selector:
+    {{- include "nifi-registry.selectorLabels" . | nindent 4 }}
