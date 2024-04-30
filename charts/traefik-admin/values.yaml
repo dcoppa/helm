@@ -4,6 +4,9 @@ customer: hydra
 purpose: dataplatform
 stage: dev
 
+fullnameOverride: "traefik-admin"
+nameOverride: "traefik-admin"
+
 # Default values for Traefik
 image:
   # -- Traefik image host registry

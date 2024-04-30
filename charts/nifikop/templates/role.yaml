@@ -8,7 +8,7 @@ metadata:
     app: {{ template "nifikop.name" $_ }}
     chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
     heritage: {{ $.Release.Service }}
-    release: {{ $.Release.Name }}
+    release: nifikop
     {{- include "userdefined.labels" $_ }}
   annotations:
     {{- include "userdefined.annotations" $_ }}

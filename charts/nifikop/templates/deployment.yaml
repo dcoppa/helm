@@ -9,7 +9,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     heritage: {{ .Release.Service }}
     operator: nifi
-    release: {{ .Release.Name }}
+    release: nifikop
     control-plane: nifikop
     {{- include "userdefined.labels" . }}
   annotations:
@@ -28,7 +28,7 @@ spec:
         app: {{ template "nifikop.name" . }}
         app.kubernetes.io/name: {{ template "nifikop.name" . }}
         operator: nifi
-        release: {{ .Release.Name }}
+        release: nifikop
         {{- include "userdefined.labels" . | indent 4 }}
       annotations:
         {{- include "userdefined.annotations" . | indent 4 }}

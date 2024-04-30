@@ -3,6 +3,9 @@ customer: hydra
 purpose: dataplatform
 stage: dev
 
+fullnameOverride: "nifikop"
+nameOverride: "nifikop"
+
 ## NiFi Operator Image
 ##
 image:

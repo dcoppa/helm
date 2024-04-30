@@ -47,5 +47,5 @@ Selector labels
 */}}
 {{- define "samlproxy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "samlproxy.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: samlproxy
 {{- end }}
