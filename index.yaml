@@ -4070,6 +4070,17 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/newrelic-prometheus-agent-1.12.0/newrelic-prometheus-agent-1.12.0.tgz
     version: 1.12.0
+  nifi-registry:
+  - apiVersion: v2
+    appVersion: 1.25.0
+    created: "2024-04-30T14:40:04.281536942Z"
+    description: A subproject of Apache NiFi to store and manage shared resources.
+    digest: 41c13fb1d910803382303a0e9d231fab67d2bd2e27a5bed5fa520260bbb48ed4
+    name: nifi-registry
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/nifi-registry-1.0.0/nifi-registry-1.0.0.tgz
+    version: 1.0.0
   nifikop:
   - apiVersion: v1
     appVersion: 1.8.0-release
@@ -4248,4 +4259,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-04-29T13:12:26.598485102Z"
+generated: "2024-04-30T14:40:05.441674952Z"
