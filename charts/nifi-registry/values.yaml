@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+awsAccount: hnd
 k8sPrefix: awsd
 customer: hydra
 purpose: dataplatform
@@ -90,13 +91,13 @@ affinity: {}
 
 flowProvider:
   git:
-    enabled: false
+    enabled: true
     # Repository to be cloned at pod startup
-    url:
+    url: https://cicd.skyway.porsche.com/HYDRA/nifi-flow-registry-dev.git
     # Sets NIFI_REGISTRY_GIT_REMOTE for update_flow_provider.sh
     remote: origin
     # Sets NIFI_REGISTRY_GIT_USER for update_flow_provider.sh
-    user:
+    user: gitlab-ci-token
     # Sets NIFI_REGISTRY_GIT_PASSWORD for update_flow_provider.sh
     password:
     # Global Git configuration See https://git-scm.com/docs/git-config for more details.

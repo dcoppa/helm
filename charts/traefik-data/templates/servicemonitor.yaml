@@ -20,7 +20,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  jobLabel: {{ .Values.metrics.prometheus.serviceMonitor.jobLabel | default .Release.Name }}
+  jobLabel: {{ .Values.metrics.prometheus.serviceMonitor.jobLabel | default "traefik-data" }}
   endpoints:
     - targetPort: metrics
       path: /{{ .Values.metrics.prometheus.entryPoint }}
