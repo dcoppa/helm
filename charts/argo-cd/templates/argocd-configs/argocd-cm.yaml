@@ -34,5 +34,11 @@ data:
   resource.customizations.ignoreDifferences.admissionregistration.k8s.io_ValidatingWebhookConfiguration: |
     jqPathExpressions:
     - '.webhooks[]?.clientConfig.caBundle'
+  resource.customizations.ignoreDifferences.apps_Deployment: |
+    jsonPointers:
+    - /spec/replicas
+  resource.customizations.ignoreDifferences.nifi.konpyutaika.com_NifiNodeGroupAutoscaler: |
+    jsonPointers:
+    - /spec/replicas
   {{- include "argo-cd.config.cm" . | trim | nindent 2 }}
 {{- end }}
