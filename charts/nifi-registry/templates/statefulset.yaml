@@ -67,18 +67,6 @@ spec:
               cd postgresql
               curl -k "{{ .Values.flowProvider.postgres.driverURL }}{{ .Values.flowProvider.postgres.fileName }}" -o "{{ .Values.flowProvider.postgres.fileName }}"
             {{- /* if .Values.flowProvider.postgres.enabled */}}{{ end }}
-              mkdir -p "$HOME"/.ssh
-              chmod 700 "$HOME"/.ssh
-              touch "$HOME"/.ssh/known_hosts
-              chmod 600 "$HOME"/.ssh/known_hosts
-            {{- if .Values.flowProvider.git.ssh.secretName }}
-              cp --dereference /sshSecret/id_rsa "$HOME"/.ssh
-              chmod 600 "$HOME"/.ssh/id_rsa
-            {{ end }}
-            {{- if .Values.flowProvider.git.ssh.config }}
-              cp --dereference /sshConfig/config "$HOME"/.ssh
-              chmod 600 "$HOME"/.ssh/config
-            {{ end }}
             {{- if .Values.security.authConf }}
               cp --dereference /AuthConfConfigMap/authorizations.xml ./auth-conf/
               cp --dereference /AuthConfConfigMap/users.xml ./auth-conf/
@@ -224,7 +212,10 @@ spec:
             - name: NIFI_REGISTRY_GIT_USER
               value: {{ .Values.flowProvider.git.user }}
             - name: NIFI_REGISTRY_GIT_PASSWORD
-              value: {{ .Values.flowProvider.git.password }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-git-{{.Values.stage}}
+                  key: gitlab-token
             - name: NIFI_REGISTRY_GIT_REPO
               value: {{ .Values.flowProvider.git.url }}
           {{- end }}
@@ -266,10 +257,6 @@ spec:
             - name: AUTH
               value: "tls"
           {{- /* if .Values.security.enabled */}}{{ end }}
-          {{- if .Values.flowProvider.git.ssh.gitSshCommand }}
-            - name: GIT_SSH_COMMAND
-              value: {{ .Values.flowProvider.git.ssh.gitSshCommand }}
-          {{- /* if .Values.flowProvider.git.ssh.gitSshCommand */}}{{ end }}
           {{- if .Values.extraEnvs }}
             {{ toYaml .Values.extraEnvs | nindent 12 }}
           {{- end }}
@@ -283,27 +270,6 @@ spec:
               mountPath: /opt/nifi-registry/nifi-registry-current/flow_storage
               subPath: flow_storage
             {{ end }}
-            {{- if .Values.flowProvider.git.ssh.secretName }}
-            - name: ssh-secret
-              mountPath: /sshSecret
-              readOnly: true
-            {{- /* if .Values.flowProvider.git.ssh.secretName */}}{{ end }}
-            {{- if .Values.flowProvider.git.ssh.known_hosts }}
-            - name: ssh-known-hosts
-              mountPath: /sshKnownHosts
-              readOnly: true
-            {{- /* if .Values.flowProvider.git.ssh.known_hosts */}}{{ end }}
-            {{- if .Values.flowProvider.git.ssh.config }}
-            - name: ssh-config
-              mountPath: /sshConfig
-              readOnly: true
-            {{- /* if .Values.flowProvider.git.ssh.config */}}{{ end }}
-            {{- if .Values.flowProvider.git.config.enabled }}
-            - name: git-config
-              mountPath: /home/nifi/.gitconfig
-              subPath: gitconfig
-              readOnly: true
-            {{- end }}
             {{- if .Values.certManager.enabled }}
             # FIXME - cert-manager support limited to a single pod statefulset
             - name: "tls"
@@ -384,26 +350,6 @@ spec:
 {{ toYaml .Values.certManager.resources | indent 12 }}
         {{- /* if .Values.certManager.enabled */}}{{ end }}
       volumes:
-      {{- if .Values.flowProvider.git.ssh.secretName }}
-      - name: ssh-secret
-        secret:
-          secretName: {{ .Values.flowProvider.git.ssh.secretName }}
-          defaultMode: 0444
-      {{- /* if .Values.flowProvider.git.ssh.secretName */}}{{ end }}
-      - name: ssh-known-hosts
-      {{- if .Values.flowProvider.git.ssh.known_hosts }}
-        configMap:
-          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-ssh-known-hosts-{{.Values.stage}}
-          defaultMode: 0444
-      {{- /* if .Values.flowProvider.git.ssh.known_hosts */}}{{ else }}
-        emptyDir: {}
-      {{- /* if .Values.flowProvider.git.ssh.known_hosts */}}{{ end }}
-      {{- if .Values.flowProvider.git.ssh.config }}
-      - name: ssh-config
-        configMap:
-          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-ssh-config-{{.Values.stage}}
-          defaultMode: 0444
-      {{- /* if .Values.flowProvider.git.ssh.config */}}{{ end }}
       {{- if .Values.security.authConf }}
       - name: auth-conf-configmap
         configMap:
