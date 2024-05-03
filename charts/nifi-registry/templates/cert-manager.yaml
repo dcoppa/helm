@@ -4,84 +4,17 @@
 {{/* if gt .Values.replicaCount 1 */}}{{ end }}
 ---
 apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: {{ template "nifi-registry.fullname" $ }}
-  namespace: {{ .Release.Namespace }}
-spec:
-  selfSigned: {}
----
-apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ template "nifi-registry.fullname" $ }}-ca
+  name: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}-0
   namespace: {{ .Release.Namespace }}
 spec:
-  isCA: true
-  duration: {{ $.Values.certManager.caDuration }}
-  renewBefore: 5m1s
-  commonName: {{ template "nifi-registry.fullname" $ }}-ca.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}
-  subject:
-    organizationalUnits:
-    - "NiFi Registry"
-  secretName: {{ template "nifi-registry.fullname" $ }}-ca
-  privateKey:
-    algorithm: RSA
-    size: 2048
-    rotationPolicy: Always
-  issuerRef:
-    name: {{ template "nifi-registry.fullname" $ }}
-    kind: Issuer
-    group: cert-manager.io
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: {{ template "nifi-registry.fullname" $ }}-ca
-  namespace: {{ .Release.Namespace }}
-spec:
-  ca:
-    secretName: {{ template "nifi-registry.fullname" $ }}-ca
-{{ if .Values.certManager.clientCommonName }}
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ template "nifi-registry.fullname" $ }}-client
-  namespace: {{ $.Release.Namespace }}
-spec:
-  duration: {{ $.Values.certManager.certDuration }}
-  commonName: {{ .Values.certManager.clientCommonName }}
+  commonName: {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-headless-{{.Values.stage}}
+  duration: 262800h0m0s
   subject:
     organizationalUnits:
     - NiFi Registry
-  secretName: {{ template "nifi-registry.fullname" $ }}-client
-  privateKey:
-    rotationPolicy: Always
-  usages:
-    - digital signature
-    - content commitment
-    - key encipherment
-    - data encipherment
-    - key agreement
-    - server auth
-    - client auth
-  issuerRef:
-    name: {{ template "nifi-registry.fullname" $ }}-ca
-    kind: Issuer
-{{/* if .Values.certManager.clientCommonName */}}{{ end }}
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ template "nifi-registry.fullname" $ }}-0
-  namespace: {{ .Release.Namespace }}
-spec:
-  commonName: {{ template "nifi-registry.fullname" . }}-0.{{ template "nifi-registry.fullname" . }}-headless.{{ .Release.Namespace }}.svc.{{ .Values.certManager.clusterDomain }}
-  subject:
-    organizationalUnits:
-    - NiFi Registry
-  secretName: {{ template "nifi-registry.fullname" $ }}-0
+  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-cert-{{.Values.stage}}
   privateKey:
     rotationPolicy: Always
   usages:
@@ -94,11 +27,15 @@ spec:
     - client auth
   dnsNames:
 {{ toYaml $.Values.certManager.additionalDnsNames | indent 4 }}
-    - {{ template "nifi-registry.fullname" $ }}.{{ .Release.Namespace }}.svc
-    - {{ template "nifi-registry.fullname" $ }}.{{ .Release.Namespace }}.svc.{{ .Values.certManager.clusterDomain }}
-    - {{ template "nifi-registry.fullname" $ }}-0.{{ template "nifi-registry.fullname" $ }}-headless.{{ .Release.Namespace }}.svc
-    - {{ template "nifi-registry.fullname" $ }}-0.{{ template "nifi-registry.fullname" $ }}-headless.{{ .Release.Namespace }}.svc.{{ .Values.certManager.clusterDomain }}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}.{{ .Release.Namespace }}
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}.{{ .Release.Namespace }}.svc
+    - {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}.{{ .Release.Namespace }}.svc.{{ .Values.certManager.clusterDomain }}
+    - {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-headless-{{.Values.stage}}
+    - {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-headless-{{.Values.stage}}.{{ .Release.Namespace }}
+    - {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-headless-{{.Values.stage}}.{{ .Release.Namespace }}.svc
+    - {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-headless-{{.Values.stage}}.{{ .Release.Namespace }}.svc.{{ .Values.certManager.clusterDomain }}
   issuerRef:
-    name: {{ template "nifi-registry.fullname" $ }}-ca
-    kind: Issuer
+    name: {{.Values.k8sPrefix}}-clusterissuer-{{.Values.customer}}-{{.Values.purpose}}-nifi-ca-{{.Values.stage}}
+    kind: ClusterIssuer
 {{/* if .Values.certManager.enabled */}}{{ end }}
