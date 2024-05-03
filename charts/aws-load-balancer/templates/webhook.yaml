@@ -199,8 +199,6 @@ webhooks:
   sideEffects: None
 ---
 {{- if not $.Values.enableCertManager }}
-{{- $secret := lookup "v1" "Secret" .Release.Namespace (printf "%s-secret-%s-%s-aws-lb-certs-%s" .Values.k8sPrefix .Values.customer .Values.purpose .Values.stage) -}}
-{{- if not $secret -}}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -213,7 +211,6 @@ data:
   ca.crt: {{ $tls.caCert }}
   tls.crt: {{ $tls.clientCert }}
   tls.key: {{ $tls.clientKey }}
-{{- end -}}
 {{- else }}
 apiVersion: cert-manager.io/v1
 kind: Certificate

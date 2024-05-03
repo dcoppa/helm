@@ -7,14 +7,15 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      protocol: TCP
       {{ if .Values.security.enabled }}
+    - port: {{ .Values.security.httpsPort }}
       targetPort: {{ .Values.security.httpsPort }}
       name: https
       {{ else }}{{/* if .Values.security.enabled */}}
+    - port: {{ .Values.service.port }}
       targetPort: http
       name: http
       {{ end }}{{/* if .Values.security.enabled */}}
+      protocol: TCP
   selector:
     {{- include "nifi-registry.selectorLabels" . | nindent 4 }}

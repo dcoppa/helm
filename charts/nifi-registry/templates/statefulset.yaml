@@ -38,9 +38,16 @@ spec:
             - chown
             - -R
             - 1000:1000
+            {{- if .Values.security.enabled }}
+            - /opt/nifi-registry/nifi-registry-current/auth-conf
+            {{- end }}
             - /opt/nifi-registry/nifi-registry-current/database
             - /opt/nifi-registry/nifi-registry-current/flow_storage
           volumeMounts:
+            {{- if .Values.security.enabled }}
+            - name: "auth-conf"
+              mountPath: /opt/nifi-registry/nifi-registry-current/auth-conf
+            {{- end }}
             - name: "database"
               mountPath: /opt/nifi-registry/nifi-registry-current/database
             - name: "flow-storage"
@@ -138,8 +145,14 @@ spec:
               echo >> conf/bootstrap.conf
               echo "# Something basic like OIDC needs to trust a non-standard Certificate Authority"
               echo "java.arg.7=-Djavax.net.ssl.trustStore=/opt/nifi-registry/nifi-registry-current/tls/truststore.jks" >> conf/bootstrap.conf
+              echo "java.arg.8=-Djavax.net.ssl.trustStorePassword={{ .Values.certManager.truststorePasswd }}" >> conf/bootstrap.conf
           {{- /* if .Values.certManager.replaceDefaultTrustStore */}}{{ end }}
           {{- /* if .Values.certManager.enabled */}}{{ end }}
+
+          {{ if .Values.flowProvider.git.enabled }}
+              echo "# Import certificate authorities used by Gitlab"
+              for PEM in /git-ca/*.pem ; do keytool -import -trustcacerts -alias "${PEM}" -file "${PEM}" -keystore "${NIFI_REGISTRY_HOME}/tls/truststore.jks" -storepass "{{ .Values.certManager.truststorePasswd }}" ; done
+          {{ end }}
 
           {{ if .Values.oidc.enabled }}
               prop_replace nifi.registry.security.identity.provider ""
@@ -177,6 +190,7 @@ spec:
           {{- /* if .Values.security.enabled */}}{{ end }}
 
               scripts_dir='/opt/nifi-registry/scripts'
+              sed -i '/NIFI_REGISTRY_GIT_REMOTE/a \ \ \ \ \ \ \ \ add_property "Commit To Push" "main"' "${scripts_dir}/update_flow_provider.sh"
               . "${scripts_dir}/update_database.sh"
               . "${scripts_dir}/update_flow_provider.sh"
               . "${scripts_dir}/update_bundle_provider.sh"
@@ -294,6 +308,11 @@ spec:
               mountPath: /AuthConfConfigMap
               readOnly: true
             {{- /* if .Values.security.enabled */}}{{ end }}
+            {{- if .Values.flowProvider.git.enabled }}
+            - name: "git-ca-configmap"
+              mountPath: /git-ca
+              readOnly: true
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           readinessProbe:
@@ -370,6 +389,12 @@ spec:
           secretName: {{ . }}
       {{- /* range .Values.certManager.caSecrets */}}{{ end }}
       {{- /* if .Values.certManager.enabled */}}{{ end }}
+      {{- if .Values.flowProvider.git.enabled }}
+      - name: git-ca-configmap
+        configMap:
+          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-git-ca-{{.Values.stage}}
+          defaultMode: 0444
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

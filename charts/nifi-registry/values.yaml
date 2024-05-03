@@ -14,7 +14,7 @@ fullnameOverride: "nifi-registry"
 replicaCount: 1
 
 image:
-  repository: apache/nifi-registry
+  repository: dcoppa/nifi-registry
   pullPolicy: IfNotPresent
   tag: "1.25.0"
 
@@ -120,11 +120,11 @@ extraEnvs: []
 
 security:
   # Disabled by default (following the principle of least astonishment)
-  enabled: false
-  needClientAuth: true
+  enabled: true
+  needClientAuth: false
   httpsHost: "0.0.0.0"
   httpsPort: 18443
-  admin: "Initial Administrator"
+  admin: "CN=Initial Administrator, OU=NiFi Registry"
   persistence:
   # storageClass: "-"
     accessMode: ReadWriteOnce
@@ -140,7 +140,7 @@ certManager:
   # If true, use cert-manager to create and rotate intra-NiFi-Registry-cluster
   # TLS keys (note that cert-manager is a Kubernetes cluster-wide resource, so
   # is not installed automatically by this chart); c.f. https://cert-manager.io
-  enabled: false
+  enabled: true
   # TLS Common Name of a client, suitable for using as an initial administrator.
   # The client certificate (including private key) will be in a Kubernetes
   # TLS secret of the name {{ template "nifi-registry.fullname"}}-client
