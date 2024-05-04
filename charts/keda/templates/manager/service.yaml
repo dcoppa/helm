@@ -4,7 +4,6 @@ metadata:
   {{- if or .Values.additionalAnnotations .Values.service.annotations (and .Values.prometheus.operator.enabled ( not (or .Values.prometheus.operator.podMonitor.enabled .Values.prometheus.operator.serviceMonitor.enabled ))) }}
   annotations:
     {{- if and .Values.prometheus.operator.enabled ( not (or .Values.prometheus.operator.podMonitor.enabled .Values.prometheus.operator.serviceMonitor.enabled )) }}
-    newrelic.io/scrape: "true"
     prometheus.io/scrape: "true"
     prometheus.io/port: {{ .Values.prometheus.operator.port | quote }}
     prometheus.io/path: "/metrics"

@@ -6,7 +6,6 @@
       {{- end }}
       {{- if .Values.metrics }}
       {{- if and (.Values.metrics.prometheus) (not .Values.metrics.prometheus.serviceMonitor) }}
-        newrelic.io/scrape: "true"
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
         prometheus.io/port: {{ quote (index .Values.ports .Values.metrics.prometheus.entryPoint).port }}

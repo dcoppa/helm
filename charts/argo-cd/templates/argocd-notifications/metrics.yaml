@@ -12,7 +12,6 @@ metadata:
   {{- if or .Values.notifications.metrics.service.annotations .Values.global.addPrometheusAnnotations }}
   annotations:
     {{- if .Values.global.addPrometheusAnnotations }}
-    newrelic.io/scrape: "true"
     prometheus.io/port: {{ .Values.notifications.metrics.port | quote }}
     prometheus.io/scrape: "true"
     {{- end }}

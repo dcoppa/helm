@@ -266,18 +266,6 @@ config:
       # -- integrations_filter configuration for this specific job. It overrides kubernetes.integrations_filter configuration
       # integrations_filter:
 
-      # 'newrelic' scrapes all targets having 'newrelic.io/scrape: true'.
-      # This is useful to extend the targets scraped by the 'default' job allowlisting services leveraging `newrelic.io/scrape` annotation
-    - job_name_prefix: newrelic
-      integrations_filter:
-        enabled: false
-      target_discovery:
-        pod: true
-        endpoints: true
-        filter:
-          annotations:
-            newrelic.io/scrape: true
-
     # -- Set up the job name prefix. The final Prometheus `job` name will be composed of <job_name_prefix> + the target discovery kind. ie: `default-pod`
     # @default -- `""`
     # - job_name_prefix:

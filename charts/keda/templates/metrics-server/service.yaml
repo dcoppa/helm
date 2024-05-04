@@ -10,7 +10,6 @@ metadata:
   {{- if or .Values.additionalAnnotations .Values.service.annotations (and .Values.prometheus.metricServer.enabled ( not (or .Values.prometheus.metricServer.podMonitor.enabled .Values.prometheus.metricServer.serviceMonitor.enabled )))}}
   annotations:
     {{- if and .Values.prometheus.metricServer.enabled ( not (or .Values.prometheus.metricServer.podMonitor.enabled .Values.prometheus.metricServer.serviceMonitor.enabled )) }}
-    newrelic.io/scrape: "true"
     prometheus.io/scrape: "true"
     prometheus.io/port: 8080
     prometheus.io/path: "/metrics"

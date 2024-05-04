@@ -51,10 +51,10 @@ Common labels
 {{- define "argo-cd.labels" -}}
 helm.sh/chart: {{ include "argo-cd.chart" .context }}
 {{ include "argo-cd.selectorLabels" (dict "context" .context "component" .component "name" .name) }}
-app.newrelic.io/name: argocd
 app.kubernetes.io/managed-by: {{ .context.Release.Service }}
 app.kubernetes.io/part-of: argocd
 app.kubernetes.io/version: {{ include "argo-cd.versionLabelValue" .context }}
+k8s-app: argocd
 {{- with .context.Values.global.additionalLabels }}
 {{ toYaml . }}
 {{- end }}
