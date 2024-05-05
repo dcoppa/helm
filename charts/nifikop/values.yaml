@@ -30,9 +30,9 @@ annotations: {}
 ## Ref: https://kubernetes.io/docs/user-guide/compute-resources/
 resources:
   requests:
+    cpu: 250m
     memory: 64Mi
   limits:
-    cpu: 1
     memory: 512Mi
 
 ## RunAsUser for OpenShift compatibility
