@@ -54,7 +54,7 @@ podLabels: {}
 # Image and registry configuration for the tigera/operator pod.
 tigeraOperator:
   image: dcoppa/tigera-operator
-  version: v1.32.7-aws
+  version: v1.32.8-aws
   registry: docker.io
 calicoctl:
   image: docker.io/calico/ctl
