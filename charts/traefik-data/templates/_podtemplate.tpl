@@ -11,7 +11,6 @@
         prometheus.io/port: {{ quote (index .Values.ports .Values.metrics.prometheus.entryPoint).port }}
       {{- end }}
       {{- end }}
-        fluentbit.io/exclude: "true"
       labels:
       {{- include "traefik.labels" . | nindent 8 -}}
       {{- with .Values.deployment.podLabels }}
