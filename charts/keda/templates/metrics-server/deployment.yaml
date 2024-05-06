@@ -41,10 +41,6 @@ spec:
         {{- if .Values.additionalAnnotations }}
         {{- toYaml .Values.additionalAnnotations | nindent 8 }}
         {{- end }}
-        {{- if and .Values.prometheus.metricServer.enabled ( not (or .Values.prometheus.metricServer.podMonitor.enabled .Values.prometheus.metricServer.serviceMonitor.enabled )) }}
-        prometheus.io/scrape: "true"
-        prometheus.io/port: {{ .Values.prometheus.metricServer.port | quote }}
-        {{- end }}
         {{- if .Values.podAnnotations.metricsAdapter }}
         {{- toYaml .Values.podAnnotations.metricsAdapter | nindent 8}}
         {{- end }}
