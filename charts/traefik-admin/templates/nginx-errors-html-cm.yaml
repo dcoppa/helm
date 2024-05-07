@@ -1,0 +1,179 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "traefik.labels" . | nindent 4 }}
+    k8s-app: nginx-errors
+  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-html-{{.Values.stage}}
+  namespace: {{ template "traefik.namespace" . }}
+data:
+  50x.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Error</title>
+    <style>
+    html { color-scheme: light dark; }
+    body { width: 35em; margin: 0 auto;
+    font-family: Tahoma, Verdana, Arial, sans-serif; }
+    </style>
+    </head>
+    <body>
+    <h1>An error occurred.</h1>
+    <p>Sorry, the page you are looking for is currently unavailable.<br/>
+    Please try again later.</p>
+    <p>If you are the system administrator of this resource then you should check
+    the error log for details.</p>
+    <p><em>Faithfully yours, nginx.</em></p>
+    </body>
+    </html>
+  403.css: |
+    @import url("https://fonts.googleapis.com/css?family=Lato");
+    * {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Lato", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f8f9fa;
+    }
+
+    h1 {
+      margin: 40px 0 20px;
+    }
+
+    .lock {
+      border-radius: 5px;
+      width: 55px;
+      height: 45px;
+      background-color: #6a8791;
+      animation: dip 1s;
+      animation-delay: 1.5s;
+    }
+    .lock::before, .lock::after {
+      content: "";
+      position: absolute;
+      border-left: 5px solid #6a8791;
+      height: 20px;
+      width: 15px;
+      left: calc(50% - 12.5px);
+    }
+    .lock::before {
+      top: -30px;
+      border: 5px solid #6a8791;
+      border-bottom-color: transparent;
+      border-radius: 15px 15px 0 0;
+      height: 30px;
+      animation: lock 2s, spin 2s;
+    }
+    .lock::after {
+      top: -10px;
+      border-right: 5px solid transparent;
+      animation: spin 2s;
+    }
+
+    @keyframes lock {
+      0% {
+        top: -45px;
+      }
+      65% {
+        top: -45px;
+      }
+      100% {
+        top: -30px;
+      }
+    }
+    @keyframes spin {
+      0% {
+        transform: scaleX(-1);
+        left: calc(50% - 30px);
+      }
+      65% {
+        transform: scaleX(1);
+        left: calc(50% - 12.5px);
+      }
+    }
+    @keyframes dip {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  403.html: |
+    <!DOCTYPE html>
+    <html lang="en" >
+    <head>
+      <meta charset="UTF-8">
+      <title>FORBIDDEN</title>
+      <link rel="stylesheet" href="https://k8s.hydra.aws.platform.porsche.cloud/403.css">
+    </head>
+    <body>
+    <div class="lock"></div>
+    <div class="message">
+      <h1>Access to this page is restricted</h1>
+      <p>Please check with the site admin if you believe this is a mistake.</p>
+    </div>
+    </body>
+    </html>
+  404.html: |
+    <!DOCTYPE html>
+    <html lang="en" >
+    <head>
+      <meta charset="UTF-8">
+      <title>FORBIDDEN</title>
+      <link rel="stylesheet" href="https://k8s.hydra.aws.platform.porsche.cloud/403.css">
+    </head>
+    <body>
+    <div class="lock"></div>
+    <div class="message">
+      <h1>Access to this page is restricted</h1>
+      <p>Please check with the site admin if you believe this is a mistake.</p>
+    </div>
+    </body>
+    </html>
+  index.html: |
+    <!DOCTYPE html>
+    <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Porsche HYDRA Data Platform</title>
+            <link rel="shortcut icon" href="/favicon.ico">
+            <meta name="mobile-web-app-capable" content="yes">
+            <meta name="theme-color" content="#fff">
+            <link rel="stylesheet" type="text/css" href="public/style.css">
+            <script type="application/javascript">
+                    function dynamicChangesOnLoad() {
+                            // Change the background photo depending on the month
+                            curr_mon = new Date().getMonth()
+                            if (curr_mon > 3 && curr_mon < 10) {
+                                    document.getElementById("chooser").className = "summer"
+                            }
+                            else {
+                                    document.getElementById("chooser").className = "winter"
+                            }
+                    }
+            </script>
+    </head>
+    <body id="chooser" onload="dynamicChangesOnLoad()">
+            <div class="logo"><a href="https://www.porsche.com/" target="_blank"><img src="public/porsche-svg.svg" title="" alt="" style="height:70px;"></a></div>
+            <div class="login">
+                    <div id="general">
+                            <b id="hydra-app-name">Porsche HYDRA</b>
+                            <span class="description">
+                                    <p><strong>Welcome to HYDRA Data Platform!</strong></p>
+                            </span>
+                    </div>
+            </div>
+    </body>
+    </html>

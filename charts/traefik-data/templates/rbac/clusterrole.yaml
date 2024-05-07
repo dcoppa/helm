@@ -1,4 +1,5 @@
 {{- if and .Values.rbac.enabled (or .Values.providers.kubernetesIngress.enabled (not .Values.rbac.namespaced)) -}}
+{{- if not (and .Values.rbac.namespaced .Values.providers.kubernetesIngress.disableIngressClassLookup) -}}
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -28,6 +29,13 @@ rules:
     resources:
       - services
       - endpoints
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
       - secrets
     verbs:
       - get
@@ -45,22 +53,17 @@ rules:
 {{- if .Values.providers.kubernetesCRD.enabled }}
   - apiGroups:
       - traefik.io
-      {{- if semverCompare "<3.0.0-0" (include "imageVersion" $) }}
-      - traefik.containo.us
-      {{- end }}
     resources:
       - ingressroutes
       - ingressroutetcps
       - ingressrouteudps
       - middlewares
       - middlewaretcps
+      - serverstransports
+      - serverstransporttcps
       - tlsoptions
       - tlsstores
       - traefikservices
-      - serverstransports
-      {{- if semverCompare ">=3.0.0-0" (include "imageVersion" $)  }}
-      - serverstransporttcps
-      {{- end }}
     verbs:
       - get
       - list
@@ -90,6 +93,7 @@ rules:
       - gatewayclasses
       - gateways
       - httproutes
+      - referencegrants
       - tcproutes
       - tlsroutes
     verbs:
@@ -106,6 +110,7 @@ rules:
       - tlsroutes/status
     verbs:
       - update
+{{- end -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}

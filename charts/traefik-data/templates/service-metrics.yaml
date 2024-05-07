@@ -2,14 +2,14 @@
 {{- if .Values.metrics.prometheus.service }}
 {{- if (.Values.metrics.prometheus.service).enabled -}}
 
-{{- $fullname := include "traefik.fullname" . }}
+{{- $fullname := (printf "%s-svc-%s-%s-%s-m-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "traefik.fullname" .) .Values.stage) }}
 {{- if ge (len $fullname) 50 }}
   {{- fail "ERROR: Cannot create a metrics service when name contains more than 50 characters" }}
 {{- end }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $fullname }}-metrics
+  name: {{ printf "%s-svc-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "traefik.service-name" (dict "root" . "name" "m")) .Values.stage }}
   namespace: {{ template "traefik.namespace" . }}
   {{- template "traefik.metrics-service-metadata" . }}
   annotations:

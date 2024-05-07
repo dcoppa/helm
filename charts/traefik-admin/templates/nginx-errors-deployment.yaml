@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: {{ include "traefik.labels" . | nindent 4 }}
+    k8s-app: nginx-errors
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+  namespace: {{ template "traefik.namespace" . }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {{ include "traefik.labelselector" . | nindent 6 }}
+      k8s-app: nginx-errors
+  template:
+    metadata:
+      annotations:
+        checksum/configmap-errors-html: {{ include (print $.Template.BasePath "/nginx-errors-html-cm.yaml") . | sha256sum }}
+      labels: {{ include "traefik.labels" . | nindent 8 }}
+        k8s-app: nginx-errors
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: k8s-app
+                  operator: In
+                  values:
+                  - nginx-errors
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - image: nginx:1.26.0
+        name: nginx
+        ports:
+          - containerPort: 80
+            name: web
+            protocol: TCP
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: nginx-errors-html
+      volumes:
+      - configMap:
+          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-html-{{.Values.stage}}
+        name: nginx-errors-html

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: {{ template "traefik.fullname" . }}
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: {{ template "traefik.namespace" . }}-{{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}@kubernetescrd
+    traefik.ingress.kubernetes.io/router.priority: "1"
+  labels: {{ include "traefik.labels" . | nindent 4 }}
+    k8s-app: nginx-errors
+    traffic-type: admin
+  name: fallback
+  namespace: {{ template "traefik.namespace" . }}
+spec:
+  ingressClassName: {{ template "traefik.fullname" . }}
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+            port:
+              number: 80

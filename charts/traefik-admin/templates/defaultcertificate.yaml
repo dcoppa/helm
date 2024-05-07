@@ -4,15 +4,15 @@ kind: ExternalSecret
 metadata:
   labels:
   {{- include "traefik.labels" . | nindent 4 }}
-  name: {{.Values.k8sPrefix}}-externalsecret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-certs-{{.Values.stage}}
-  namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-externalsecret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-certs-{{.Values.stage}}
+  namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
 spec:
   refreshInterval: 12h
   secretStoreRef:
     name: {{.Values.k8sPrefix}}-clustersecretstore-{{.Values.customer}}-{{.Values.purpose}}-aws-secretsmanager-{{.Values.stage}}
     kind: ClusterSecretStore
   target:
-    name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-certs-{{.Values.stage}}
+    name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-certs-{{.Values.stage}}
     creationPolicy: Owner
     template:
       metadata:
@@ -22,14 +22,14 @@ spec:
   data:
   - secretKey: ca.crt
     remoteRef:
-      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
       property: ca.crt
   - secretKey: tls.crt
     remoteRef:
-      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
       property: tls.crt
   - secretKey: tls.key
     remoteRef:
-      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+      key: {{.Values.awsAccount}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
       property: tls.key
 {{- end }}

@@ -34,7 +34,7 @@ If release name contains chart name it will be used as a full name.
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s" $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
@@ -84,15 +84,6 @@ The name of the service account to use
 {{- end -}}
 
 {{/*
-The name of the ClusterRole and ClusterRoleBinding to use.
-Adds the namespace to name to prevent duplicate resource names when there
-are multiple namespaced releases with the same release name.
-*/}}
-{{- define "traefik.clusterRoleName" -}}
-{{- (printf "%s-%s" (include "traefik.fullname" .) .Release.Namespace) | trunc 63 | trimSuffix "-" }}
-{{- end -}}
-
-{{/*
 Construct the path for the providers.kubernetesingress.ingressendpoint.publishedservice.
 By convention this will simply use the <namespace>/<service-name> to match the name of the
 service generated.
@@ -126,6 +117,5 @@ Renders a complete tree, even values that contains template.
 {{- end -}}
 
 {{- define "imageVersion" -}}
-{{ (split "@" (default $.Chart.AppVersion $.Values.image.tag))._0 }}
+{{ (split "@" (default $.Chart.AppVersion $.Values.image.tag))._0 | replace "latest-" "" }}
 {{- end -}}
-

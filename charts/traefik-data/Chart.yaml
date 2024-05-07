@@ -1,15 +1,8 @@
 annotations:
-  artifacthub.io/changes: "- \"fix: \U0001F41B missing quote on experimental plugin
-    args\"\n- \"fix: update traefik v3 serverstransporttcps CRD\"\n- \"feat: set runtimeClassName
-    on pod spec\"\n- \"feat: create v1 Gateway and GatewayClass Version for Traefik
-    v3\"\n- \"feat: allow exposure of ports on internal service only\"\n- \"doc: fix
-    invalid suggestion on TLSOption (#996)\"\n- \"chore: \U0001F527 update maintainers\"\n-
-    \"chore: \U0001F527 promote jnoordsij to Traefik Helm Chart maintainer\"\n- \"chore(release):
-    publish v26.1.0\"\n- \"chore(deps): update traefik docker tag to v2.11.0\"\n-
-    \"chore(deps): update traefik docker tag to v2.10.7\"\n- \"chore(crds): update
-    definitions for traefik v2.11\"\n"
+  artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
+    \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
 apiVersion: v2
-appVersion: v2.11.0
+appVersion: v3.0.0
 description: A Traefik based Kubernetes ingress controller
 home: https://traefik.io/
 icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
@@ -17,7 +10,7 @@ keywords:
 - traefik
 - ingress
 - networking
-kubeVersion: '>=1.16.0-0'
+kubeVersion: '>=1.22.0-0'
 maintainers:
 - email: michel.loiseleur@traefik.io
   name: mloiseleur
@@ -31,4 +24,4 @@ sources:
 - https://github.com/traefik/traefik
 - https://github.com/traefik/traefik-helm-chart
 type: application
-version: 26.1.0
+version: 28.1.0-beta.3
