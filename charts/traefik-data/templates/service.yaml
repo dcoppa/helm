@@ -4,8 +4,8 @@
 {{- range $name, $service := $services -}}
 {{- if ne $service.enabled false -}}
 
-{{- $fullname := (printf "%s-svc-%s-%s-%s-%s" $.Values.k8sPrefix $.Values.customer $.Values.purpose (include "traefik.service-name" (dict "root" $ "name" $name)) $.Values.stage) }}
-{{- $fullnameudp := (printf "%s-svc-%s-%s-%s-udp-%s" $.Values.k8sPrefix $.Values.customer $.Values.purpose (include "traefik.service-name" (dict "root" $ "name" $name)) $.Values.stage) }}
+{{- $fullname := (printf "%s-svc-%s-%s-%s" $.Values.k8sPrefix $.Values.customer $.Values.purpose (include "traefik.service-name" (dict "root" $ "name" $name))) }}
+{{- $fullnameudp := (printf "%s-svc-%s-%s-%s-udp" $.Values.k8sPrefix $.Values.customer $.Values.purpose (include "traefik.service-name" (dict "root" $ "name" $name))) }}
 
 {{- $tcpPorts := dict -}}
 {{- $udpPorts := dict -}}
