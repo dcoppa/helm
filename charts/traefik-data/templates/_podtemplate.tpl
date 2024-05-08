@@ -165,7 +165,7 @@
             {{- end }}
            {{- end }}
           {{- end }}
-          - "--api.dashboard=true"
+          - "--api.dashboard=false"
           - "--ping=true"
 
           {{- with .Values.core }}
