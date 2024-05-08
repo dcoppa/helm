@@ -17,9 +17,9 @@ If release name contains chart name it will be used as a full name.
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "argocd" | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "argocd-%s" $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
@@ -67,7 +67,7 @@ Selector labels
 {{- if .name -}}
 app.kubernetes.io/name: {{ include "argo-cd.name" .context }}-{{ .name }}
 {{ end -}}
-app.kubernetes.io/instance: {{ .context.Release.Name }}
+app.kubernetes.io/instance: argocd
 {{- if .component }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}
