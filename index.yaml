@@ -4395,6 +4395,37 @@ entries:
     - https://github.com/dcoppa/helm-charts/releases/download/traefik-admin-28.1.0-beta.3/traefik-admin-28.1.0-beta.3.tgz
     version: 28.1.0-beta.3
   - annotations:
+      artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
+        \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
+    apiVersion: v2
+    appVersion: v3.0.0
+    created: "2024-05-08T20:23:52.46516686Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 1b13b543dee31187a34f21e96f59997e430071a7fe93cf07513c57b9e384639e
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    - email: remi.buisson@traefik.io
+      name: darkweaver87
+    - name: jnoordsij
+    name: traefik-admin
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/traefik-admin-28.1.0-beta.3/traefik-admin-28.1.0-beta.3.tgz
+    version: 28.1.0-beta.3
+  - annotations:
       artifacthub.io/changes: "- \"fix: \U0001F41B missing quote on experimental plugin
         args\"\n- \"fix: update traefik v3 serverstransporttcps CRD\"\n- \"feat: set
         runtimeClassName on pod spec\"\n- \"feat: create v1 Gateway and GatewayClass
@@ -4683,6 +4714,37 @@ entries:
     - https://github.com/dcoppa/helm-charts/releases/download/traefik-data-28.1.0-beta.3/traefik-data-28.1.0-beta.3.tgz
     version: 28.1.0-beta.3
   - annotations:
+      artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
+        \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
+    apiVersion: v2
+    appVersion: v3.0.0
+    created: "2024-05-08T20:23:52.671462117Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 8dcee837351af4cc18ea8b96e936b44f643159d871d70e6935dc30eb89d31480
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    - email: remi.buisson@traefik.io
+      name: darkweaver87
+    - name: jnoordsij
+    name: traefik-data
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/traefik-data-28.1.0-beta.3/traefik-data-28.1.0-beta.3.tgz
+    version: 28.1.0-beta.3
+  - annotations:
       artifacthub.io/changes: "- \"fix: \U0001F41B missing quote on experimental plugin
         args\"\n- \"fix: update traefik v3 serverstransporttcps CRD\"\n- \"feat: set
         runtimeClassName on pod spec\"\n- \"feat: create v1 Gateway and GatewayClass
@@ -4755,4 +4817,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-05-08T15:47:42.431013905Z"
+generated: "2024-05-08T20:23:52.849561898Z"
