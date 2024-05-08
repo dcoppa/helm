@@ -6,6 +6,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: {{ template "traefik.namespace" . }}-{{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}@kubernetescrd
     traefik.ingress.kubernetes.io/router.priority: "1"
+    traefik.ingress.kubernetes.io/router.tls: "true"
   labels: {{ include "traefik.labels" . | nindent 4 }}
     k8s-app: nginx-errors
     traffic-type: admin
