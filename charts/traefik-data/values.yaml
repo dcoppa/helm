@@ -570,7 +570,8 @@ tracing:
         insecureSkipVerify:
 
 # -- Global command arguments to be passed to all traefik's pods
-globalArguments: []
+globalArguments:
+- "--global.checknewversion=false"
 
 #
 # Configure Traefik static configuration
