@@ -17,8 +17,14 @@ data:
     SSLCertificateFile /etc/apache2/saml-proxy/sp/saml_sp.cert
     SSLCertificateKeyFile /etc/apache2/saml-proxy/sp/saml_sp.key
 
+    LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" proxy
+
+    SetEnvIf Request_URI "^/healthcheck.html$" NOLOG=1
+    SetEnvIf X-Forwarded-For "^\d{1,3}+\.\d{1,3}+\.\d{1,3}+\.\d{1,3}+.*" FORWARDED=1
+
+    CustomLog /dev/stdout combined "expr=reqenv('NOLOG')!=1 && reqenv('FORWARDED')!=1"
+    CustomLog /dev/stdout proxy "expr=reqenv('NOLOG')!=1 && reqenv('FORWARDED')==1"
     ErrorLog /dev/stderr
-    TransferLog /dev/stdout
 
     UseCanonicalName on
 
