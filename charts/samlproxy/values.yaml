@@ -52,5 +52,5 @@ affinity:
         topologyKey: "topology.kubernetes.io/zone"
 
 proxy:
-  backend: https://awsd-svc-hydra-dataplatform-traefik-admin-dev.awsd-ns-hydra-dataplatform-traefik-admin-dev.svc.cluster.local
+  backend: https://awsd-svc-hydra-dataplatform-traefik-admin-dev.awsd-ns-hydra-dataplatform-traefik-admin-dev.svc
   hostname: hnd-nlb-hydra-dataplatform-admin-7a1d846d5e00a3dc.elb.eu-west-1.amazonaws.com
