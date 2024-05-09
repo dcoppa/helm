@@ -4,7 +4,7 @@ customer: hydra
 purpose: dataplatform
 stage: dev
 
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: dcoppa/saml-proxy
@@ -40,7 +40,16 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            "app.kubernetes.io/name": "samlproxy"
+            "app.kubernetes.io/instance": "samlproxy"
+        topologyKey: "topology.kubernetes.io/zone"
 
 proxy:
   backend: https://awsd-svc-hydra-dataplatform-traefik-admin.awsd-ns-hydra-dataplatform-traefik-admin-dev

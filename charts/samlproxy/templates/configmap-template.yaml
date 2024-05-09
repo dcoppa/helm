@@ -77,7 +77,7 @@ data:
         RequestHeader set Remote-Groups "%{MELLON_groups}e"
 
         # Set the final X-Auth-Token header
-        <If "%{ENV:REQUESTED_LOCATION} != '' && %{ENV:REQUESTED_LOCATION} != 'nifi' && %{ENV:REQUESTED_LOCATION} != 'nifi-api' && %{ENV:REQUESTED_LOCATION} != 'nifi-docs'">
+        <If "%{ENV:REQUESTED_LOCATION} != '' && %{ENV:REQUESTED_LOCATION} != 'nifi' && %{ENV:REQUESTED_LOCATION} != 'nifi-api' && %{ENV:REQUESTED_LOCATION} != 'nifi-docs' && %{ENV:REQUESTED_LOCATION} != 'pulsar' && %{ENV:REQUESTED_LOCATION} != 'streamnative'">
           RewriteCond %{ENV:MELLON_username} ^$|^null$|^undefined$|^0$|^.*#ext#$|^.*#EXT#$
           RewriteRule .* - [E=MELLON_username:%{ENV:MELLON_email}]
           RequestHeader set X-Auth-Token "%{REQUESTED_LOCATION}e_%{MELLON_username}e"
