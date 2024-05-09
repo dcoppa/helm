@@ -12,14 +12,9 @@ metadata:
   name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 spec:
+  defaultBackend:
+    service:
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+      port:
+        number: 80
   ingressClassName: {{.Values.k8sPrefix}}-ingressclass-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
-            port:
-              number: 80
