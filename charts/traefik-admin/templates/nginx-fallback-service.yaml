@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels: {{ include "traefik.labels" . | nindent 4 }}
-    k8s-app: nginx-errors
-  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+    k8s-app: nginx-fallback
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 spec:
   ports:
@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     targetPort: web
   selector: {{ include "traefik.labelselector" . | nindent 4 }}
-    k8s-app: nginx-errors
+    k8s-app: nginx-fallback
   type: ClusterIP

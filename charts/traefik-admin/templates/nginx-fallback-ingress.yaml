@@ -7,14 +7,14 @@ metadata:
     traefik.ingress.kubernetes.io/router.priority: "1"
     traefik.ingress.kubernetes.io/router.tls: "true"
   labels: {{ include "traefik.labels" . | nindent 4 }}
-    k8s-app: nginx-errors
+    k8s-app: nginx-fallback
     traffic-type: admin
-  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 spec:
   defaultBackend:
     service:
-      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
       port:
         number: 80
   ingressClassName: {{.Values.k8sPrefix}}-ingressclass-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}

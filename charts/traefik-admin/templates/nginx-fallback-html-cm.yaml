@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   labels:
     {{- include "traefik.labels" . | nindent 4 }}
-    k8s-app: nginx-errors
-  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-html-{{.Values.stage}}
+    k8s-app: nginx-fallback
+  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-html-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 data:
   50x.html: |

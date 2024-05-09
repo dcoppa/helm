@@ -25,7 +25,7 @@ spec:
       - "403-404"
     query: /{status}.html
     service:
-      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
       port: 80
 ---
 apiVersion: traefik.io/v1alpha1
