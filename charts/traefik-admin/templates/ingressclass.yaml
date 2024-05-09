@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "traefik.labels" . | nindent 4 }}
     traffic-type: admin
-  name: {{ template "traefik.fullname" . }}
+  name: {{.Values.k8sPrefix}}-ingressclass-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
 spec:
   controller: traefik.io/admin-ingress-controller
 {{- end -}}

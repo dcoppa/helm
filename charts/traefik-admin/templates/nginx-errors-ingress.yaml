@@ -9,10 +9,10 @@ metadata:
   labels: {{ include "traefik.labels" . | nindent 4 }}
     k8s-app: nginx-errors
     traffic-type: admin
-  name: fallback
+  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-nginx-errors-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 spec:
-  ingressClassName: {{ template "traefik.fullname" . }}
+  ingressClassName: {{.Values.k8sPrefix}}-ingressclass-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
   rules:
   - http:
       paths:
