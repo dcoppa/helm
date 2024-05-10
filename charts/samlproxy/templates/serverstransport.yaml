@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  labels:
+    {{- include "samlproxy.labels" . | nindent 4 }}
+    traffic-type: admin
+  name: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  insecureSkipVerify: true
