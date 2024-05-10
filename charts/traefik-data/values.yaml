@@ -265,7 +265,7 @@ providers:
     allowExternalNameServices: true
     # -- Allows to return 503 when there is no endpoints available
     allowEmptyServices: false
-    # ingressClass: traefik-internal
+    ingressClass: traefik-data
     labelSelector: traffic-type=data
     # -- Array of namespaces to watch. If left empty, Traefik watches all namespaces.
     namespaces: []
@@ -577,8 +577,8 @@ globalArguments:
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
 - "--ping.entrypoint=websecure"
-#  - "--providers.kubernetesingress.ingressclass=traefik-internal"
-#  - "--log.level=DEBUG"
+- "--providers.kubernetesingress.ingressendpoint.hostname=localhost.localdomain"
+- "--serverstransport.insecureskipverify=true"
 
 # -- Environment variables to be passed to Traefik's binary
 env:
