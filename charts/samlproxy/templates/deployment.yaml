@@ -16,6 +16,7 @@ spec:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        checksum/configmap-html: {{ include (print $.Template.BasePath "/configmap-html.yaml") . | sha256sum }}
         checksum/configmap-idp: {{ include (print $.Template.BasePath "/configmap-idp.yaml") . | sha256sum }}
         checksum/configmap-template: {{ include (print $.Template.BasePath "/configmap-template.yaml") . | sha256sum }}
         checksum/secret-sp: {{ include (print $.Template.BasePath "/secret-sp.yaml") . | sha256sum }}
@@ -56,6 +57,8 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+          - mountPath: /var/www/html
+            name: html
           - mountPath: /etc/apache2/saml-proxy/idp
             name: idp
           - mountPath: /etc/apache2/saml-proxy/sp
@@ -75,6 +78,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
+      - configMap:
+          name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-html-{{.Values.stage}}
+        name: html
       - configMap:
           name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-idp-{{.Values.stage}}
         name: idp
