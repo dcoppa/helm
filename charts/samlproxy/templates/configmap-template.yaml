@@ -93,10 +93,35 @@ data:
         ProxyPassReverse $BACKEND
     </LocationMatch>
 
+    <Location /403.css>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       Header always add Cache-Control no-store
+       ProxyPass !
+    </Location>
+
+    <Location /background_summer.jpg>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       Header always add Cache-Control no-store
+       ProxyPass !
+    </Location>
+
+    <Location /background_winter.jpg>
+       Require all granted
+       Satisfy any
+       MellonEnable off
+       Header always add Cache-Control no-store
+       ProxyPass !
+    </Location>
+
     <Location /favicon.ico>
        Require all granted
        Satisfy any
        MellonEnable off
+       Header always add Cache-Control no-store
        ProxyPass !
     </Location>
 
@@ -108,7 +133,7 @@ data:
        ProxyPass !
     </Location>
 
-    <Location /403.css>
+    <Location /porsche-svg.svg>
        Require all granted
        Satisfy any
        MellonEnable off
@@ -116,10 +141,11 @@ data:
        ProxyPass !
     </Location>
 
-    <Location /public/>
+    <Location /style.css>
        Require all granted
        Satisfy any
        MellonEnable off
+       Header always add Cache-Control no-store
        ProxyPass !
     </Location>
 
