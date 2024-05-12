@@ -158,35 +158,15 @@ data:
     </html>
   index.html: |
     <!DOCTYPE html>
-    <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Porsche HYDRA Data Platform</title>
-            <link rel="shortcut icon" href="/favicon.ico">
-            <meta name="mobile-web-app-capable" content="yes">
-            <meta name="theme-color" content="#fff">
-            <link rel="stylesheet" type="text/css" href="style.css">
-            <script type="application/javascript">
-                    function dynamicChangesOnLoad() {
-                            // Change the background photo depending on the month
-                            curr_mon = new Date().getMonth()
-                            if (curr_mon > 3 && curr_mon < 10) {
-                                    document.getElementById("chooser").className = "summer"
-                            }
-                            else {
-                                    document.getElementById("chooser").className = "winter"
-                            }
-                    }
-            </script>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#fff">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body id="chooser" onload="dynamicChangesOnLoad()">
-            <div class="logo"><a href="https://www.porsche.com/" target="_blank"><img src="porsche-svg.svg" title="" alt="" style="height:70px;"></a></div>
-            <div class="login">
-                    <div id="general">
-                            <b id="hydra-app-name">Porsche HYDRA</b>
-                            <span class="description">
-                                    <p><strong>Welcome to HYDRA Data Platform!</strong></p>
-                            </span>
-                    </div>
-            </div>
+    <body id="chooser">
     </body>
     </html>
   style.css: |
