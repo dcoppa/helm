@@ -158,15 +158,18 @@ data:
     </html>
   index.html: |
     <!DOCTYPE html>
-    <html>
+    <html lang="en" >
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="theme-color" content="#fff">
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="stylesheet" type="text/css" href="style.css">
+      <meta charset="UTF-8">
+      <title>FORBIDDEN</title>
+      <link rel="stylesheet" href="https://k8s.hydra.aws.platform.porsche.cloud/403.css">
     </head>
-    <body id="chooser">
+    <body>
+    <div class="lock"></div>
+    <div class="message">
+      <h1>Access to this page is restricted</h1>
+      <p>Please check with the site admin if you believe this is a mistake.</p>
+    </div>
     </body>
     </html>
   style.css: |
