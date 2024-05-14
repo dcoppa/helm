@@ -1,5 +1,6 @@
 ## Argo CD configuration
 ## Ref: https://github.com/argoproj/argo-cd
+##
 
 k8sPrefix: awsd
 customer: hydra
@@ -7,9 +8,9 @@ purpose: dataplatform
 stage: dev
 
 # -- Provide a name in place of `argocd`
-nameOverride: "argocd"
+nameOverride: argocd
 # -- String to fully override `"argo-cd.fullname"`
-fullnameOverride: "argocd"
+fullnameOverride: argocd
 # -- Override the Kubernetes version, which is used to evaluate certain manifests
 kubeVersionOverride: ""
 # Override APIVersions
@@ -57,7 +58,7 @@ global:
     # -- If defined, a repository applied to all Argo CD deployments
     repository: docker.io/dcoppa/argocd
     # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-    tag: "v2.10.6-aws"
+    tag: "v2.10.9-aws"
     # -- If defined, a imagePullPolicy applied to all Argo CD deployments
     imagePullPolicy: IfNotPresent
 
@@ -184,6 +185,10 @@ configs:
     # -- Timeout to refresh application data as well as target manifests cache
     timeout.hard.reconciliation: 0s
 
+    # -- Enable Status Badge
+    ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/status-badge/
+    statusbadge.enabled: false
+
     # Dex configuration
     # dex.config: |
     #   connectors:
@@ -271,6 +276,12 @@ configs:
     ## The namespace where Argo CD is installed to will always be allowed.
     ## Set comma-separated list. (e.g. app-team-one, app-team-two)
     application.namespaces: ""
+
+    # -- JQ Path expression timeout
+    ## By default, the evaluation of a JQPathExpression is limited to one second.
+    ## If you encounter a "JQ patch execution timed out" error message due to a complex JQPathExpression
+    ## that requires more time to evaluate, you can extend the timeout period.
+    controller.ignore.normalizer.jq.timeout: "1s"
 
   # Argo CD RBAC policy configuration
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md
@@ -772,6 +783,9 @@ controller:
     #   topologyKey: topology.kubernetes.io/zone
     #   whenUnsatisfiable: DoNotSchedule
 
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
+
   serviceAccount:
     # -- Create a service account for the application controller
     create: true
@@ -1114,6 +1128,9 @@ dex:
   # -- terminationGracePeriodSeconds for container lifecycle hook
   terminationGracePeriodSeconds: 30
 
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
+
   serviceAccount:
     # -- Create dex service account
     create: true
@@ -1415,6 +1432,9 @@ redis:
   # -- terminationGracePeriodSeconds for container lifecycle hook
   terminationGracePeriodSeconds: 30
 
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
+
   serviceAccount:
     # -- Create a service account for the redis pod
     create: true
@@ -1510,6 +1530,9 @@ redis-ha:
   haproxy:
     # -- Enabled HAProxy LoadBalancing/Proxy
     enabled: true
+    # --  Custom labels for the haproxy pod. This is relevant for Argo CD CLI.
+    labels:
+      app.kubernetes.io/name: argocd-redis-ha-haproxy
     metrics:
       # -- HAProxy enable prometheus metric scraping
       enabled: true
@@ -1675,7 +1698,7 @@ server:
       # -- Repository to use for extension installer image
       repository: "quay.io/argoprojlabs/argocd-extension-installer"
       # -- Tag to use for extension installer image
-      tag: "v0.0.1"
+      tag: "v0.0.5"
       # -- Image pull policy for extensions
       # @default -- `""` (defaults to global.image.imagePullPolicy)
       imagePullPolicy: ""
@@ -2010,6 +2033,9 @@ server:
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
       annotations: {}
+
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
 
   serviceAccount:
     # -- Create server service account
@@ -2588,6 +2614,9 @@ repoServer:
     # -- List of custom rules for the Repo server's Cluster Role resource
     rules: []
 
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
+
   ## Repo server service account
   ## If create is set to true, make sure to uncomment the name and update the rbac section below
   serviceAccount:
@@ -2748,6 +2777,9 @@ applicationSet:
     port: 7000
     # -- ApplicationSet service port name
     portName: http-webhook
+
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
 
   serviceAccount:
     # -- Create ApplicationSet controller service account
@@ -3069,7 +3101,7 @@ notifications:
     create: true
 
     # -- notifications controller Secret name
-    name: awsd-secret-hydra-dataplatform-argocd-notifications-dev
+    name: "awsd-secret-hydra-dataplatform-argocd-notifications-dev"
 
     # -- key:value pairs of annotations to be added to the secret
     annotations: {}
@@ -3210,6 +3242,9 @@ notifications:
   # -- Priority class for the notifications controller pods
   # @default -- `""` (defaults to global.priorityClassName)
   priorityClassName: ""
+
+  # -- Automount API credentials for the Service Account into the pod.
+  automountServiceAccountToken: true
 
   serviceAccount:
     # -- Create notifications controller service account
