@@ -3,7 +3,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{.Values.k8sPrefix}}-pdb-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-cc-{{.Values.stage}}
-  namespace: {{ .Release.Namespace | quote }}
+  namespace: {{ template "external-secrets.namespace" . }}
   labels:
     {{- include "external-secrets-cert-controller.labels" . | nindent 4 }}
 spec:

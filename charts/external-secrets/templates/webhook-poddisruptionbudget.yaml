@@ -3,7 +3,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{.Values.k8sPrefix}}-pdb-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
-  namespace: {{ .Release.Namespace | quote }}
+  namespace: {{ template "external-secrets.namespace" . }}
   labels:
     {{- include "external-secrets-webhook.labels" . | nindent 4 }}
     external-secrets.io/component: webhook

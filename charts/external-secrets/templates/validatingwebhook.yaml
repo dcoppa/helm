@@ -22,7 +22,7 @@ webhooks:
     scope:       "Namespaced"
   clientConfig:
     service:
-      namespace: {{ .Release.Namespace | quote }}
+      namespace: {{ template "external-secrets.namespace" . }}
       name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
       path: /validate-external-secrets-io-v1beta1-secretstore
   admissionReviewVersions: ["v1", "v1beta1"]
@@ -38,7 +38,7 @@ webhooks:
     scope:       "Cluster"
   clientConfig:
     service:
-      namespace: {{ .Release.Namespace | quote }}
+      namespace: {{ template "external-secrets.namespace" . }}
       name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
       path: /validate-external-secrets-io-v1beta1-clustersecretstore
   admissionReviewVersions: ["v1", "v1beta1"]
@@ -68,7 +68,7 @@ webhooks:
     scope:       "Namespaced"
   clientConfig:
     service:
-      namespace: {{ .Release.Namespace | quote }}
+      namespace: {{ template "external-secrets.namespace" . }}
       name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
       path: /validate-external-secrets-io-v1beta1-externalsecret
   admissionReviewVersions: ["v1", "v1beta1"]
