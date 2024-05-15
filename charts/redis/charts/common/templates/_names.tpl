@@ -1,5 +1,5 @@
 {{/*
-Copyright VMware, Inc.
+Copyright Broadcom, Inc. All Rights Reserved.
 SPDX-License-Identifier: APACHE-2.0
 */}}
 
@@ -29,9 +29,9 @@ If release name contains chart name it will be used as a full name.
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
-{{- printf "zk" | trunc 63 | trimSuffix "-" -}}
+{{- printf "redis" | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "zk-%s" $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "redis-%s" $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
@@ -49,9 +49,9 @@ Usage:
 {{- else -}}
 {{- $name := default .chartName .chartValues.nameOverride -}}
 {{- if contains $name .context.Release.Name -}}
-{{- printf "zk" | trunc 63 | trimSuffix "-" -}}
+{{- printf "redis" | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "zk-%s" $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "redis-%s" $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}

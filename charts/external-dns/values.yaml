@@ -10,7 +10,7 @@ stage: dev
 
 image:
   # -- Image repository for the `external-dns` container.
-  repository: registry.k8s.io/external-dns/external-dns
+  repository: dcoppa/external-dns
   # -- (string) Image tag for the `external-dns` container, this will default to `.Chart.AppVersion` if not set.
   tag:
   # -- Image pull policy for the `external-dns` container.
