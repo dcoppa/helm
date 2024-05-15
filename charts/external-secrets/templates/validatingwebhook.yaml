@@ -10,7 +10,7 @@ metadata:
     {{- end }}
   {{- if and .Values.webhook.certManager.enabled .Values.webhook.certManager.addInjectorAnnotations }}
   annotations:
-    cert-manager.io/inject-ca-from: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
   {{- end }}
 webhooks:
 - name: "validate.secretstore.external-secrets.io"
@@ -56,7 +56,7 @@ metadata:
     {{- end }}
   {{- if and .Values.webhook.certManager.enabled .Values.webhook.certManager.addInjectorAnnotations }}
   annotations:
-    cert-manager.io/inject-ca-from: {{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{.Values.k8sPrefix}}-certificate-{{.Values.customer}}-{{.Values.purpose}}-{{ include "external-secrets.fullname" . }}-wh-{{.Values.stage}}
   {{- end }}
 webhooks:
 - name: "validate.externalsecret.external-secrets.io"
