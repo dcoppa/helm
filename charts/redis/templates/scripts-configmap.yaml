@@ -22,7 +22,7 @@ data:
     . /opt/bitnami/scripts/libvalidations.sh
 
     get_port() {
-        hostname="$1"
+        hostname="$(printf "%s" "${1}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         type="$2"
 
         port_var=$(echo "${hostname^^}_SERVICE_PORT_$type" | sed "s/-/_/g")
@@ -46,7 +46,8 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
+        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print "node-"$NF}')"
+        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -253,7 +254,7 @@ data:
     REDIS_SERVICE="{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "common.names.fullname" . }}-{{.Values.stage}}.{{ include "common.names.namespace" . }}.svc.{{ .Values.clusterDomain }}"
 
     get_port() {
-        hostname="$1"
+        hostname="$(printf "%s" "${1}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         type="$2"
 
         port_var=$(echo "${hostname^^}_SERVICE_PORT_$type" | sed "s/-/_/g")
@@ -277,7 +278,8 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
+        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print "node-"$NF}')"
+        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -458,7 +460,8 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
+        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print "node-"$NF}')"
+        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -539,7 +542,8 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
+        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print "node-"$NF}')"
+        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -662,7 +666,7 @@ data:
     #!/bin/bash
 
     get_port() {
-        hostname="$1"
+        hostname="$(printf "%s" "${1}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         type="$2"
 
         port_var=$(echo "${hostname^^}_SERVICE_PORT_$type" | sed "s/-/_/g")
@@ -686,7 +690,8 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
+        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print "node-"$NF}')"
+        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
