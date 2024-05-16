@@ -8,7 +8,13 @@ SPDX-License-Identifier: APACHE-2.0
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: {{ .Values.master.kind }}
 metadata:
-  name: {{ printf "%s-master" (include "common.names.fullname" .) }}
+  {{- if (eq .Values.master.kind "DaemonSet") }}
+  name: {{ printf "%s-ds-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- else if (eq .Values.master.kind "Deployment") }}
+  name: {{ printf "%s-deploy-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- else }}
+  name: {{ printf "%s-sts-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- end }}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
     app.kubernetes.io/component: master
@@ -24,7 +30,7 @@ spec:
     matchLabels: {{- include "common.labels.matchLabels" ( dict "customLabels" $podLabels "context" $ ) | nindent 6 }}
       app.kubernetes.io/component: master
   {{- if (eq .Values.master.kind "StatefulSet") }}
-  serviceName: {{ printf "%s-headless" (include "common.names.fullname" .) }}
+  serviceName: {{ printf "%s-svc-%s-%s-%s-headless-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   {{- end }}
   {{- if .Values.master.updateStrategy }}
   {{- if (eq .Values.master.kind "Deployment") }}
@@ -437,11 +443,11 @@ spec:
       volumes:
         - name: start-scripts
           configMap:
-            name: {{ printf "%s-scripts" (include "common.names.fullname" .) }}
+            name: {{ printf "%s-cm-%s-%s-%s-scripts-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
             defaultMode: 0755
         - name: health
           configMap:
-            name: {{ printf "%s-health" (include "common.names.fullname" .) }}
+            name: {{ printf "%s-cm-%s-%s-%s-health-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
             defaultMode: 0755
         {{- if .Values.auth.usePasswordFiles }}
         - name: redis-password
@@ -507,7 +513,7 @@ spec:
   {{- else if (eq .Values.master.kind "Deployment") }}
         - name: redis-data
           persistentVolumeClaim:
-            claimName: {{ printf "redis-data-%s-master" (include "common.names.fullname" .) }}
+            claimName: {{ printf "%s-pvc-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   {{- else }}
   {{- if .Values.master.persistentVolumeClaimRetentionPolicy.enabled }}
   persistentVolumeClaimRetentionPolicy:

@@ -288,7 +288,7 @@ spec:
             # FIXME - cert-manager support limited to a single pod statefulset
             - name: "tls"
               mountPath: /opt/nifi-registry/nifi-registry-current/tls
-            - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-0-cert-{{.Values.stage}}
+            - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" . }}-0-certs-{{.Values.stage}}
               mountPath: /opt/nifi-registry/nifi-registry-current/tls/cert-manager
             {{ range $secret := .Values.certManager.caSecrets }}
             - name: {{ include "nifi-registry.fullname" $ }}-{{ $secret }}
@@ -360,7 +360,7 @@ spec:
             done
           volumeMounts:
               # FIXME - cert-manager support limited to a single pod statefulset
-            - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-cert-{{.Values.stage}}
+            - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-certs-{{.Values.stage}}
               mountPath: /opt/nifi-registry/nifi-registry-current/tls/cert-manager
               readOnly: true
             - name: "run"
@@ -380,9 +380,9 @@ spec:
         emptyDir: {}
       - name: run
         emptyDir: {}
-      - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-cert-{{.Values.stage}}
+      - name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-certs-{{.Values.stage}}
         secret:
-          secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-cert-{{.Values.stage}}
+          secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-certs-{{.Values.stage}}
       {{- range .Values.certManager.caSecrets }}
       - name: {{ include "nifi-registry.fullname" $ }}-{{ . }}
         secret:

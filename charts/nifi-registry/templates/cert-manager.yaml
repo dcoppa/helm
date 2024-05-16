@@ -14,7 +14,7 @@ spec:
   subject:
     organizationalUnits:
     - NiFi Registry
-  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-cert-{{.Values.stage}}
+  secretName: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "nifi-registry.fullname" $ }}-0-certs-{{.Values.stage}}
   privateKey:
     rotationPolicy: Always
   usages:

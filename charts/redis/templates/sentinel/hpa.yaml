@@ -7,7 +7,7 @@ SPDX-License-Identifier: APACHE-2.0
 apiVersion: {{ include "common.capabilities.hpa.apiVersion" ( dict "context" $ ) }}
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ printf "%s-node" (include "common.names.fullname" .) }}
+  name: {{ printf "%s-hpa-%s-%s-%s-node-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
     app.kubernetes.io/component: replica
@@ -18,7 +18,7 @@ spec:
   scaleTargetRef:
     apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
     kind: StatefulSet
-    name: {{ printf "%s-node" (include "common.names.fullname" .) }}
+    name: {{ printf "%s-sts-%s-%s-%s-node-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   minReplicas: {{ .Values.replica.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.replica.autoscaling.maxReplicas }}
   metrics:

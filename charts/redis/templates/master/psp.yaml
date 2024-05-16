@@ -7,7 +7,7 @@ SPDX-License-Identifier: APACHE-2.0
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: {{ printf "%s-master" (include "common.names.fullname" .) }}
+  name: {{ printf "%s-psp-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
   {{- if .Values.commonAnnotations }}

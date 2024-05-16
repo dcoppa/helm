@@ -6,8 +6,14 @@ SPDX-License-Identifier: APACHE-2.0
 {{- if and (eq .Values.architecture "replication") (not .Values.sentinel.enabled) }}
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: {{ .Values.replica.kind }}
-metadata:
-  name: {{ printf "%s-replicas" (include "common.names.fullname" .) }}
+metadata::
+  {{- if (eq .Values.replica.kind "DaemonSet") }}
+  name: {{ printf "%s-ds-%s-%s-%s-replicas-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- else if (eq .Values.replica.kind "Deployment") }}
+  name: {{ printf "%s-deploy-%s-%s-%s-replicas-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- else }}
+  name: {{ printf "%s-sts-%s-%s-%s-replicas-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
+  {{- end }}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
     app.kubernetes.io/component: replica
@@ -23,7 +29,7 @@ spec:
     matchLabels: {{- include "common.labels.matchLabels" ( dict "customLabels" $podLabels "context" $ ) | nindent 6 }}
       app.kubernetes.io/component: replica
   {{- if (eq .Values.replica.kind "StatefulSet") }}
-  serviceName: {{ printf "%s-headless" (include "common.names.fullname" .) }}
+  serviceName: {{ printf "%s-svc-%s-%s-%s-headless-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   {{- end }}
   {{- if .Values.replica.updateStrategy }}
   updateStrategy: {{- toYaml .Values.replica.updateStrategy | nindent 4 }}
@@ -136,9 +142,9 @@ spec:
             {{- if .Values.replica.externalMaster.enabled }}
               value: {{ .Values.replica.externalMaster.host | quote }}
             {{- else if and (eq (int64 .Values.master.count) 1) (eq .Values.master.kind "StatefulSet") }}
-              value: {{ template "common.names.fullname" . }}-master-0.{{ template "common.names.fullname" . }}-headless.{{ include "common.names.namespace" . }}.svc.{{ .Values.clusterDomain }}
+              value: {{.Values.k8sPrefix}}-sts-{{.Values.customer}}-{{.Values.purpose}}-{{ template "common.names.fullname" . }}-master-{{.Values.stage}}-0.{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "common.names.fullname" . }}-headless-{{.Values.stage}}.{{ include "common.names.namespace" . }}.svc.{{ .Values.clusterDomain }}
             {{- else }}
-              value: {{ template "common.names.fullname" . }}-master.{{ include "common.names.namespace" . }}.svc.{{ .Values.clusterDomain }}
+              value: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "common.names.fullname" . }}-master-{{.Values.stage}}.{{ include "common.names.namespace" . }}.svc.{{ .Values.clusterDomain }}
             {{- end }}
             - name: REDIS_MASTER_PORT_NUMBER
             {{- if .Values.replica.externalMaster.enabled }}
@@ -457,11 +463,11 @@ spec:
       volumes:
         - name: start-scripts
           configMap:
-            name: {{ printf "%s-scripts" (include "common.names.fullname" .) }}
+            name: {{ printf "%s-cm-%s-%s-%s-scripts-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
             defaultMode: 0755
         - name: health
           configMap:
-            name: {{ printf "%s-health" (include "common.names.fullname" .) }}
+            name: {{ printf "%s-cm-%s-%s-%s-health-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
             defaultMode: 0755
         {{- if .Values.auth.usePasswordFiles }}
         - name: redis-password

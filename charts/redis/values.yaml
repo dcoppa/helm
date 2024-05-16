@@ -1501,11 +1501,6 @@ sentinel:
 ## @section Other Parameters
 ##
 
-## @param serviceBindings.enabled Create secret for service binding (Experimental)
-## Ref: https://servicebinding.io/service-provider/
-##
-serviceBindings:
-  enabled: false
 ## Network Policy configuration
 ## ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
 ##

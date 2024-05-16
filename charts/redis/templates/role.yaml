@@ -7,7 +7,7 @@ SPDX-License-Identifier: APACHE-2.0
 apiVersion: {{ include "common.capabilities.rbac.apiVersion" . }}
 kind: Role
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ template "common.names.fullname" . }}-{{.Values.stage}}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
   {{- if .Values.commonAnnotations }}
@@ -21,7 +21,7 @@ rules:
       - 'podsecuritypolicies'
     verbs:
       - 'use'
-    resourceNames: [{{ printf "%s-master" (include "common.names.fullname" .) }}]
+    resourceNames: [{{ printf "%s-psp-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}]
   {{- end }}
   {{- if and .Values.sentinel.enabled (or .Values.sentinel.masterService.enabled .Values.sentinel.service.createMaster) }}
   - apiGroups: [""]

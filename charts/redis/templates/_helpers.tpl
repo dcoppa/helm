@@ -93,7 +93,7 @@ Return the secret containing Redis TLS certificates
 {{- if $secretName -}}
     {{- printf "%s" (tpl $secretName $) -}}
 {{- else -}}
-    {{- printf "%s-crt" (include "common.names.fullname" .) -}}
+    {{- printf "%s-secret-%s-%s-%s-certs-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage -}}
 {{- end -}}
 {{- end -}}
 
@@ -144,7 +144,7 @@ Create the name of the shared service account to use
 */}}
 {{- define "redis.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "common.names.fullname" .) .Values.serviceAccount.name }}
+    {{ default (printf "%s-sa-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage) .Values.serviceAccount.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
@@ -155,7 +155,7 @@ Create the name of the master service account to use
 */}}
 {{- define "redis.masterServiceAccountName" -}}
 {{- if .Values.master.serviceAccount.create -}}
-    {{ default (printf "%s-master" (include "common.names.fullname" .)) .Values.master.serviceAccount.name }}
+    {{ default (printf "%s-sa-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage) .Values.serviceAccount.name }}
 {{- else -}}
     {{- if .Values.serviceAccount.create -}}
         {{ template "redis.serviceAccountName" . }}
@@ -170,7 +170,7 @@ Create the name of the replicas service account to use
 */}}
 {{- define "redis.replicaServiceAccountName" -}}
 {{- if .Values.replica.serviceAccount.create -}}
-    {{ default (printf "%s-replica" (include "common.names.fullname" .)) .Values.replica.serviceAccount.name }}
+    {{ default (printf "%s-sa-%s-%s-%s-replica-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage) .Values.serviceAccount.name }}
 {{- else -}}
     {{- if .Values.serviceAccount.create -}}
         {{ template "redis.serviceAccountName" . }}

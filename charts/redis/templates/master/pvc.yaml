@@ -7,7 +7,7 @@ SPDX-License-Identifier: APACHE-2.0
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ printf "redis-data-%s-master" (include "common.names.fullname" .) }}
+  name: {{ printf "%s-pvc-%s-%s-%s-master-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "common.names.fullname" .) .Values.stage }}
   namespace: {{ include "common.names.namespace" . | quote }}
   {{- $labels := include "common.tplvalues.merge" ( dict "values" ( list .Values.master.persistence.labels .Values.commonLabels ) "context" . ) }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" $labels "context" $ ) | nindent 4 }}
