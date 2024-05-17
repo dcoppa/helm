@@ -45,7 +45,7 @@ crds:
   createPushSecret: true
   annotations: {}
   conversion:
-    enabled: false
+    enabled: true
 
 imagePullSecrets: []
 nameOverride: "external-secrets"
