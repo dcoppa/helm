@@ -4303,9 +4303,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-12T08:11:45.374969587Z"
+    created: "2024-05-09T12:28:36.581770579Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: e60990d13bba9de0c456e4207df73915df598a6a9427b769fd06f12f4c141398
+    digest: 5952cf24088460081351d28fb109a62c7f4f4670f4d82a4e2b275e1fab5cf790
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4334,9 +4334,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-15T17:48:20.547741858Z"
+    created: "2024-05-09T12:00:59.024936854Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 5dcb0a4c3d8b0c5570bdb6a36aefd105f1351a54bc3221b5420cdcf9e7b3be53
+    digest: 8d09c0cd5753f2b9a3202068ac715d987b7b816449bf2c03d525f7a74db025a0
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4396,9 +4396,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T11:28:17.427067444Z"
+    created: "2024-05-12T08:11:45.374969587Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: a41a75a4851692ffcf2d73735ddfd89c5be9a3d8a6444a72d61da9d5c460a04b
+    digest: e60990d13bba9de0c456e4207df73915df598a6a9427b769fd06f12f4c141398
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4458,9 +4458,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T16:25:04.7677618Z"
+    created: "2024-05-08T07:00:57.108649843Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: bd4d4c561f43024e04dea1c216fdd0f0e6a2c2f0f76773e2f383f27774d8c227
+    digest: 15c4f90753a0211a042d62ff207c91ac319c2189c7dba08e78d2b9c4a1552461
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4520,9 +4520,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T12:00:59.024936854Z"
+    created: "2024-05-08T20:23:52.46516686Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 8d09c0cd5753f2b9a3202068ac715d987b7b816449bf2c03d525f7a74db025a0
+    digest: 1b13b543dee31187a34f21e96f59997e430071a7fe93cf07513c57b9e384639e
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4923,9 +4923,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T12:28:36.581770579Z"
+    created: "2024-05-08T11:28:17.427067444Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 5952cf24088460081351d28fb109a62c7f4f4670f4d82a4e2b275e1fab5cf790
+    digest: a41a75a4851692ffcf2d73735ddfd89c5be9a3d8a6444a72d61da9d5c460a04b
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4954,9 +4954,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T20:23:52.46516686Z"
+    created: "2024-05-15T17:48:20.547741858Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 1b13b543dee31187a34f21e96f59997e430071a7fe93cf07513c57b9e384639e
+    digest: 5dcb0a4c3d8b0c5570bdb6a36aefd105f1351a54bc3221b5420cdcf9e7b3be53
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -4985,9 +4985,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T07:00:57.108649843Z"
+    created: "2024-05-09T16:25:04.7677618Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 15c4f90753a0211a042d62ff207c91ac319c2189c7dba08e78d2b9c4a1552461
+    digest: bd4d4c561f43024e04dea1c216fdd0f0e6a2c2f0f76773e2f383f27774d8c227
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -5508,6 +5508,37 @@ entries:
     - https://github.com/dcoppa/helm-charts/releases/download/traefik-admin-28.1.0-beta.3/traefik-admin-28.1.0-beta.3.tgz
     version: 28.1.0-beta.3
   - annotations:
+      artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
+        \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
+    apiVersion: v2
+    appVersion: v3.0.0
+    created: "2024-05-17T10:19:57.855881361Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 284b516e4c01d33c9dfddd8545a29c4a10692727d47a0544e54d4f88bcbb634b
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    - email: remi.buisson@traefik.io
+      name: darkweaver87
+    - name: jnoordsij
+    name: traefik-admin
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/traefik-admin-28.1.0-beta.3/traefik-admin-28.1.0-beta.3.tgz
+    version: 28.1.0-beta.3
+  - annotations:
       artifacthub.io/changes: "- \"fix: \U0001F41B missing quote on experimental plugin
         args\"\n- \"fix: update traefik v3 serverstransporttcps CRD\"\n- \"feat: set
         runtimeClassName on pod spec\"\n- \"feat: create v1 Gateway and GatewayClass
@@ -5552,9 +5583,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-12T08:11:45.492709102Z"
+    created: "2024-05-09T12:28:36.693160895Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: ec0bbff2215782ac45974e2c84d756d81d7d26eb163f39caf9f22dc32ba55fef
+    digest: b1bcd808456822f0c8f7e90579070554439316ea227a75f165d79a761bb63e5d
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -5583,9 +5614,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-15T17:48:20.725828601Z"
+    created: "2024-05-09T12:00:59.177829886Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: aaf9e2bbd91c68cbff36e09de9ad8e35158743736f9815bc50c7157d6e4f0903
+    digest: caf5802adcfd36455b9f48467682eeb1eb873927e86caeca53e1c3f3be3ab448
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -5645,9 +5676,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T11:28:17.547858217Z"
+    created: "2024-05-12T08:11:45.492709102Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 3c893c5e4cc616ba7a5b57f8bcd26c7ab4d6a65ad6ef9acbdbcebd19edaa16f3
+    digest: ec0bbff2215782ac45974e2c84d756d81d7d26eb163f39caf9f22dc32ba55fef
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -5707,9 +5738,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T16:25:04.927319467Z"
+    created: "2024-05-08T07:00:57.274390507Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: f36f37ec0ee3aa0c737386425d3bcb1b491436b7aa18e68dd1c2955012daef43
+    digest: d858c0c3e43fb6b2c2658bc3a626a6ed42fbe8e985b5f97d0fb60b482a66cf40
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -5769,9 +5800,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T12:00:59.177829886Z"
+    created: "2024-05-08T20:23:52.671462117Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: caf5802adcfd36455b9f48467682eeb1eb873927e86caeca53e1c3f3be3ab448
+    digest: 8dcee837351af4cc18ea8b96e936b44f643159d871d70e6935dc30eb89d31480
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -6172,9 +6203,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-09T12:28:36.693160895Z"
+    created: "2024-05-08T11:28:17.547858217Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: b1bcd808456822f0c8f7e90579070554439316ea227a75f165d79a761bb63e5d
+    digest: 3c893c5e4cc616ba7a5b57f8bcd26c7ab4d6a65ad6ef9acbdbcebd19edaa16f3
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -6203,9 +6234,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T20:23:52.671462117Z"
+    created: "2024-05-15T17:48:20.725828601Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: 8dcee837351af4cc18ea8b96e936b44f643159d871d70e6935dc30eb89d31480
+    digest: aaf9e2bbd91c68cbff36e09de9ad8e35158743736f9815bc50c7157d6e4f0903
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -6234,9 +6265,9 @@ entries:
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
     appVersion: v3.0.0
-    created: "2024-05-08T07:00:57.274390507Z"
+    created: "2024-05-09T16:25:04.927319467Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: d858c0c3e43fb6b2c2658bc3a626a6ed42fbe8e985b5f97d0fb60b482a66cf40
+    digest: f36f37ec0ee3aa0c737386425d3bcb1b491436b7aa18e68dd1c2955012daef43
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -6757,6 +6788,37 @@ entries:
     - https://github.com/dcoppa/helm-charts/releases/download/traefik-data-28.1.0-beta.3/traefik-data-28.1.0-beta.3.tgz
     version: 28.1.0-beta.3
   - annotations:
+      artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
+        \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
+    apiVersion: v2
+    appVersion: v3.0.0
+    created: "2024-05-17T10:19:58.050473057Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 8646e5d8373f746028e9f8c4ecafcce05fbf29c4cb332969346d21464b007969
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    - email: remi.buisson@traefik.io
+      name: darkweaver87
+    - name: jnoordsij
+    name: traefik-data
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/traefik-data-28.1.0-beta.3/traefik-data-28.1.0-beta.3.tgz
+    version: 28.1.0-beta.3
+  - annotations:
       artifacthub.io/changes: "- \"fix: \U0001F41B missing quote on experimental plugin
         args\"\n- \"fix: update traefik v3 serverstransporttcps CRD\"\n- \"feat: set
         runtimeClassName on pod spec\"\n- \"feat: create v1 Gateway and GatewayClass
@@ -6829,4 +6891,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-05-16T16:00:36.759764346Z"
+generated: "2024-05-17T10:19:58.174249821Z"
