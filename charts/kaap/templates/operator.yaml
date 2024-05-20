@@ -1,0 +1,71 @@
+{{- if .Values.operator.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /q/metrics
+    prometheus.io/port: "8080"
+    prometheus.io/scheme: http
+  labels:
+    {{- include "kaap.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.operator.replicas }}
+  selector:
+    matchLabels:
+      {{- include "kaap.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /q/metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+{{- if .Values.operator.config.restartOnChange }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+{{- end }}
+      labels:
+        {{- include "kaap.selectorLabels" . | nindent 8 }}
+      namespace: {{ .Release.Namespace }}
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          envFrom:
+            - configMapRef:
+                name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+          image: {{ .Values.operator.image }}
+          imagePullPolicy: {{ .Values.operator.imagePullPolicy }}
+          livenessProbe:
+            failureThreshold: {{ .Values.operator.livenessProbe.failureThreshold }}
+            httpGet:
+              path: /q/health/live
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: {{ .Values.operator.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.operator.livenessProbe.periodSeconds }}
+            successThreshold: {{ .Values.operator.livenessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.operator.livenessProbe.timeoutSeconds }}
+          name: kaap
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: {{ .Values.operator.readinessProbe.failureThreshold }}
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: {{ .Values.operator.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.operator.readinessProbe.periodSeconds }}
+            successThreshold: {{ .Values.operator.readinessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.operator.readinessProbe.timeoutSeconds }}
+      serviceAccountName: {{ include "kaap.serviceAccountName" . }}
+{{- end }}

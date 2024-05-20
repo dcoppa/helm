@@ -1,0 +1,159 @@
+{{- if .Values.rbac.create }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+rules:
+  - apiGroups:
+      - "apiextensions.k8s.io"
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - '*'
+  - apiGroups:
+      - "storage.k8s.io"
+    resources:
+      - storageclasses
+    verbs:
+      - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "kaap.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups:
+      - apps
+    resources:
+      - deployments
+      - daemonsets
+      - replicasets
+      - statefulsets
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - configmaps
+      - services
+      - serviceaccounts
+      - secrets
+      - persistentvolumes
+      - persistentvolumeclaims
+    verbs:
+      - '*'
+  - apiGroups:
+      - ""
+    resources:
+      - pods/exec
+    verbs:
+      - 'get' # java client uses GET before executing to a pod
+      - 'create'
+  - apiGroups:
+      - "batch"
+    resources:
+      - jobs
+    verbs:
+      - '*'
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+    verbs:
+      - "*"
+  - apiGroups:
+      - "apiextensions.k8s.io"
+    resources:
+        - customresourcedefinitions
+    verbs:
+        - '*'
+  - apiGroups:
+      - "rbac.authorization.k8s.io"
+    resources:
+      - roles
+      - rolebindings
+    verbs:
+      - '*'
+  - apiGroups:
+      - "metrics.k8s.io"
+    resources:
+        - pods
+    verbs:
+        - "*"
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - "*"
+  - apiGroups:
+      - kaap.oss.datastax.com
+    resources:
+      - pulsarclusters
+      - pulsarclusters/status
+      - pulsarclusters/finalizers
+      - zookeepers
+      - zookeepers/status
+      - zookeepers/finalizers
+      - bookkeepers
+      - bookkeepers/status
+      - bookkeepers/finalizers
+      - brokers
+      - brokers/status
+      - brokers/finalizers
+      - proxies
+      - proxies/status
+      - proxies/finalizers
+      - autorecoveries
+      - autorecoveries/status
+      - autorecoveries/finalizers
+      - bastions
+      - bastions/status
+      - bastions/finalizers
+      - functionsworkers
+      - functionsworkers/status
+      - functionsworkers/finalizers
+    verbs:
+        - "*"
+  - apiGroups:
+      - "cert-manager.io"
+    resources:
+      - issuers
+      - certificates
+    verbs:
+      - create
+      - get
+      - update
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  apiGroup: rbac.authorization.k8s.io
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "kaap.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end }}

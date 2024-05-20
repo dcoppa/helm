@@ -1,0 +1,17 @@
+{{- if .Values.operator.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ include "kaap.name" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+  labels:
+      {{- include "kaap.labels" . | nindent 4 }}
+data:
+  QUARKUS_LOG_CATEGORY__COM_DATASTAX_OSS_KAAP__LEVEL: {{ .Values.operator.config.logLevel }}
+{{- range $key, $val := $.Values.operator.config.quarkus }}
+  {{ printf "QUARKUS_%s" ($key | replace "-" "." | replace "\"" "." | snakecase | upper | replace "." "_" ) }}: {{ $val | toString | replace "\"" "" | trim | quote }}
+{{- end }}
+{{- range $key, $val := $.Values.operator.config.operator }}
+  {{ printf "KAAP_%s" ($key | replace "-" "." | snakecase | upper | replace "." "_" | replace "\"" "_") }}: {{ $val | toString | replace "\"" "" | trim | quote }}
+{{- end }}
+{{- end }}
