@@ -59,8 +59,8 @@ spec:
       containers:
         - name: controller
           securityContext:
-            runAsUser: 65532
-            runAsGroup: 65532
+            runAsUser: 65536
+            runAsGroup: 65536
             runAsNonRoot: true
             seccompProfile:
               type: RuntimeDefault
