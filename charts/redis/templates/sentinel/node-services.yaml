@@ -51,12 +51,20 @@ spec:
     protocol: TCP
     targetPort: {{ $.Values.replica.containerPorts.redis }}
   - name: sentinel-internal
+    {{- if $.Values.sentinel.service.nodePorts.sentinel_internal }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel_internal $i 1) }}
+    {{- else }}
     nodePort: null
+    {{- end }}
     port: {{ $.Values.sentinel.containerPorts.sentinel }}
     protocol: TCP
     targetPort: {{ $.Values.sentinel.containerPorts.sentinel }}
   - name: redis-internal
+    {{- if $.Values.sentinel.service.nodePorts.redis_internal }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis_internal $i 1) }}
+    {{- else }}
     nodePort: null
+    {{- end }}
     port: {{ $.Values.replica.containerPorts.redis }}
     protocol: TCP
     targetPort: {{ $.Values.replica.containerPorts.redis }}

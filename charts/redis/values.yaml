@@ -1383,6 +1383,8 @@ sentinel:
     nodePorts:
       redis: 30379
       sentinel: 31379
+      redis_internal: 32379
+      sentinel_internal: 32759
     ## @param sentinel.service.externalTrafficPolicy Redis&reg; Sentinel service external traffic policy
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     ##
