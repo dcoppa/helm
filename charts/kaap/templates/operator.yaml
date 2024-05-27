@@ -20,6 +20,7 @@ spec:
   template:
     metadata:
       annotations:
+        fluentbit.io/exclude: "true"
         prometheus.io/scrape: "true"
         prometheus.io/path: /q/metrics
         prometheus.io/port: "8080"
