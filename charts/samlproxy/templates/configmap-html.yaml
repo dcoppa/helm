@@ -122,7 +122,7 @@ data:
     <head>
       <meta charset="UTF-8">
       <title>FORBIDDEN</title>
-      <link rel="stylesheet" href="https://k8s.hydra.aws.platform.porsche.cloud/403.css">
+      <link rel="stylesheet" href="/403.css">
     </head>
     <body>
     <div class="lock"></div>
@@ -138,7 +138,7 @@ data:
     <head>
       <meta charset="UTF-8">
       <title>FORBIDDEN</title>
-      <link rel="stylesheet" href="https://k8s.hydra.aws.platform.porsche.cloud/403.css">
+      <link rel="stylesheet" href="/403.css">
     </head>
     <body>
     <div class="lock"></div>
@@ -161,7 +161,7 @@ data:
             <link rel="shortcut icon" href="/favicon.ico">
             <meta name="mobile-web-app-capable" content="yes">
             <meta name="theme-color" content="#fff">
-            <link rel="stylesheet" type="text/css" href="style.css">
+            <link rel="stylesheet" type="text/css" href="/style.css">
             <script type="application/javascript">
                     function dynamicChangesOnLoad() {
                             // Change the background photo depending on the month

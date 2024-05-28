@@ -54,3 +54,4 @@ affinity:
 proxy:
   backend: https://awsd-svc-hydra-dataplatform-traefik-admin-dev.awsd-ns-hydra-dataplatform-traefik-admin-dev.svc
   hostname: k8s.example.com
+  nlbhostname: xxxxxxxxxxxxxxxx.elb.eu-west-1.amazonaws.com
