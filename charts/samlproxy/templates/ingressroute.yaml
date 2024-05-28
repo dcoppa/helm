@@ -22,3 +22,7 @@ spec:
       name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
       port: {{ .Values.service.port }}
       serversTransport: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+      sticky:
+        cookie:
+          httpOnly: true
+          name: {{ include "samlproxy.fullname" . }}
