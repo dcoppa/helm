@@ -11,15 +11,14 @@ spec:
     - websecure
   routes:
   - kind: Rule
-    match: PathPrefix(`/`)
-    middlewares:
-    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
-      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
-    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
-      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
-    priority: 2
+    match: Host(`{{ tpl (required "missing required value: .Values.proxy.hostname" .Values.proxy.hostname) $ }}`) || Host(`{{ tpl (required "missing required value: .Values.proxy.nlbhostname" .Values.proxy.nlbhostname) $ }}`)
     services:
     - kind: Service
       name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
       port: {{ .Values.service.port }}
       serversTransport: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-{{ include "samlproxy.fullname" . }}-{{.Values.stage}}
+    middlewares:
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
