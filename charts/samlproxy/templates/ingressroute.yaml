@@ -25,4 +25,5 @@ spec:
       sticky:
         cookie:
           httpOnly: true
+          secure: true
           name: {{ include "samlproxy.fullname" . }}
