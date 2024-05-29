@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  labels:
+    {{- include "argo-cd.labels" (dict "context" .) | nindent 4 }}
+    traffic-type: admin
+  name: {{.Values.k8sPrefix}}-ingressroute-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}.{{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}.svc`) && (PathPrefix(`/{{ template "argo-cd.fullname" . }}`) || PathPrefix(`/{{ template "argo-cd.fullname" . }}/`))
+    middlewares:
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-proxyheaders-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.fullname" . }}-checkheaders-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    services:
+    - kind: Service
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.server.fullname" . }}-{{.Values.stage}}
+      port: {{ .Values.server.service.servicePortHttp }}
+      serversTransport: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-{{ template "argo-cd.fullname" . }}-{{.Values.stage}}
