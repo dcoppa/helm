@@ -12,6 +12,7 @@ spec:
   routes:
   - kind: Rule
     match: Host(`{{ tpl (required "missing required value: .Values.proxy.hostname" .Values.proxy.hostname) $ }}`) || Host(`{{ tpl (required "missing required value: .Values.proxy.nlbhostname" .Values.proxy.nlbhostname) $ }}`)
+      || HostRegexp(`^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$`)
     middlewares:
     - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
       namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
@@ -25,5 +26,5 @@ spec:
       sticky:
         cookie:
           httpOnly: true
-          secure: true
           name: {{ include "samlproxy.fullname" . }}
+          secure: true
