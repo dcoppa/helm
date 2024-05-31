@@ -24,14 +24,14 @@ data:
             "k8s_namespace": "{{ .Release.Namespace }}",
             "kubernetes_service_host": "",
             "service_port": ""
-          },
+          }
         },
         "api_version": "{{ .Values.pulsarAdminConsole.apiVersion }}",
         "grafana_url": "http://localhost:3000",
         "host_overrides": {
             "pulsar": "pulsar://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6650",
             "ws": "ws://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8000",
-            "http": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080",
+            "http": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080"
         }
     }
 {{- end }}
