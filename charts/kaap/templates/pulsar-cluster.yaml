@@ -3,7 +3,10 @@
 apiVersion: kaap.oss.datastax.com/v1beta1
 kind: PulsarCluster
 metadata:
-  name: {{ .Values.cluster.spec.global.name | quote }}
+  labels:
+    {{- include "kaap.labels" . | nindent 4 }}
+  name: {{ .Values.k8sPrefix }}-pulsarcluster-{{ .Values.customer }}-{{ .Values.purpose }}-{{ .Values.cluster.spec.global.name }}-{{ .Values.stage }}
+  namespace: {{ .Release.Namespace }}
 spec:
   {{- toYaml .Values.cluster.spec | nindent 2 }}
 {{- end }}
