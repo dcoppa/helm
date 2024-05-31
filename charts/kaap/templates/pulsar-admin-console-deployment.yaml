@@ -1,0 +1,56 @@
+{{- if and .Values.cluster.create .Values.pulsarAdminConsole.create }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "kaap.labels" . | nindent 4 }}
+    component: adminconsole
+    cluster: {{ .Values.cluster.spec.global.name }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-console-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.pulsarAdminConsole.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      {{- include "kaap.labels" . | nindent 6 }}
+      component: adminconsole
+      cluster: {{ .Values.cluster.spec.global.name }}
+  template:
+    metadata:
+      labels:
+        {{- include "kaap.labels" . | nindent 8 }}
+        component: adminconsole
+        cluster: {{ .Values.cluster.spec.global.name }}
+      annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/pulsar-admin-console-configmap.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ include "kaap.serviceAccountName" . }}
+      containers:
+      - name: pulsar-admin-console
+        image: "{{ .Values.pulsarAdminConsole.repository }}:{{ .Values.pulsarAdminConsole.tag }}"
+        imagePullPolicy: {{ .Values.pulsarAdminConsole.pullPolicy }}
+        {{- if .Values.pulsarAdminConsole.resources }}
+        resources:
+{{ toYaml .Values.pulsarAdminConsole.resources | indent 10 }}
+        {{- end }}
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+        volumeMounts:
+          - name: dashboardconfig
+            mountPath: /home/appuser/config/local.json
+            subPath: local.json
+      volumes:
+        - name: dashboardconfig
+          configMap:
+            name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-console-{{.Values.stage}}
+            items:
+            - key: local.json
+              path: local.json
+{{- end }}

@@ -1,0 +1,37 @@
+{{- if and .Values.cluster.create .Values.pulsarAdminConsole.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "kaap.labels" . | nindent 4 }}
+    component: adminconsole
+    cluster: {{ .Values.cluster.spec.global.name }}
+  name: {{.Values.k8sPrefix}}-cm-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-console-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+data:
+  local.json: |
+    {
+        "tenant": "{{ .Values.pulsarAdminConsole.defaultTenant }}",
+        "cluster_name": "{{ .Values.cluster.spec.global.name }}",
+        "auth_mode": "none",
+        "server_config": {
+          "port": "8080",
+          "pulsar_url": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080",
+          "websocket_url": "ws://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8000",
+          "function_worker_url": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-fw-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6750",
+          "log_level": "{{ .Values.pulsarAdminConsole.serverLogLevel }}",
+          "kubernetes": {
+            "k8s_namespace": "{{ .Release.Namespace }}",
+            "kubernetes_service_host": "",
+            "service_port": ""
+          },
+        },
+        "api_version": "{{ .Values.pulsarAdminConsole.apiVersion }}",
+        "grafana_url": "http://localhost:3000",
+        "host_overrides": {
+            "pulsar": "pulsar://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6650",
+            "ws": "ws://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8000",
+            "http": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080",
+        }
+    }
+{{- end }}

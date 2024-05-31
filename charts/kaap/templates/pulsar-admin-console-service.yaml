@@ -1,0 +1,19 @@
+{{- if and .Values.cluster.create .Values.pulsarAdminConsole.create }}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "kaap.labels" . | nindent 4 }}
+    component: adminconsole
+    cluster: {{ .Values.cluster.spec.global.name }}
+  name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-console-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: {{ .Values.pulsarAdminConsole.service.type }}
+  ports:
+{{ toYaml .Values.pulsarAdminConsole.service.ports | indent 2 }}
+  selector:
+    {{- include "kaap.labels" . | nindent 4 }}
+    component: adminconsole
+    cluster: {{ .Values.cluster.spec.global.name }}
+{{- end }}
