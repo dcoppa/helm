@@ -72,7 +72,7 @@ pulsarAdminConsole:
   defaultTenant: public
   serverLogLevel: info
   apiVersion: "3.0.5"
-  repository: datastax/pulsar-admin-console
+  repository: dcoppa/pulsar-admin-console
   pullPolicy: IfNotPresent
   tag: 2.2.0
   replicaCount: 1
