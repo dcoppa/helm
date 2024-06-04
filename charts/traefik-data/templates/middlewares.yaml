@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  labels:
+    {{- include "traefik.labels" $ | nindent 4 }}
+    traffic-type: data
+  name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
+  namespace: {{ template "traefik.namespace" . }}
+spec:
+  plugin:
+    blockpathplugin:
+      regex: ["^/nifi(-api|-docs)?/"]
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  labels:
+    {{- include "traefik.labels" $ | nindent 4 }}
+    traffic-type: data
+  name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-proxyheaders-{{.Values.stage}}
+  namespace: {{ template "traefik.namespace" . }}
+spec:
+  headers:
+    customRequestHeaders:
+      Host: "k8s.private.hydra.aws.platform.porsche.cloud"
+      X-Forwarded-Host: "k8s.private.hydra.aws.platform.porsche.cloud"
+      X-Forwarded-Port: "443"
+      X-Forwarded-Proto: "https"
+      X-ProxyHost: "k8s.private.hydra.aws.platform.porsche.cloud"
+      X-ProxyPort: "443"
+      X-ProxyScheme: "https"
