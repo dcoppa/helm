@@ -19,10 +19,6 @@ spec:
       namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
     - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-proxyheaders-{{.Values.stage}}
       namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
-    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-proxyheaders-{{.Values.stage}}
-      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
-    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-stripprefix-{{.Values.stage}}
-      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
     - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-checkheaders-{{.Values.stage}}
       namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
     services:
