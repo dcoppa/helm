@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  labels:
+    {{- include "nifi-registry.labels" . | nindent 4 }}
+    traffic-type: admin
+  name: {{.Values.k8sPrefix}}-ingressroute-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}.{{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}.svc`) && (PathPrefix(`/{{ include "nifi-registry.fullname" . }}`) || PathPrefix(`/{{ include "nifi-registry.fullname" . }}/`))
+    middlewares:
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-errors-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-blockpaths-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-proxyheaders-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-proxyheaders-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-stripprefix-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    - name: {{.Values.k8sPrefix}}-middleware-{{.Values.customer}}-{{.Values.purpose}}-checkheaders-{{.Values.stage}}
+      namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-traefik-admin-{{.Values.stage}}
+    services:
+    - kind: Service
+      name: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nifi-registry.fullname" . }}-{{.Values.stage}}
+      port: {{ .Values.security.httpsPort }}
+      serversTransport: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-nifi-admin-{{.Values.stage}}

@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  labels:
+    {{- include "nifi-registry.labels" . | nindent 4 }}
+    traffic-type: admin
+  name: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-nifi-admin-{{.Values.stage}}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  insecureSkipVerify: true

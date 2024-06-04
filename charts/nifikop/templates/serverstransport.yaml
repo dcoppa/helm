@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  labels:
+    app: {{ template "nifikop.name" . }}
+    app.kubernetes.io/name: {{ template "nifikop.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: nifikop
+    traffic-type: data
+  name: {{.Values.k8sPrefix}}-serverstransport-{{.Values.customer}}-{{.Values.purpose}}-nifi-data-{{.Values.stage}}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  insecureSkipVerify: true
