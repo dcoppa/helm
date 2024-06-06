@@ -691,7 +691,7 @@ ports:
     # targetPort: 80
     ## -- The port protocol (TCP/UDP)
     protocol: TCP
-    nodePort: 30444
+    nodePort: 30443
     ## -- Specify an application protocol. This may be used as a hint for a Layer 7 load balancer.
     # appProtocol: https
     #
