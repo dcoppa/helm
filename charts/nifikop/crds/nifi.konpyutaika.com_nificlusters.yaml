@@ -799,6 +799,8 @@ spec:
                       properties:
                         containerPort:
                           format: int32
+                          maximum: 32767
+                          minimum: 30000
                           type: integer
                         name:
                           type: string
@@ -5556,6 +5558,8 @@ spec:
                       properties:
                         containerPort:
                           format: int32
+                          maximum: 32767
+                          minimum: 30000
                           type: integer
                         name:
                           type: string
