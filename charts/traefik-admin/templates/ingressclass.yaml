@@ -2,6 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: {{ .Values.ingressClass.isDefaultClass | quote }}
   labels:
     {{- include "traefik.labels" . | nindent 4 }}
     traffic-type: admin

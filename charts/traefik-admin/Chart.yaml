@@ -1,8 +1,10 @@
 annotations:
-  artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
-    \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
+  artifacthub.io/changes: "- \"fix(IngressClass): provides annotation on IngressRoutes
+    when it's enabled\"\n- \"feat: ✨ simplify values and provide more examples\"\n-
+    \"feat: add deletecollection right on secrets\"\n- \"chore(release): \U0001F680
+    publish v28.2.0\"\n- \"chore(deps): update traefik docker tag to v3.0.1\"\n"
 apiVersion: v2
-appVersion: v3.0.0
+appVersion: v3.0.1
 description: A Traefik based Kubernetes ingress controller
 home: https://traefik.io/
 icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
@@ -24,4 +26,4 @@ sources:
 - https://github.com/traefik/traefik
 - https://github.com/traefik/traefik-helm-chart
 type: application
-version: 28.1.0-beta.3
+version: 28.2.0
