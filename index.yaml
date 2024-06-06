@@ -91,6 +91,32 @@ entries:
     version: 6.7.1
   aws-load-balancer-controller:
   - apiVersion: v2
+    appVersion: v2.8.1
+    created: "2024-06-06T10:06:54.818140275Z"
+    description: AWS Load Balancer Controller Helm chart for Kubernetes
+    digest: 5f30b12bac3d9e86eab371c2c0273444c10ae82c7ce133ee87931ba6d42d260b
+    home: https://github.com/aws/eks-charts
+    icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+    keywords:
+    - eks
+    - alb
+    - load balancer
+    - ingress
+    - nlb
+    maintainers:
+    - email: kishorj@users.noreply.github.com
+      name: kishorj
+      url: https://github.com/kishorj
+    - email: m00nf1sh@users.noreply.github.com
+      name: m00nf1sh
+      url: https://github.com/m00nf1sh
+    name: aws-load-balancer-controller
+    sources:
+    - https://github.com/aws/eks-charts
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/aws-load-balancer-controller-1.8.1/aws-load-balancer-controller-1.8.1.tgz
+    version: 1.8.1
+  - apiVersion: v2
     appVersion: v2.7.2
     created: "2024-04-17T18:45:31.963019631Z"
     description: AWS Load Balancer Controller Helm chart for Kubernetes
@@ -9047,4 +9073,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-06-06T08:42:16.483279652Z"
+generated: "2024-06-06T10:06:56.659508335Z"
