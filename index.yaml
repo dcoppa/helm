@@ -4368,6 +4368,39 @@ entries:
     version: v3.27.2
   traefik-admin:
   - annotations:
+      artifacthub.io/changes: "- \"fix(IngressClass): provides annotation on IngressRoutes
+        when it's enabled\"\n- \"feat: ✨ simplify values and provide more examples\"\n-
+        \"feat: add deletecollection right on secrets\"\n- \"chore(release): \U0001F680
+        publish v28.2.0\"\n- \"chore(deps): update traefik docker tag to v3.0.1\"\n"
+    apiVersion: v2
+    appVersion: v3.0.1
+    created: "2024-06-06T08:09:22.647756917Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 7e58de2442533d6ac682cf63902fa22d9560335a64263a9fd51cb4df09083774
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    - email: remi.buisson@traefik.io
+      name: darkweaver87
+    - name: jnoordsij
+    name: traefik-admin
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/traefik-admin-28.2.0/traefik-admin-28.2.0.tgz
+    version: 28.2.0
+  - annotations:
       artifacthub.io/changes: "- \"chore: \U0001F527 update Traefik Hub CRD to v1.3.2\"\n-
         \"chore(release): \U0001F680 publish v28.1.0-beta.3\"\n"
     apiVersion: v2
@@ -8975,4 +9008,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-06-06T06:58:50.432207543Z"
+generated: "2024-06-06T08:09:22.746864983Z"
