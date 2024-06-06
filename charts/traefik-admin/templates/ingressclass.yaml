@@ -7,5 +7,5 @@ metadata:
     traffic-type: admin
   name: {{.Values.k8sPrefix}}-ingressclass-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
 spec:
-  controller: traefik.io/admin-ingress-controller
+  controller: traefik.io/ingress-controller
 {{- end -}}
