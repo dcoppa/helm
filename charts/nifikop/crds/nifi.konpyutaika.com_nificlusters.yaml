@@ -792,6 +792,11 @@ spec:
                 type: object
               listenersConfig:
                 properties:
+                  baseNodePort:
+                    format: int32
+                    maximum: 32767
+                    minimum: 30000
+                    type: integer
                   clusterDomain:
                     type: string
                   internalListeners:
@@ -799,8 +804,6 @@ spec:
                       properties:
                         containerPort:
                           format: int32
-                          maximum: 32767
-                          minimum: 30000
                           type: integer
                         name:
                           type: string
@@ -853,6 +856,7 @@ spec:
                   useExternalDNS:
                     type: boolean
                 required:
+                - baseNodePort
                 - internalListeners
                 type: object
               managedAdminUsers:
@@ -5551,6 +5555,11 @@ spec:
                 type: object
               listenersConfig:
                 properties:
+                  baseNodePort:
+                    format: int32
+                    maximum: 32767
+                    minimum: 30000
+                    type: integer
                   clusterDomain:
                     type: string
                   internalListeners:
@@ -5558,8 +5567,6 @@ spec:
                       properties:
                         containerPort:
                           format: int32
-                          maximum: 32767
-                          minimum: 30000
                           type: integer
                         name:
                           type: string
@@ -5605,6 +5612,7 @@ spec:
                   useExternalDNS:
                     type: boolean
                 required:
+                - baseNodePort
                 - internalListeners
                 type: object
               managedAdminUsers:

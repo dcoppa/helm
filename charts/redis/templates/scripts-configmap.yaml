@@ -46,8 +46,7 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print $(NF-2)"-"$(NF)}')"
-        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
+        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -278,8 +277,7 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print $(NF-2)"-"$(NF)}')"
-        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
+        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -460,8 +458,7 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print $(NF-2)"-"$(NF)}')"
-        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
+        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -542,8 +539,7 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print $(NF-2)"-"$(NF)}')"
-        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
+        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
@@ -690,8 +686,7 @@ data:
         hostname="$1"
 
         {{- if .Values.useExternalDNS.enabled }}
-        hostname_dns="$(printf "%s" "${hostname}" | awk -F- '{print $(NF-2)"-"$(NF)}')"
-        full_hostname="${hostname_dns}.{{- include "redis.externalDNS.suffix" . }}"
+        full_hostname="${hostname}.{{- include "redis.externalDNS.suffix" . }}"
         {{- else if eq .Values.sentinel.service.type "NodePort" }}
         hostname_svc="$(printf "%s" "${hostname}" | awk -F- '{print $1"-svc-"$3"-"$4"-"$5"-"$6"-"$8"-"$7}')"
         full_hostname="${hostname_svc}.{{- include "common.names.namespace" . }}"
