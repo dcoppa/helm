@@ -856,7 +856,6 @@ spec:
                   useExternalDNS:
                     type: boolean
                 required:
-                - baseNodePort
                 - internalListeners
                 type: object
               managedAdminUsers:
@@ -5612,7 +5611,6 @@ spec:
                   useExternalDNS:
                     type: boolean
                 required:
-                - baseNodePort
                 - internalListeners
                 type: object
               managedAdminUsers:
