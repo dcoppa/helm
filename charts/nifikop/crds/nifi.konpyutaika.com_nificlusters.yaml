@@ -794,7 +794,7 @@ spec:
                 properties:
                   baseNodePort:
                     format: int32
-                    maximum: 32728
+                    maximum: 32726
                     minimum: 30000
                     type: integer
                   clusterDomain:
@@ -5556,7 +5556,7 @@ spec:
                 properties:
                   baseNodePort:
                     format: int32
-                    maximum: 32728
+                    maximum: 32726
                     minimum: 30000
                     type: integer
                   clusterDomain:
