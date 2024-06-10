@@ -598,7 +598,7 @@ ports:
     protocol: TCP
     # -- Use nodeport if set. This is useful if you have configured Traefik in a
     # LoadBalancer.
-    # nodePort: 32080
+    nodePort: 32767
     # Port Redirections
     # Added in 2.2, you can make permanent redirects via entrypoints.
     # https://docs.traefik.io/routing/entrypoints/#redirection
@@ -642,7 +642,7 @@ ports:
     # targetPort: 80
     ## -- The port protocol (TCP/UDP)
     protocol: TCP
-    nodePort: 30443
+    nodePort: 32766
     ## -- Specify an application protocol. This may be used as a hint for a Layer 7 load balancer.
     # appProtocol: https
     #

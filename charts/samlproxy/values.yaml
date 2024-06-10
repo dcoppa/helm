@@ -31,7 +31,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 30443
+  port: 32766
   containerPort: 443
 
 resources: {}

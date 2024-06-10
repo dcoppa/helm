@@ -1381,10 +1381,10 @@ sentinel:
     ##       If setting manually, please leave at least replica.replicaCount + 1 in between sentinel.service.nodePorts.redis and sentinel.service.nodePorts.sentinel to take into account the ports that will be created while incrementing that base port
     ##
     nodePorts:
-      redis: 30379
-      sentinel: 31379
-      redis_internal: 32379
-      sentinel_internal: 32759
+      redis: 32732
+      sentinel: 32736
+      redis_internal: 32738
+      sentinel_internal: 32742
     ## @param sentinel.service.externalTrafficPolicy Redis&reg; Sentinel service external traffic policy
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     ##

@@ -16,6 +16,8 @@ SPDX-License-Identifier: APACHE-2.0
 {{ $redisport = index $portsmap (printf "%s-node-%s-%s" (include "common.names.fullname" $) (toString $i) "redis") }}
 {{- else }}
 {{- end }}
+{{- $mult := mul $i 10 }}
+{{- $incr := add $mult 1 }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,7 +34,7 @@ spec:
   ports:
   - name: sentinel
     {{- if $.Values.sentinel.service.nodePorts.sentinel  }}
-    nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i 1) }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i $incr) }}
     port: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i 1) }}
     {{- else }}
     nodePort: {{ $sentinelport }}
@@ -42,7 +44,7 @@ spec:
     targetPort: {{ $.Values.sentinel.containerPorts.sentinel }}
   - name: redis
     {{- if $.Values.sentinel.service.nodePorts.redis }}
-    nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis $i 1) }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis $i $incr) }}
     port: {{ (add $.Values.sentinel.service.nodePorts.redis $i 1) }}
     {{- else }}
     nodePort: {{ $redisport }}
@@ -52,7 +54,7 @@ spec:
     targetPort: {{ $.Values.replica.containerPorts.redis }}
   - name: sentinel-internal
     {{- if $.Values.sentinel.service.nodePorts.sentinel_internal }}
-    nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel_internal $i 1) }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel_internal $i $incr) }}
     {{- else }}
     nodePort: null
     {{- end }}
@@ -61,7 +63,7 @@ spec:
     targetPort: {{ $.Values.sentinel.containerPorts.sentinel }}
   - name: redis-internal
     {{- if $.Values.sentinel.service.nodePorts.redis_internal }}
-    nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis_internal $i 1) }}
+    nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis_internal $i $incr) }}
     {{- else }}
     nodePort: null
     {{- end }}
