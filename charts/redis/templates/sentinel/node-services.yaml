@@ -35,7 +35,7 @@ spec:
   - name: sentinel
     {{- if $.Values.sentinel.service.nodePorts.sentinel  }}
     nodePort: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i $incr) }}
-    port: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i 1) }}
+    port: {{ (add $.Values.sentinel.service.nodePorts.sentinel $i $incr) }}
     {{- else }}
     nodePort: {{ $sentinelport }}
     port: {{ $sentinelport }}
@@ -45,7 +45,7 @@ spec:
   - name: redis
     {{- if $.Values.sentinel.service.nodePorts.redis }}
     nodePort: {{ (add $.Values.sentinel.service.nodePorts.redis $i $incr) }}
-    port: {{ (add $.Values.sentinel.service.nodePorts.redis $i 1) }}
+    port: {{ (add $.Values.sentinel.service.nodePorts.redis $i $incr) }}
     {{- else }}
     nodePort: {{ $redisport }}
     port: {{ $redisport }}
