@@ -50,22 +50,6 @@ spec:
   sessionAffinityConfig: {{- include "common.tplvalues.render" (dict "value" .Values.sentinel.service.sessionAffinityConfig "context" $) | nindent 4 }}
   {{- end }}
   ports:
-    - name: tcp-redis
-      {{- if and (or (eq .Values.sentinel.service.type "NodePort") (eq .Values.sentinel.service.type "LoadBalancer")) .Values.sentinel.service.nodePorts.redis }}
-      port: {{ .Values.sentinel.service.nodePorts.redis }}
-      {{- else if eq .Values.sentinel.service.type "NodePort" }}
-      port: {{ $redisport }}
-      {{- else}}
-      port: {{ .Values.sentinel.service.ports.redis }}
-      {{- end }}
-      targetPort: {{ .Values.replica.containerPorts.redis }}
-      {{- if and (or (eq .Values.sentinel.service.type "NodePort") (eq .Values.sentinel.service.type "LoadBalancer")) .Values.sentinel.service.nodePorts.redis }}
-      nodePort: {{ .Values.sentinel.service.nodePorts.redis }}
-      {{- else if eq .Values.sentinel.service.type "ClusterIP" }}
-      nodePort: null
-      {{- else if eq .Values.sentinel.service.type "NodePort" }}
-      nodePort:  {{ $redisport }}
-      {{- end }}
     - name: tcp-sentinel
       {{- if and (or (eq .Values.sentinel.service.type "NodePort") (eq .Values.sentinel.service.type "LoadBalancer")) .Values.sentinel.service.nodePorts.sentinel }}
       port: {{ .Values.sentinel.service.nodePorts.sentinel }}
@@ -81,6 +65,22 @@ spec:
       nodePort: null
       {{- else if eq .Values.sentinel.service.type "NodePort" }}
       nodePort:  {{ $sentinelport }}
+      {{- end }}
+    - name: tcp-redis
+      {{- if and (or (eq .Values.sentinel.service.type "NodePort") (eq .Values.sentinel.service.type "LoadBalancer")) .Values.sentinel.service.nodePorts.redis }}
+      port: {{ .Values.sentinel.service.nodePorts.redis }}
+      {{- else if eq .Values.sentinel.service.type "NodePort" }}
+      port: {{ $redisport }}
+      {{- else}}
+      port: {{ .Values.sentinel.service.ports.redis }}
+      {{- end }}
+      targetPort: {{ .Values.replica.containerPorts.redis }}
+      {{- if and (or (eq .Values.sentinel.service.type "NodePort") (eq .Values.sentinel.service.type "LoadBalancer")) .Values.sentinel.service.nodePorts.redis }}
+      nodePort: {{ .Values.sentinel.service.nodePorts.redis }}
+      {{- else if eq .Values.sentinel.service.type "ClusterIP" }}
+      nodePort: null
+      {{- else if eq .Values.sentinel.service.type "NodePort" }}
+      nodePort:  {{ $redisport }}
       {{- end }}
     {{- if eq .Values.sentinel.service.type "NodePort" }}
     - name: sentinel-internal
