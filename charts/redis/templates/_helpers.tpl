@@ -332,7 +332,7 @@ redis: sentinel.masterService.enabled
 
 {{/* Define the suffix utilized for external-dns */}}
 {{- define "redis.externalDNS.suffix" -}}
-{{ printf "%s.%s" (include "common.names.fullname" .) .Values.useExternalDNS.suffix }}
+{{ printf "%s" .Values.useExternalDNS.suffix }}
 {{- end -}}
 
 {{/* Compile all annotations utilized for external-dns */}}
