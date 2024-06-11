@@ -72,9 +72,9 @@ webhooks:
   objectSelector:
     matchExpressions:
     - key: app.kubernetes.io/name
-      operator: NotIn
+      operator: In
       values:
-      - {{ include "aws-load-balancer-controller.name" . }}
+      - pulsar-proxy
     {{- if .Values.serviceMutatorWebhookConfig.objectSelector.matchExpressions }}
     {{- toYaml .Values.serviceMutatorWebhookConfig.objectSelector.matchExpressions | nindent 4 }}
     {{- end }}
