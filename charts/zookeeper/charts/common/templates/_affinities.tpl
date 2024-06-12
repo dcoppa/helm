@@ -1,5 +1,5 @@
 {{/*
-Copyright VMware, Inc.
+Copyright Broadcom, Inc. All Rights Reserved.
 SPDX-License-Identifier: APACHE-2.0
 */}}
 
@@ -19,7 +19,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
             {{- range .values }}
             - {{ . | quote }}
             {{- end }}
-    weight: 1
+    weight: 100
 {{- end -}}
 
 {{/*
@@ -55,7 +55,7 @@ Return a topologyKey definition
 {{ include "common.affinities.topologyKey" (dict "topologyKey" "BAR") -}}
 */}}
 {{- define "common.affinities.topologyKey" -}}
-{{ .topologyKey | default "kubernetes.io/hostname" -}}
+{{ .topologyKey | default "topology.kubernetes.io/zone" -}}
 {{- end -}}
 
 {{/*
@@ -78,7 +78,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
           {{ $key }}: {{ $value | quote }}
           {{- end }}
       topologyKey: {{ include "common.affinities.topologyKey" (dict "topologyKey" .topologyKey) }}
-    weight: 1
+    weight: 100
   {{- range $extraPodAffinityTerms }}
   - podAffinityTerm:
       labelSelector:
@@ -90,7 +90,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
           {{ $key }}: {{ $value | quote }}
           {{- end }}
       topologyKey: {{ include "common.affinities.topologyKey" (dict "topologyKey" .topologyKey) }}
-    weight: {{ .weight | default 1 -}}
+    weight: {{ .weight | default 100 -}}
   {{- end -}}
 {{- end -}}
 
