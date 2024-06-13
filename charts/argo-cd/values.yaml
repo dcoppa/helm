@@ -58,7 +58,7 @@ global:
     # -- If defined, a repository applied to all Argo CD deployments
     repository: docker.io/dcoppa/argocd
     # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-    tag: "v2.10.9-aws"
+    tag: "v2.11.3-aws"
     # -- If defined, a imagePullPolicy applied to all Argo CD deployments
     imagePullPolicy: IfNotPresent
 
@@ -85,7 +85,7 @@ global:
   podLabels: {}
 
   # -- Add Prometheus scrape annotations to all metrics services. This can be used as an alternative to the ServiceMonitors.
-  addPrometheusAnnotations: true
+  addPrometheusAnnotations: false
 
   # -- Toggle and define pod-level security context.
   # @default -- `{}` (See [values.yaml])
@@ -420,12 +420,12 @@ configs:
       #       command: [sh, -c, find . -name env.yaml]
 
   # -- Provide one or multiple [external cluster credentials]
-  # @default -- `[]` (See [values.yaml])
+  # @default -- `{}` (See [values.yaml])
   ## Ref:
   ## - https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#clusters
   ## - https://argo-cd.readthedocs.io/en/stable/operator-manual/security/#external-cluster-credentials
   ## - https://argo-cd.readthedocs.io/en/stable/user-guide/projects/#project-scoped-repositories-and-clusters
-  clusterCredentials: []
+  clusterCredentials: {}
     # - name: mycluster
     #   server: https://mycluster.example.com
     #   labels: {}
@@ -1981,18 +1981,22 @@ server:
     servicePortHttpName: http
     # -- Server service https port name, can be used to route traffic via istio
     servicePortHttpsName: https
-    # -- Server service https port appProtocol. (should be upper case - i.e. HTTPS)
+    # -- Server service https port appProtocol
+    ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol
     # servicePortHttpsAppProtocol: HTTPS
     # -- LoadBalancer will get created with the IP specified in this field
     loadBalancerIP: ""
     # -- Source IP ranges to allow access to service from
+    ## Ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
     loadBalancerSourceRanges: []
     # -- Server service external IPs
     externalIPs: []
     # -- Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
-    externalTrafficPolicy: ""
+    ## Ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+    externalTrafficPolicy: Cluster
     # -- Used to maintain session affinity. Supports `ClientIP` and `None`
-    sessionAffinity: ""
+    ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+    sessionAffinity: None
 
   ## Server metrics service configuration
   metrics:
@@ -2647,9 +2651,6 @@ repoServer:
 
 ## ApplicationSet controller
 applicationSet:
-  # -- Enable ApplicationSet controller
-  enabled: true
-
   # -- ApplicationSet controller name string
   name: applicationset-controller
 

@@ -10,6 +10,6 @@ roleRef:
   kind: Role
   name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-argocd-app-cntlr-{{.Values.stage}}
 subjects:
-- kind: ServiceAccount
-  name: {{ include "argo-cd.controller.serviceAccountName" . }}
-  namespace: {{ .Release.Namespace }}
+  - kind: ServiceAccount
+    name: {{ include "argo-cd.controller.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
