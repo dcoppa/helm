@@ -40,5 +40,8 @@ data:
   resource.customizations.ignoreDifferences.nifi.konpyutaika.com_NifiNodeGroupAutoscaler: |
     jsonPointers:
     - /spec/replicas
+  resource.customizations.ignoreDifferences.nifi.konpyutaika.com_NifiRegistryClient: |
+    jsonPointers:
+    - /status/version
   {{- include "argo-cd.config.cm" . | trim | nindent 2 }}
 {{- end }}
