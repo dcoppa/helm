@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "snapscheduler.fullname" . }}
-  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "snapscheduler.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "snapscheduler.fullname" . }}-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

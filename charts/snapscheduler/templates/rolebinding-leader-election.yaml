@@ -1,14 +1,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ include "snapscheduler.fullname" . }}-leader-election
-  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "snapscheduler.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-rolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "snapscheduler.fullname" . }}-le-{{.Values.stage}}
+  namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ include "snapscheduler.fullname" . }}-leader-election
+  name: {{.Values.k8sPrefix}}-role-{{.Values.customer}}-{{.Values.purpose}}-{{ include "snapscheduler.fullname" . }}-le-{{.Values.stage}}
 subjects:
 - kind: ServiceAccount
   name: {{ include "snapscheduler.serviceAccountName" . }}

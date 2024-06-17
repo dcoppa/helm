@@ -17,9 +17,9 @@ If release name contains chart name it will be used as a full name.
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "snapscheduler" | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "snapscheduler-%s" $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
@@ -48,7 +48,7 @@ Selector labels
 */}}
 {{- define "snapscheduler.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "snapscheduler.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/instance: snapscheduler
 {{- end -}}
 
 {{/*
@@ -56,7 +56,7 @@ Create the name of the service account to use
 */}}
 {{- define "snapscheduler.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "snapscheduler.fullname" .) .Values.serviceAccount.name }}
+    {{ default (printf "%s-sa-%s-%s-%s-%s" .Values.k8sPrefix .Values.customer .Values.purpose (include "snapscheduler.fullname" .) .Values.stage) .Values.serviceAccount.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}

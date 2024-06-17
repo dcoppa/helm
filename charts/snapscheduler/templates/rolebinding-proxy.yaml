@@ -2,15 +2,15 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ include "snapscheduler.fullname" . }}-proxy
   labels:
     {{- include "snapscheduler.labels" . | nindent 4 }}
+  name: {{.Values.k8sPrefix}}-clusterrolebinding-{{.Values.customer}}-{{.Values.purpose}}-{{ include "snapscheduler.fullname" . }}-proxy-{{.Values.stage}}
 subjects:
 - kind: ServiceAccount
   name: {{ include "snapscheduler.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
-  name: {{ include "snapscheduler.fullname" . }}-proxy
+  name: {{.Values.k8sPrefix}}-clusterrole-{{.Values.customer}}-{{.Values.purpose}}-{{ include "snapscheduler.fullname" . }}-proxy-{{.Values.stage}}
   apiGroup: rbac.authorization.k8s.io
 {{- end }}
