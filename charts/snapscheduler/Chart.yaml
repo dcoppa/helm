@@ -1,0 +1,65 @@
+apiVersion: v2
+name: snapscheduler
+# Chart version: Incremented during chart, template, or appVersion changes.
+version: "3.4.0"
+description: >-
+  An operator to take scheduled snapshots of Kubernetes persistent volumes
+type: application
+# Adding "-0" at the end of the version string permits pre-release kube versions
+# to match. See https://github.com/helm/helm/issues/6190
+kubeVersion: "^1.20.0-0"
+keywords:
+  - csi
+  - scheduler
+  - snapshot
+  - storage
+home: https://backube.github.io/snapscheduler/
+sources:
+  - https://github.com/backube/snapscheduler
+maintainers:
+  - name: John Strunk
+    email: jstrunk@redhat.com
+    url: https://github.com/JohnStrunk
+icon: https://raw.githubusercontent.com/backube/snapscheduler/master/docs/media/snapscheduler.svg?sanitize=true
+# This is the version number of the application being deployed.
+appVersion: "3.4.0"
+annotations:
+  artifacthub.io/category: storage
+  # https://artifacthub.io/docs/topics/annotations/helm/
+  # Changelog for current chart & app version
+  # Supported kinds: added, changed, deprecated, removed, fixed, security
+  artifacthub.io/changes: |
+    - kind: fixed
+      description: Add `metadata.namespace` to namespaced resources for compatibility with ArgoCD
+    - kind: security
+      description: Dependency updates
+  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/crds: |
+    - kind: SnapshotSchedule
+      version: v1
+      name: snapshotschedule.snapscheduler.backube
+      displayName: Snapshot schedule
+      description: Defines a schedule for automated volume snapshots
+  artifacthub.io/crdsExamples: |
+    - apiVersion: v1
+      kind: SnapshotSchedule
+      metadata:
+        name: daily
+      spec:
+        retention:
+          maxCount: 7
+        schedule: "0 0 * * *"
+    - apiVersion: v1
+      kind: SnapshotSchedule
+      metadata:
+        name: weekly
+      spec:
+        retention:
+          maxCount: 4
+        schedule: "0 0 * * 0"
+  artifacthub.io/license: AGPL-3.0-or-later
+  artifacthub.io/operator: "true"
+  artifacthub.io/operatorCapabilities: Seamless Upgrades
+  artifacthub.io/signKey: |
+    fingerprint: 74FC7E7EFD0FF009513CC9E39360133DBD1FF508
+    url: https://keys.openpgp.org/vks/v1/by-fingerprint/74FC7E7EFD0FF009513CC9E39360133DBD1FF508
