@@ -1,0 +1,44 @@
+{{- range $cluster := .Values.clusters }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+  name: {{$.Values.k8sPrefix}}-app-{{$.Values.customer}}-{{$.Values.purpose}}-nificluster-{{ $cluster.name }}-{{$.Values.stage}}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  destination:
+    namespace: {{$.Values.k8sPrefix}}-ns-{{$.Values.customer}}-{{$.Values.purpose}}-nifi-{{$.Values.stage}}
+    server: https://kubernetes.default.svc
+  project: infrastructure
+  source:
+    helm:
+      ignoreMissingValueFiles: true
+      parameters:
+      - name: customer
+        value: {{ $.Values.customer }}
+      - name: purpose
+        value: {{ $.Values.purpose }}
+      - name: k8sPrefix
+        value: {{ $.Values.k8sPrefix }}
+      - name: stage
+        value: {{ $.Values.stage }}
+      valueFiles:
+      - ../../values/nificluster-{{ $cluster.name }}/values.yaml
+    path: charts/nificluster
+    repoURL: https://cicd.skyway.porsche.com/HYDRA/helm.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - FailOnSharedResource=true
+      - RespectIgnoreDifferences=true
+      {{- if $cluster.syncoptions }}
+        {{- range $cluster.syncoptions }}
+      - {{ . }}=true
+        {{- end }}
+      {{- end }}
+---
+{{- end }}
