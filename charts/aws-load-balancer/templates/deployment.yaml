@@ -100,9 +100,7 @@ spec:
         {{- if .Values.metricsBindAddr }}
         - --metrics-bind-addr={{ .Values.metricsBindAddr }}
         {{- end }}
-        {{- if .Values.ingressMaxConcurrentReconciles }}
-        - --ingress-max-concurrent-reconciles={{ .Values.ingressMaxConcurrentReconciles }}
-        {{- end }}
+        - --ingress-max-concurrent-reconciles=0
         {{- if .Values.serviceMaxConcurrentReconciles }}
         - --service-max-concurrent-reconciles={{ .Values.serviceMaxConcurrentReconciles }}
         {{- end }}

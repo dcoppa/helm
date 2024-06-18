@@ -350,16 +350,18 @@ disableRestrictedSecurityGroupRules:
 # controllerConfig specifies controller configuration
 controllerConfig:
   # featureGates set of key: value pairs that describe AWS load balance controller features
-  featureGates: {}
-  # ListenerRulesTagging: true
-  # WeightedTargetGroups: true
-  # ServiceTypeLoadBalancerOnly: false
-  # EndpointsFailOpen: true
-  # EnableServiceController: true
-  # EnableIPTargetType: true
-  # SubnetsClusterTagCheck: true
-  # NLBHealthCheckAdvancedConfig: true
-  # ALBSingleSubnet: false
+  featureGates:
+    ALBSingleSubnet: false
+    EnableIPTargetType: true
+    EnableRGTAPI: false
+    EnableServiceController: true
+    EndpointsFailOpen: true
+    ListenerRulesTagging: true
+    NLBHealthCheckAdvancedConfig: true
+    NLBSecurityGroup: true
+    ServiceTypeLoadBalancerOnly: false
+    SubnetsClusterTagCheck: false
+    WeightedTargetGroups: true
 
 certDiscovery:
   allowedCertificateAuthorityARNs: "" # empty means all CAs are in scope
