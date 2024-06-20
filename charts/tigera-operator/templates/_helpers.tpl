@@ -1,9 +1,10 @@
 {{/* generate the image name for a component*/}}
 {{- define "tigera-operator.image" -}}
-{{- if .registry -}}
-    {{- .registry | trimSuffix "/" -}}/
-{{- end -}}
+{{- if and .awsAccountID (not (eq .awsAccountID "")) -}}
+{{- .awsAccountID -}}.dkr.ecr.eu-west-1.amazonaws.com/{{- .image -}}:{{- .version -}}
+{{- else -}}
 {{- .image -}}:{{- .version -}}
+{{- end -}}
 {{- end -}}
 
 {{/*

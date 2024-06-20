@@ -6,6 +6,8 @@ stage: dev
 fullnameOverride: "nifikop"
 nameOverride: "nifikop"
 
+awsAccountID: ""
+
 ## NiFi Operator Image
 ##
 image:

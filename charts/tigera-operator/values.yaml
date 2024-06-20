@@ -51,11 +51,11 @@ podAnnotations:
 # Custom labels for the tigera/operator pod.
 podLabels: {}
 
-# Image and registry configuration for the tigera/operator pod.
+# Image configuration for the tigera/operator pod.
 tigeraOperator:
-  image: dcoppa/tigera-operator
+  awsAccountID: ""
+  image: tigera-operator
   version: v1.32.8-aws
-  registry: docker.io
 calicoctl:
   image: docker.io/calico/ctl
   tag: v3.27.3

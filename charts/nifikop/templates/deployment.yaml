@@ -125,6 +125,10 @@ spec:
               value: {{ default "Info" .Values.logLevel }}
             - name: LOG_ENCODING
               value: {{ default "json" .Values.logEncoding }}
+            {{- if and .Values.awsAccountID (not (eq .Values.awsAccountID "")) }}
+            - name: AWS_ACCOUNT_ID
+              value: {{ .Values.awsAccountID }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /healthz
