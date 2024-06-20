@@ -86,9 +86,9 @@ spec:
                   fieldPath: metadata.namespace
             - name: TIGERA_OPERATOR_INIT_IMAGE_VERSION
               value: {{.Values.tigeraOperator.version}}
-            {{- if and .Values.tigeraOperator.awsAccountID (not (eq .Values.tigeraOperator.awsAccountID "")) }}
+            {{- if and .Values.tigeraOperator.awsAccountID (not (eq (quote .Values.tigeraOperator.awsAccountID) "")) }}
             - name: AWS_ACCOUNT_ID
-              value: {{.Values.tigeraOperator.awsAccountID}}
+              value: {{ .Values.tigeraOperator.awsAccountID | quote }}
             {{- end }}
           envFrom:
             - configMapRef:

@@ -125,9 +125,9 @@ spec:
               value: {{ default "Info" .Values.logLevel }}
             - name: LOG_ENCODING
               value: {{ default "json" .Values.logEncoding }}
-            {{- if and .Values.awsAccountID (not (eq .Values.awsAccountID "")) }}
+            {{- if and .Values.awsAccountID (not (eq (quote .Values.awsAccountID) "")) }}
             - name: AWS_ACCOUNT_ID
-              value: {{ .Values.awsAccountID }}
+              value: {{ .Values.awsAccountID | quote }}
             {{- end }}
           livenessProbe:
             httpGet:
