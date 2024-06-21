@@ -44,7 +44,7 @@ spec:
             port: 8080
         volumeMounts:
           - name: dashboardconfig
-            mountPath: /home/appuser/config/local.json
+            mountPath: /app/config/local.json
             subPath: local.json
       volumes:
         - name: dashboardconfig
