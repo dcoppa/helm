@@ -37,6 +37,9 @@ data:
   resource.customizations.ignoreDifferences.apps_Deployment: |
     jsonPointers:
     - /spec/replicas
+  resource.customizations.ignoreDifferences.apps_StatefulSet: |
+    jsonPointers:
+    - /spec/replicas
   resource.customizations.ignoreDifferences.nifi.konpyutaika.com_NifiNodeGroupAutoscaler: |
     jsonPointers:
     - /spec/replicas
