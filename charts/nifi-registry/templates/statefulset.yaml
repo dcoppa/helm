@@ -151,7 +151,7 @@ spec:
 
           {{ if .Values.flowProvider.git.enabled }}
               echo "# Import certificate authorities used by Gitlab"
-              for PEM in /git-ca/*.pem ; do keytool -import -trustcacerts -alias "${PEM}" -file "${PEM}" -keystore "${NIFI_REGISTRY_HOME}/tls/truststore.jks" -storepass "{{ .Values.certManager.truststorePasswd }}" ; done
+              for PEM in /git-ca/*.pem ; do keytool -import -noprompt -trustcacerts -alias "${PEM}" -file "${PEM}" -keystore "${NIFI_REGISTRY_HOME}/tls/truststore.jks" -storepass "{{ .Values.certManager.truststorePasswd }}" ; done
           {{ end }}
 
           {{ if .Values.oidc.enabled }}
