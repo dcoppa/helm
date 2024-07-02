@@ -4,12 +4,12 @@ kind: ExternalSecret
 metadata:
   labels:
   {{- include "traefik.labels" . | nindent 4 }}
-  name: {{.Values.k8sPrefix}}-externalsecret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-certs-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-es-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-certs-{{.Values.stage}}
   namespace: {{.Values.k8sPrefix}}-ns-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-{{.Values.stage}}
 spec:
   refreshInterval: 12h
   secretStoreRef:
-    name: {{.Values.k8sPrefix}}-clustersecretstore-{{.Values.customer}}-{{.Values.purpose}}-aws-secretsmanager-{{.Values.stage}}
+    name: {{.Values.k8sPrefix}}-css-{{.Values.customer}}-{{.Values.purpose}}-aws-secretsmanager-{{.Values.stage}}
     kind: ClusterSecretStore
   target:
     name: {{.Values.k8sPrefix}}-secret-{{.Values.customer}}-{{.Values.purpose}}-{{ template "traefik.fullname" . }}-certs-{{.Values.stage}}

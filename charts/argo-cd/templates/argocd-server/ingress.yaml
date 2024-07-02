@@ -4,7 +4,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.server.fullname" . }}-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-ing-{{.Values.customer}}-{{.Values.purpose}}-{{ include "argo-cd.server.fullname" . }}-{{.Values.stage}}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}

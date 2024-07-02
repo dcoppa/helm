@@ -9,7 +9,7 @@ metadata:
   labels: {{ include "traefik.labels" . | nindent 4 }}
     k8s-app: nginx-fallback
     traffic-type: admin
-  name: {{.Values.k8sPrefix}}-ingress-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
+  name: {{.Values.k8sPrefix}}-ing-{{.Values.customer}}-{{.Values.purpose}}-nginx-fallback-{{.Values.stage}}
   namespace: {{ template "traefik.namespace" . }}
 spec:
   defaultBackend:
