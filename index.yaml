@@ -4371,6 +4371,16 @@ entries:
     version: 1.12.0
   nifi-registry:
   - apiVersion: v2
+    appVersion: 1.27.0
+    created: "2024-07-11T09:45:25.931482797Z"
+    description: A subproject of Apache NiFi to store and manage shared resources.
+    digest: 75ddaf4b0739eaa8cd9e64587c6c19a9ada24e46128cf87ee6d12e8dd244ca37
+    name: nifi-registry
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/nifi-registry-1.0.1/nifi-registry-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: 1.25.0
     created: "2024-04-30T14:40:04.281536942Z"
     description: A subproject of Apache NiFi to store and manage shared resources.
@@ -9299,4 +9309,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-06-18T09:09:11.420180718Z"
+generated: "2024-07-11T09:45:27.372161304Z"
