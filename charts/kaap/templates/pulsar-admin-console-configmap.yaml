@@ -16,7 +16,7 @@ data:
         "auth_mode": "none",
         "server_config": {
           "port": "8080",
-          "pulsar_url": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-broker-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080",
+          "pulsar_url": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080",
           "websocket_url": "ws://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8000",
           "function_worker_url": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-fw-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6750",
           "log_level": "{{ .Values.pulsarAdminConsole.serverLogLevel }}"
@@ -24,9 +24,9 @@ data:
         "api_version": "{{ .Values.pulsarAdminConsole.apiVersion }}",
         "clients_disabled": "true",
         "host_overrides": {
-            "pulsar": "pulsar://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-broker-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6650",
+            "pulsar": "pulsar://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:6650",
             "ws": "ws://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8000",
-            "http": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-broker-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080"
+            "http": "http://{{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ .Values.cluster.spec.global.name }}-proxy-{{.Values.stage}}.{{ .Release.Namespace }}.svc:8080"
         }
     }
 {{- end }}
