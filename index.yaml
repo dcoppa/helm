@@ -4403,6 +4403,27 @@ entries:
     version: 1.0.0
   nifikop:
   - apiVersion: v1
+    appVersion: 1.10.0
+    created: "2024-08-09T09:22:56.914192177Z"
+    description: A Helm chart for NiFiKop - the Konpyūtāika NiFi Kubernetes operator
+    digest: 0a6257949b4ed36741dc1f3ea390eea0d65a9529ee412b4599652eabf1c3754a
+    home: https://github.com/konpyutaika/nifikop
+    icon: https://konpyutaika.github.io/nifikop/img/nifikop.png
+    keywords:
+    - operator
+    - nifi
+    - nifikop
+    - data
+    maintainers:
+    - email: guittonalexandre@outlook.fr
+      name: erdrix
+    name: nifikop
+    sources:
+    - https://github.com/konpyutaika/nifikop
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/nifikop-1.10.0/nifikop-1.10.0.tgz
+    version: 1.10.0
+  - apiVersion: v1
     appVersion: 1.9.0
     created: "2024-06-03T12:01:21.09313008Z"
     description: A Helm chart for NiFiKop - the Konpyūtāika NiFi Kubernetes operator
@@ -9309,4 +9330,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-07-11T09:45:27.372161304Z"
+generated: "2024-08-09T09:22:58.089489415Z"
