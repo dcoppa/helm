@@ -63,7 +63,7 @@ cluster:
   spec:
     global:
       name: pulsar
-      image: apachepulsar/pulsar-all:3.0.5
+      image: apachepulsar/pulsar-all:3.0.6
       storage:
         existingStorageClassName: default
 
@@ -71,7 +71,7 @@ pulsarAdminConsole:
   create: false
   defaultTenant: public
   serverLogLevel: info
-  apiVersion: "3.0.5"
+  apiVersion: "3.0.6"
   repository: dcoppa/pulsar-admin-console
   pullPolicy: IfNotPresent
   tag: 2.2.0
