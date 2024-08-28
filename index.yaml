@@ -4465,6 +4465,30 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/nifikop-1.8.0/nifikop-1.8.0.tgz
     version: 1.8.0
+  nsq:
+  - apiVersion: v2
+    appVersion: 1.2.1
+    created: "2024-08-28T08:23:55.252208454Z"
+    description: A realtime distributed messaging platform
+    digest: fa4400ef591523e84310927a95c2a5eed4a48409618b8a89ea27c96cf25cc587
+    home: https://github.com/nsqio/helm-chart/tree/master/charts/nsq
+    icon: https://nsq.io/static/img/nsq_blue.png
+    keywords:
+    - nsq
+    - nsqd
+    - nsqlookupd
+    - nsqadmin
+    maintainers:
+    - email: benhu@beeinventor.com
+      name: BeeInventor
+    name: nsq
+    sources:
+    - https://github.com/nsqio/helm-chart/tree/master/charts/nsq
+    - https://nsq.io/
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/nsq-0.0.10/nsq-0.0.10.tgz
+    version: 0.0.10
   redis:
   - annotations:
       category: Database
@@ -9330,4 +9354,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-08-09T09:22:58.089489415Z"
+generated: "2024-08-28T08:23:56.164150404Z"
