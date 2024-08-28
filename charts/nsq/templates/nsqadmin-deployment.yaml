@@ -1,0 +1,71 @@
+{{- if .Values.nsqadmin.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.k8sPrefix}}-deploy-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nsq.nsqadmin.fullname" . }}-{{.Values.stage}}
+  labels:
+    {{- include "nsq.commonLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.nsqadmin.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "nsq.nsqadmin.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.nsqadmin.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "nsq.nsqadmin.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.nsqadmin.podSecurityContext | nindent 8 }}
+      priorityClassName: {{ .Values.nsqadmin.priorityClassName }}
+      containers:
+      - name: {{ include "nsq.nsqadmin.fullname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command:
+        - /nsqadmin
+        args:
+        - --base-path={{ .Values.nsqadmin.basePath }}
+        {{ $lookupdFullName := include "nsq.nsqlookupd.fullname" . -}}
+        {{ range $i, $e := until (atoi (printf "%d" (int64 .Values.nsqlookupd.replicaCount))) -}}
+        - --lookupd-http-address={{$.Values.k8sPrefix}}-sts-{{$.Values.customer}}-{{$.Values.purpose}}-{{ $lookupdFullName }}-{{$.Values.stage}}-{{ $i }}.{{$.Values.k8sPrefix}}-svc-{{$.Values.customer}}-{{$.Values.purpose}}-{{ $lookupdFullName }}-{{$.Values.stage}}:4161
+        {{ end -}}
+        {{- range .Values.nsqadmin.extraArgs  }}
+        - {{ . }}
+        {{- end }}
+        terminationMessagePolicy: FallbackToLogsOnError
+        ports:
+        - containerPort: 4171
+          name: http
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.nsqadmin.basePath }}
+            port: http
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.nsqadmin.basePath }}
+            port: http
+        resources:
+          {{- toYaml .Values.nsqadmin.resources | nindent 12 }}
+      serviceAccountName: {{ .Values.nsqadmin.serviceAccountName }}
+      {{- with .Values.nsqadmin.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nsqadmin.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nsqadmin.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
