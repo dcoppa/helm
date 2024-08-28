@@ -8,7 +8,7 @@ metadata:
 spec:
   replicas: {{ .Values.nsqlookupd.replicaCount }}
   podManagementPolicy: {{ .Values.nsqlookupd.podManagementPolicy }}
-  serviceName: {{ include "nsq.nsqlookupd.fullname" . }}
+  serviceName: {{.Values.k8sPrefix}}-svc-{{.Values.customer}}-{{.Values.purpose}}-{{ include "nsq.nsqlookupd.fullname" . }}-{{.Values.stage}}
   selector:
     matchLabels:
       {{- include "nsq.nsqlookupd.selectorLabels" . | nindent 6 }}
