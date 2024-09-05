@@ -5,6 +5,8 @@ metadata:
   labels:
   name: {{$.Values.k8sPrefix}}-app-{{$.Values.customer}}-{{$.Values.purpose}}-nificluster-{{ $cluster.name }}-{{$.Values.stage}}
   namespace: {{ $.Release.Namespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: {{$.Values.k8sPrefix}}-ns-{{$.Values.customer}}-{{$.Values.purpose}}-nifi-{{$.Values.stage}}
