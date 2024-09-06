@@ -27,7 +27,7 @@ spec:
       valueFiles:
       - ../../values/nificluster-{{ $cluster.name }}/values.yaml
     path: charts/nificluster
-    repoURL: https://cicd.skyway.porsche.com/HYDRA/helm.git
+    repoURL: https://cicd.skyway.porsche.com/HYDRA/iac/hdp/helm.git
     targetRevision: main
   syncPolicy:
     automated:
