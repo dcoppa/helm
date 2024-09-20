@@ -144,6 +144,10 @@ spec:
             - name: INTERRUPTION_QUEUE
               value: "{{ . }}"
           {{- end }}
+          {{- with .Values.settings.interruptionQueueKey }}
+            - name: INTERRUPTION_QUEUE_KEY
+              value: "{{ . }}"
+          {{- end }}
           {{- with .Values.settings.reservedENIs }}
             - name: RESERVED_ENIS
               value: "{{ . }}"
