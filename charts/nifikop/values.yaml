@@ -12,7 +12,7 @@ awsAccountID: ""
 ##
 image:
   repository: docker.io/dcoppa/nifikop
-  tag: v1.10.10
+  tag: v1.10.11
   pullPolicy: IfNotPresent
   imagePullSecrets:
     enabled: false
