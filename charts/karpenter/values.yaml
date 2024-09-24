@@ -78,7 +78,7 @@ affinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
         - matchExpressions:
-            - key: karpenter.sh/nodepool
+            - key: karpenter.sh/nodepool-hash
               operator: DoesNotExist
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
