@@ -112,7 +112,7 @@ requiredDuringSchedulingIgnoredDuringExecution:
         {{- range $key, $value := $extraMatchLabels }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
-    topologyKey: {{ include "common.affinities.topologyKey" (dict "topologyKey" .topologyKey) }}
+    topologyKey: kubernetes.io/hostname
   {{- range $extraPodAffinityTerms }}
   - labelSelector:
       matchLabels: {{- (include "common.labels.matchLabels" ( dict "customLabels" $customLabels "context" $.context )) | nindent 8 }}
@@ -131,9 +131,7 @@ Return a podAffinity/podAntiAffinity definition
 {{ include "common.affinities.pods" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "common.affinities.pods" -}}
-  {{- if eq .type "soft" }}
-    {{- include "common.affinities.pods.soft" . -}}
-  {{- else if eq .type "hard" }}
-    {{- include "common.affinities.pods.hard" . -}}
-  {{- end -}}
+  {{- include "common.affinities.pods.soft" . -}}
+  {{ printf "\n" }}
+  {{- include "common.affinities.pods.hard" . -}}
 {{- end -}}
