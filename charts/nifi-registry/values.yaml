@@ -64,11 +64,11 @@ persistence:
   enabled: true
   database:
     # storageClass: "-"
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Gi
   flowStorage:
     # storageClass: "-"
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Gi
 
 resources: {}
@@ -127,7 +127,7 @@ security:
   admin: "CN=Initial Administrator, OU=NiFi Registry"
   persistence:
   # storageClass: "-"
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Gi
   # ConfigMap with users.xml and authorizations.xml keys; note that these
   # settings will override the admin: key above if present

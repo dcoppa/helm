@@ -413,7 +413,7 @@ spec:
       name: database
     spec:
       accessModes:
-      - ReadWriteOnce
+      - ReadWriteMany
       {{ if .Values.persistence.database.storageClass }}
       {{ if (eq "-" .Values.persistence.database.storageClass) }}
       storageClassName: ""
@@ -428,7 +428,7 @@ spec:
       name: flow-storage
     spec:
       accessModes:
-      - ReadWriteOnce
+      - ReadWriteMany
       {{ if .Values.persistence.flowStorage.storageClass }}
       {{ if (eq "-" .Values.persistence.flowStorage.storageClass) }}
       storageClassName: ""
@@ -445,7 +445,7 @@ spec:
       name: auth-conf
     spec:
       accessModes:
-      - ReadWriteOnce
+      - ReadWriteMany
       {{ if .Values.security.persistence.storageClass }}
       {{ if (eq "-" .Values.security.persistence.storageClass) }}
       storageClassName: ""
