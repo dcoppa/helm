@@ -370,6 +370,15 @@ entries:
     version: 0.9.13
   kaap:
   - apiVersion: v2
+    appVersion: 0.3.1
+    created: "2024-09-29T17:23:26.873759198Z"
+    description: Kubernetes Autoscaling for Apache Pulsar
+    digest: 5e6c5c4fa10dceee600224340d90e1211e8ca8ef10e7c09bef99bd8867511b7c
+    name: kaap
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/kaap-0.3.1/kaap-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
     created: "2024-05-20T12:25:06.004446876Z"
     description: Kubernetes Autoscaling for Apache Pulsar
     digest: 1bb75c3c90dd1f4c283745508c32f8e1ae6f01a66ab9232624ba766737c9d6bf
@@ -9393,4 +9402,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-09-20T12:48:53.071181766Z"
+generated: "2024-09-29T17:23:28.148982929Z"
