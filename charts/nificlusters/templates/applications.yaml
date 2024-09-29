@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   labels:
+    app: nificlusters
   name: {{$.Values.k8sPrefix}}-app-{{$.Values.customer}}-{{$.Values.purpose}}-nificluster-{{ $cluster.name }}-{{$.Values.stage}}
   namespace: {{ $.Release.Namespace }}
   finalizers:
