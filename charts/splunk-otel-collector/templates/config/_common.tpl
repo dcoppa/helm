@@ -345,8 +345,6 @@ Splunk Platform Logs exporter
 */}}
 {{- define "splunk-otel-collector.splunkPlatformLogsExporter" -}}
 splunk_hec/platform_logs:
-  headers:
-    X-SF-Token: "${SPLUNK_PLATFORM_HEC_TOKEN}"
   endpoint: {{ .Values.splunkPlatform.endpoint | quote }}
   token: "${SPLUNK_PLATFORM_HEC_TOKEN}"
   index: {{ .Values.splunkPlatform.index | quote }}
