@@ -1,0 +1,9 @@
+dependencies:
+- name: cert-manager
+  repository: file://charts/cert-manager
+  version: v1.14.4
+- name: opentelemetry-operator
+  repository: file://charts/opentelemetry-operator
+  version: 0.56.0
+digest: sha256:6fc58a126fb8021489c963f1dd195c162aade8ded0ea910d2664614d3994b26b
+generated: "2024-09-30T09:05:43.65034139+02:00"
