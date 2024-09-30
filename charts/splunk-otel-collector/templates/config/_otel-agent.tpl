@@ -833,7 +833,7 @@ exporters:
   otlphttp/entities:
     logs_endpoint: {{ include "splunk-otel-collector.o11yIngestUrl" . }}/v3/event
     headers:
-      "X-SF-Token": lorem-ipsum-dolor-sit-amet
+      "X-SF-Token": "lorem-ipsum-dolor-sit-amet"
 
 service:
   telemetry:
