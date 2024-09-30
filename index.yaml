@@ -4696,6 +4696,42 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/snapscheduler-3.4.0/snapscheduler-3.4.0.tgz
     version: 3.4.0
+  splunk-otel-collector:
+  - apiVersion: v2
+    appVersion: 0.110.0
+    created: "2024-09-30T08:54:46.83709808Z"
+    dependencies:
+    - alias: certmanager
+      condition: certmanager.enabled
+      name: cert-manager
+      repository: file://charts/cert-manager
+      version: v1.14.4
+    - alias: operator
+      condition: operator.enabled
+      name: opentelemetry-operator
+      repository: file://charts/opentelemetry-operator
+      version: 0.56.0
+    description: Splunk OpenTelemetry Collector for Kubernetes
+    digest: 509ea3c3d5384dec0338e6ab987a86d27f697539f9267d062b55174182967713
+    icon: https://github.com/signalfx/splunk-otel-collector-chart/tree/main/splunk.png
+    keywords:
+    - splunk
+    - opentelemetry
+    - observability
+    - logs
+    - traces
+    - metrics
+    - apm
+    - instrumentation
+    maintainers:
+    - name: dmitryax
+    - name: jvoravong
+    - name: emaderer
+    name: splunk-otel-collector
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm-charts/releases/download/splunk-otel-collector-0.110.0/splunk-otel-collector-0.110.0.tgz
+    version: 0.110.0
   tigera-operator:
   - apiVersion: v2
     appVersion: v3.27.3
@@ -9402,4 +9438,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-09-29T17:23:28.148982929Z"
+generated: "2024-09-30T08:54:47.383491544Z"
