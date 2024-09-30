@@ -181,7 +181,7 @@ Get Splunk ingest URL
 */}}
 {{- define "splunk-otel-collector.o11yIngestUrl" -}}
 {{- $realm := (include "splunk-otel-collector.o11yRealm" .) }}
-{{- .Values.splunkObservability.ingestUrl | default .Values.ingestUrl | default (printf "https://ingest.%s.signalfx.com" $realm) }}
+{{- .Values.splunkObservability.ingestUrl | default .Values.ingestUrl | default (printf "https://ingest.eu0.signalfx.com") }}
 {{- end -}}
 
 {{/*
