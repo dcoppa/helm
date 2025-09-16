@@ -1,6 +1,0 @@
-dependencies:
-- name: common-library
-  repository: file://charts/common-library
-  version: 1.1.1
-digest: sha256:3d21bfbe93deb5322ae2500c894c769d32722170895e4a5762f2affd06645a62
-generated: "2024-04-29T12:05:47.380494339+02:00"

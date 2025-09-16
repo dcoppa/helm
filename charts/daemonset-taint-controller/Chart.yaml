@@ -1,0 +1,16 @@
+apiVersion: v2
+name: daemonset-taint-controller
+description: A Kubernetes controller that removes startup taints from nodes when DaemonSets are ready
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - kubernetes
+  - controller
+  - nodes
+  - taints
+  - daemonsets
+home: https://github.com/dcoppa/daemonset-taint-controller
+maintainers:
+  - name: David Coppa
+    email: dcoppa@gmail.com

@@ -1,0 +1,58 @@
+# Default values for daemonset-taint-controller
+replicaCount: 3
+
+image:
+  repository: registry/daemonset-taint-controller
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+rbac:
+  create: true
+
+configMap:
+  create: true
+  name: "daemonset-taints"
+  data: {}
+    # Example configuration:
+    # node-exporter: daemonset-taint-controller/node-exporter
+    # ztunnel: daemonset-taint-controller/istio-ztunnel
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+podAnnotations: {}
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  fsGroup: 65532
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
