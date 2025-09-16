@@ -259,6 +259,28 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/cert-manager-v1.14.4/cert-manager-v1.14.4.tgz
     version: v1.14.4
+  daemonset-taint-controller:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-09-16T07:11:27.460106505Z"
+    description: A Kubernetes controller that removes startup taints from nodes when
+      DaemonSets are ready
+    digest: 7e90f293d3369dc9e3e6b801dcab5bb3c86a097398fe568a0eab1d4b1b315527
+    home: https://github.com/dcoppa/daemonset-taint-controller
+    keywords:
+    - kubernetes
+    - controller
+    - nodes
+    - taints
+    - daemonsets
+    maintainers:
+    - email: dcoppa@gmail.com
+      name: David Coppa
+    name: daemonset-taint-controller
+    type: application
+    urls:
+    - https://github.com/dcoppa/helm/releases/download/daemonset-taint-controller-0.1.0/daemonset-taint-controller-0.1.0.tgz
+    version: 0.1.0
   external-dns:
   - annotations:
       artifacthub.io/changes: |
@@ -9438,4 +9460,4 @@ entries:
     urls:
     - https://github.com/dcoppa/helm-charts/releases/download/zookeeper-13.1.1/zookeeper-13.1.1.tgz
     version: 13.1.1
-generated: "2024-09-30T08:54:47.383491544Z"
+generated: "2025-09-16T07:11:30.882978198Z"
