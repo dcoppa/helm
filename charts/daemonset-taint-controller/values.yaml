@@ -1,5 +1,5 @@
 # Default values for daemonset-taint-controller
-replicaCount: 3
+replicaCount: 2
 
 image:
   repository: dcoppa/daemonset-taint-controller
@@ -23,6 +23,7 @@ configMap:
   name: "daemonset-taints"
   data: {}
     # Example configuration:
+    # cost-analyzer-network-costs: daemonset-taint-controller/cost-analyzer
     # node-exporter: daemonset-taint-controller/node-exporter
     # ztunnel: daemonset-taint-controller/istio-ztunnel
 
