@@ -2,7 +2,7 @@
 replicaCount: 3
 
 image:
-  repository: registry/daemonset-taint-controller
+  repository: dcoppa/daemonset-taint-controller
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
@@ -41,8 +41,8 @@ affinity: {}
 podAnnotations: {}
 podSecurityContext:
   runAsNonRoot: true
-  runAsUser: 65532
-  fsGroup: 65532
+  runAsUser: 10001
+  fsGroup: 10001
 
 securityContext:
   allowPrivilegeEscalation: false
@@ -51,7 +51,7 @@ securityContext:
     - ALL
   readOnlyRootFilesystem: true
   runAsNonRoot: true
-  runAsUser: 65532
+  runAsUser: 10001
 
 podDisruptionBudget:
   enabled: true
